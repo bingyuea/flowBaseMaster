@@ -381,11 +381,12 @@
         }
       },
       doAddNode (info) {
+        console.log(info,'doAddNode')
         const _t = this
         const node = {
+          ...info,
           id: G6Util.uniqueId(),
           draggable: true,
-          type: info.type,
           label: info.defaultLabel,
           labelCfg: {
             position: 'center',
@@ -394,14 +395,6 @@
               stroke: '#000000'
             }
           },
-          width: info.width,
-          height: info.height,
-          minWidth: info.minWidth,
-          minHeight: info.minHeight,
-          // FIXME 定义锚点坐标
-          anchorPoints: info.anchorPoints,
-          // 定义shapeControl
-          shapeControl: info.shapeControl
         }
         // 广播事件，通过自定义交互 node-control 添加节点
         _t.editor.emit('editor:addNode', node)
