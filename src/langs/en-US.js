@@ -6,7 +6,7 @@
 
 export default {
   // toolbar
-  L10000: 'XFC',
+  L10000: '',
   L10001: 'Undo',
   L10002: 'Redo',
   L10003: 'Copy',

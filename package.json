@@ -5,16 +5,12 @@
   "main": "dist/xfc.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve --mode development",
-    "example": "npx --max_old_space_size=4096 vue-cli-service serve --mode development ./example/main.js",
-    "build": "vue-cli-service build --mode production",
-    "build-lib": "vue-cli-service build --mode build-lib --target lib --name xfc ./src/xfc.js --dest ./dist",
-    "lint": "vue-cli-service lint"
+    "build": "vue-cli-service build --mode production"
   },
   "files": [
     "dist"
   ],
-  "repository": {
-  },
+  "repository": {},
   "author": "OXOYO",
   "license": "MIT",
   "dependencies": {
@@ -25,6 +21,11 @@
     "screenfull": "^4.2.1",
     "v-click-outside": "^2.1.4",
     "vue": "^2.6.10",
+    "axios": "^0.21.1",
+    "echarts": "^5.0.2",
+    "element-ui": "2.12.0",
+    "moment": "^2.29.1",
+    "xlsx": "^0.16.9",
     "vue-color": "^2.7.0",
     "vue-i18n": "^8.14.0"
   },

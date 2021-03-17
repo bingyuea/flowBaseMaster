@@ -9,7 +9,7 @@ export default {
     enable: true
   },
   navigator: {
-    enable: true,
+    enable: false,
     config: {
       type: 'delegate',
       delegateStyle: {

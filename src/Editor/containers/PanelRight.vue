@@ -18,8 +18,8 @@
     <CardItem v-if="isEnableOptions" :title="$t('L10101')" :enableFold="true" :bold="true">
       <Options :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"></Options>
     </CardItem>
-    <CardItem v-if="isEnableNavigator" :title="$t('L10102')" :enableFold="true" :bold="true">
-      <Navigator></Navigator>
+    <CardItem title="属性设置" :enableFold="true" :bold="true">
+      <Details :originDataObj='originDataObj' :eventItem='eventItem'></Details>
     </CardItem>
   </CardBox>
 </template>
@@ -28,7 +28,7 @@
   import CardBox from '../components/CardBox'
   import CardItem from '../components/CardItem'
   import Options from '../components/Options'
-  import Navigator from '../components/Navigator'
+  import Details from '../containers/Details'
 
   export default {
     name: 'PanelRight',
@@ -36,12 +36,14 @@
       CardBox,
       CardItem,
       Options,
-      Navigator
+      Details
     },
     props: {
       editorConfig: Object,
       toolList: Array,
-      currentItem: Array
+      currentItem: Array,
+      originDataObj: Object,
+      eventItem: Object,
     },
     computed: {
       infoPanel () {
