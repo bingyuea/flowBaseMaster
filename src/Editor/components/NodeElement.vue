@@ -6,7 +6,7 @@
 
 <style scoped lang="less" rel="stylesheet/less">
   .node-element {
-    display: inline-block;
+    text-align: center;
     margin: 2px;
     border: 1px solid transparent;
 
@@ -75,7 +75,7 @@
       },
       height: {
         type: Number,
-        default: 40
+        default: 60
       }
     },
     computed: {

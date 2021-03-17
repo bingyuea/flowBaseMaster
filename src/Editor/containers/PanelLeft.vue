@@ -55,8 +55,11 @@
     },
     computed: {
       materials () {
-        return this.materialList.filter(item => item.enable)
+        return this.materialList
       }
+    },
+    mounted() {
+      console.log(this.materialList)
     },
     methods: {
       toggleHandler (data) {

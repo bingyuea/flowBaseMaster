@@ -682,8 +682,7 @@ export default {
       createNode (event) {
         const _t = this
         if (_t.dragNode.dottedNode && _t.info.node) {
-          const { width, height, minWidth, minHeight, label, type } = _t.info.node
-          console.log(_t.info.node,'_t.info.nod')
+          const { width, height,  label, type } = _t.info.node
           const node = {
             ..._t.info.node,
             id: G6Util.uniqueId(),
@@ -692,8 +691,6 @@ export default {
             x: event.x,
             y: event.y,
             size: [width, height],
-            minWidth: minWidth,
-            minHeight: minHeight,
             label: label,
           }
           _t.graph.addItem('node', node)
