@@ -153,23 +153,23 @@
               icon: '',
               enable: true,
               children: this.devices[k].map(item => {
-                const height = iconStyle[item.name].height
-                const width = iconStyle[item.name].width
-                return {
-                  shape: item.name,
-                  type: item.name,
-                  originId: item.id,
-                  label: item.name,
-                  data: JSON.stringify(item),
-                  defaultLabel: '',
-                  enable: true,
-                  width: Number(width) / 2,
-                  height: Number(height) / 2,
-                  anchorPoints: iconStyle[item.name].anchorPoints,
-                  shapeControl: shapeControl,
-                  img: item.imgUrl
+                  const height = iconStyle[item.name].height
+                  const width = iconStyle[item.name].width
+                  return {
+                    shape: item.name,
+                    type: item.name,
+                    originId: item.id,
+                    label: item.name,
+                    data: JSON.stringify(item),
+                    defaultLabel: '',
+                    enable: true,
+                    width: Number(width) / 2,
+                    height: Number(height) / 2,
+                    anchorPoints: iconStyle[item.name].anchorPoints,
+                    shapeControl: shapeControl,
+                    img: item.imgUrl
+                  }
                 }
-              }
               )
             }
             materials.push(temp)
@@ -625,6 +625,7 @@
             break
           }
           case 'preview': {
+            console.log(info, 'preview')
             _t.doSetMode(info.name)
             const previewData = {
               type: info.data,

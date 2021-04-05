@@ -313,7 +313,7 @@
       },
       handleToolClick (item, val) {
         const _t = this
-        // console.log('handleToolClick', item.name, val)
+        console.log('handleToolClick', item.name, val)
         if (item.disabled) {
           return
         }
