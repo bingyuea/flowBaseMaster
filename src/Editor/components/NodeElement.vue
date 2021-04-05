@@ -86,7 +86,7 @@
           // style.width = _t.width + 'px'
         }
         if (_t.height) {
-          style.height = _t.height+ 'px'
+          style.height = _t.height + 'px'
         }
         return style
       }

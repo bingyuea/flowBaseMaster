@@ -22,6 +22,6 @@ registerBehavior(G6)
 // 注册自定义边
 registerEdge(G6)
 // 注册自定义节点
-registerNode(G6,G6.devices)
+registerNode(G6, G6.devices)
 
 export default G6

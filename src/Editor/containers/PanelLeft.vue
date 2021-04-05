@@ -58,7 +58,7 @@
         return this.materialList
       }
     },
-    mounted() {
+    mounted () {
       console.log(this.materialList)
     },
     methods: {

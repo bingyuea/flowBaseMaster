@@ -73,7 +73,7 @@ export default function (enableMaterials) {
           minHeight: 20,
           anchorPoints: anchorPoints,
           shapeControl: shapeControl,
-          img:'https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png'
+          img: 'https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png'
         },
         {
           type: 'rounded-rectangle',
@@ -86,7 +86,7 @@ export default function (enableMaterials) {
           minHeight: 20,
           anchorPoints: anchorPoints,
           shapeControl: shapeControl,
-          img:'https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png'
+          img: 'https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png'
         }
       ]
     }

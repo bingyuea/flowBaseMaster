@@ -9,5 +9,5 @@ import roundedRectangle from './rounded-rectangle'
 
 export default {
   rectangle,
-  roundedRectangle,
+  roundedRectangle
 }

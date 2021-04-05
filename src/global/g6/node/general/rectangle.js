@@ -24,7 +24,7 @@ export default {
         y,
         width,
         height,
-        img: 'https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png',
+        img: 'https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png'
       }, cfg.style)
       return style
     }

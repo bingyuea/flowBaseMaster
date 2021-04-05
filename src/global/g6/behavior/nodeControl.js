@@ -72,7 +72,7 @@ export default {
     },
     onEditorAddNode (node) {
       const _t = this
-      console.log('onEditorAddNode',node)
+      console.log('onEditorAddNode', node)
       // 初始化数据
       _t.info = {
         type: 'dragNode',
@@ -682,7 +682,7 @@ export default {
       createNode (event) {
         const _t = this
         if (_t.dragNode.dottedNode && _t.info.node) {
-          const { width, height,  label, type } = _t.info.node
+          const { width, height, label, type } = _t.info.node
           const node = {
             ..._t.info.node,
             id: G6Util.uniqueId(),
@@ -691,7 +691,7 @@ export default {
             x: event.x,
             y: event.y,
             size: [width, height],
-            label: label,
+            label: label
           }
           _t.graph.addItem('node', node)
         }

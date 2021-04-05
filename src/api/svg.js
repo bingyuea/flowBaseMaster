@@ -1,5 +1,4 @@
-import {get} from '../global/utils/request'
-
+import { get } from '../global/utils/request'
 
 export function getDevice () {
   return get({

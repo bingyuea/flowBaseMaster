@@ -43,7 +43,7 @@
       toolList: Array,
       currentItem: Array,
       originDataObj: Object,
-      eventItem: Object,
+      eventItem: Object
     },
     computed: {
       infoPanel () {

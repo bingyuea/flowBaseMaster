@@ -83,7 +83,7 @@
 <script>
 
   export default {
-    data() {
+    data () {
       return {
         form: {
           tagName: '',
@@ -118,12 +118,12 @@
       }
     },
     methods: {
-      onSubmit() {
+      onSubmit () {
         // this.$X.utils.bus.$emit('submit', { form: this.form, paramList: this.paramList })
-        let _t = this
+        const _t = this
         if (_t.currentItem.length) {
           const model = _t.currentItem[0]
-          const params = {form: this.form, paramList: this.paramList, originId: this.originDataObj.originId || ''}
+          const params = { form: this.form, paramList: this.paramList, originId: this.originDataObj.originId || '' }
           if (!model.params || JSON.stringify(model.params) !== JSON.stringify(params)) {
             _t.currentItem[0].model.params = {}
             _t.currentItem[0].model.params = params
@@ -136,8 +136,8 @@
     },
     watch: {
       currentItem: {
-        handler(val) {
-          let _t = this
+        handler (val) {
+          const _t = this
           // 取第一个节点
           _t.firstItem = val[0]
           if (_t.firstItem && _t.firstItem.model.params) {
@@ -154,23 +154,23 @@
         deep: true
       },
       modelList: {
-        handler(val) {
+        handler (val) {
           if (val && val.paramList && !this.watchFlag) {
             this.paramList = this.modelList.paramList
           }
         },
         deep: true
       },
-      'editor._cfg.mode'(val) {
+      'editor._cfg.mode' (val) {
         console.log(val)
-        this.preview = val === 'preview' ? true : false
+        this.preview = val === 'preview'
       }
     },
     computed: {
-      originData() {
+      originData () {
         return this.originDataObj.originData || []
       },
-      tagNameList() {
+      tagNameList () {
         return this.originData.map(item => {
           return {
             label: item.tagName,
@@ -178,7 +178,7 @@
           }
         })
       },
-      tagModelList() {
+      tagModelList () {
         if (this.form.tagName && this.originData.length) {
           return this.originData.filter(item =>
             item.tagName === this.form.tagName
@@ -187,7 +187,7 @@
           return {}
         }
       },
-      modelNameList() {
+      modelNameList () {
         if (this.tagModelList && this.tagModelList.tagModel) {
           return this.tagModelList.tagModel.map(item => {
             return {
@@ -198,7 +198,7 @@
         }
         return []
       },
-      modelList() {
+      modelList () {
         if (this.form.modelName && this.tagModelList.tagModel && this.tagModelList.tagModel.length) {
           return this.tagModelList.tagModel.filter(item =>
             item.modelName === this.form.modelName
@@ -207,7 +207,7 @@
           return {}
         }
       },
-      currentShape() {
+      currentShape () {
         if (this.eventItem._cfg && this.eventItem._cfg.currentShape) {
           return this.eventItem._cfg.currentShape
         } else {

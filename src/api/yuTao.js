@@ -1,4 +1,4 @@
-import {post} from '../global/utils/request'
+import { post } from '../global/utils/request'
 
 console.log(post)
 /**
@@ -31,7 +31,6 @@ export function startrunning (params) {
   })
 }
 
-
 /**
  * @author songfangyuan
  * @date 2021/3/13
@@ -46,7 +45,6 @@ export function regtogglers (params) {
     params
   })
 }
-
 
 /**
  * @author songfangyuan
@@ -63,7 +61,6 @@ export function settoggleraction (params) {
   })
 }
 
-
 /**
  * @author songfangyuan
  * @date 2021/3/13
@@ -78,11 +75,3 @@ export function getelementparas (params) {
     params
   })
 }
-
-
-
-
-
-
-
-
