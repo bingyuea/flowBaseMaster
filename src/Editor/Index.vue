@@ -20,7 +20,7 @@
     <ToolBar :editorData="editorData" :toolList="toolList" :currentItem="currentItem"></ToolBar>
     <Sketchpad></Sketchpad>
     <PanelLeft :materialList="materialList"></PanelLeft>
-    <PanelRight :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"></PanelRight>
+    <PanelRight :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem" :originDataObj='originDataObj' :eventItem='eventItem'></PanelRight>
     <PreviewModel></PreviewModel>
     <ContextMenu :editorData="editorData" :toolList="toolList"></ContextMenu>
     <ShortcutList ref="shortcutList" :toolList="toolList" :shortcutMap="shortcutMap"></ShortcutList>
@@ -79,6 +79,8 @@
     },
     data () {
       return {
+        eventItem: {},
+        originDataObj: {},
         editorInfo: {},
         defInfo: {
           // 编辑器状态：add || edit || preview
