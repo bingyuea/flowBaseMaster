@@ -34,7 +34,7 @@
 
 <template>
   <div class="sketchpad-box" :style="boxStyle" @dblclick="ondblclickPad">
-    <div class="sketchpad" id="sketchpad" @dblclick.stop>
+    <div class="sketchpad" id="sketchpad" :style='sketchpadStyle' @dblclick.stop>
       <!-- 文本输入框 -->
       <input class="inputBox" autofocus value="">
     </div>
@@ -44,6 +44,7 @@
 <script>
   export default {
     name: 'Sketchpad',
+    props:['sketchpadStyle'],
     data () {
       return {
         // 面板样式

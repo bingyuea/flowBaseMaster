@@ -33,7 +33,7 @@
         justify-content: flex-start;
       }
       &.center {
-        justify-content: flex-start;
+        justify-content: center;
       }
       &.right {
         justify-content: flex-end;
@@ -296,7 +296,7 @@
       },
       handleDropdownClick (item, type, index, val) {
         const _t = this
-        // console.log('handleDropdownClick', item.name)
+        console.log('handleDropdownClick', item, type, index, val)
         if (item.disabled) {
           return
         }

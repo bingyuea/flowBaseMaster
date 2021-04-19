@@ -19,7 +19,7 @@
       <Options :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"></Options>
     </CardItem>
     <CardItem title="属性设置" :enableFold="true" :bold="true">
-      <Details :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem" :originDataObj='originDataObj' :eventItem='eventItem'></Details>
+      <Details :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem" :originDataObj='originDataObj' :eventItem='eventItem' :mode = 'mode'></Details>
     </CardItem>
   </CardBox>
 </template>
@@ -43,7 +43,8 @@
       toolList: Array,
       currentItem: Array,
       originDataObj: Object,
-      eventItem: Object
+      eventItem: Object,
+      mode: [String,Object]
     },
     computed: {
       infoPanel () {

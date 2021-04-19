@@ -98,6 +98,7 @@
     name: 'Details',
     props: {
       editorConfig: Object,
+      mode: [String,Object],
       toolList: Array,
       currentItem: Array,
       originDataObj: {
@@ -161,8 +162,7 @@
         },
         deep: true
       },
-      'editor._cfg.mode' (val) {
-        console.log(val)
+      mode (val) {
         this.preview = val === 'preview'
       }
     },

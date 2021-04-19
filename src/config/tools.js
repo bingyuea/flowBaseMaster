@@ -1414,31 +1414,6 @@ export default function (system = {}, disableTools = [], enableTools = [], short
       }
     },
     {
-      name: 'edit',
-      label: 'edit',
-      lang: 'L10023',
-      type: 'normal',
-      icon: 'edit',
-      enableTool: true,
-      enable: true,
-      enableMode: ['preview'],
-      disabled: false,
-      disabledMode: ['preview'],
-      shortcuts: '',
-      toolbar: {
-        enable: true,
-        position: 'center',
-        style: {},
-        divider: false
-      },
-      contextmenu: {
-        enable: true,
-        target: ['canvas'],
-        style: {},
-        divider: false
-      }
-    },
-    {
       name: 'preview',
       label: 'preview',
       lang: 'L10024',
@@ -1446,9 +1421,9 @@ export default function (system = {}, disableTools = [], enableTools = [], short
       icon: 'edit',
       enableTool: true,
       enable: true,
-      enableMode: ['edit', 'preview'],
+      enableMode: ['edit', 'preview','paramsEdit'],
       disabled: false,
-      disabledMode: ['edit', 'preview'],
+      disabledMode: ['edit', 'preview','paramsEdit'],
       shortcuts: '',
       toolbar: {
         enable: true,
@@ -1474,7 +1449,7 @@ export default function (system = {}, disableTools = [], enableTools = [], short
           type: 'normal',
           icon: '',
           style: {},
-          data: false,
+          data: 'edit',
           enable: true,
           disabled: false,
           divider: false
@@ -1486,7 +1461,8 @@ export default function (system = {}, disableTools = [], enableTools = [], short
           type: 'normal',
           icon: '',
           style: {},
-          data: false,
+          data: 'paramsEdit',
+          position: 'center',
           enable: true,
           disabled: false,
           divider: false
@@ -1498,7 +1474,7 @@ export default function (system = {}, disableTools = [], enableTools = [], short
           type: 'normal',
           icon: '',
           style: {},
-          data: false,
+          data: 'preview',
           enable: true,
           disabled: false,
           divider: false
@@ -1510,7 +1486,7 @@ export default function (system = {}, disableTools = [], enableTools = [], short
           type: 'normal',
           icon: '',
           style: {},
-          data: false,
+          data: 'run',
           enable: true,
           disabled: false,
           divider: false
@@ -1591,6 +1567,18 @@ export default function (system = {}, disableTools = [], enableTools = [], short
           icon: 'json',
           style: {},
           data: 'json',
+          enable: true,
+          disabled: false,
+          divider: false
+        },
+        {
+          name: 'excel',
+          label: 'Excel',
+          lang: '',
+          type: 'normal',
+          icon: '',
+          style: {},
+          data: 'excel',
           enable: true,
           disabled: false,
           divider: false

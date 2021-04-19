@@ -13,14 +13,155 @@
   overflow: hidden;
   background: #f8f9fa;
 }
+.run {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #f8f9fa;
+
+  .sketchpad-box {
+    left: 0 !important;
+    overflow-x: hidden;
+
+
+    .sketchpad {
+      width: 100% !important;
+      height: 100% !important;
+      left: 0% !important;
+      margin-left: 0 !important;
+      margin-top: 0px !important;
+      margin-bottom: 0px !important;
+    }
+
+  }
+
+  .right_content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    right: 0;
+  }
+
+  .button_content {
+    padding: 10px;
+  }
+}
 </style>
 
 <template>
-  <div class="materials-editor" @click="handleEditorClick" @contextmenu.stop.prevent>
+  <div v-if="mode === 'run'" class="run">
+    <Sketchpad :sketchpadStyle="{
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        left: 0,
+        marginLeft: 0,
+        marginTop: 0,
+        marginBottom: 0
+      }"></Sketchpad>
+    <div class="right_content">
+
+      <div class='button_content'>
+        <el-button @click="dialogVisible = true">开始仿真</el-button>
+        <el-button type="" @click='getRegtogglers'>获取开关倒闸方案</el-button>
+        <div style="margin-top: 10px">
+          <el-button @click='settoggleractionFn'>开关设置</el-button>
+          <el-button @click='getelementparasFn'>查看仿真波形</el-button>
+        </div>
+      </div>
+      <div class="flex_layout">
+        <div class="table flex—item">
+          <el-divider content-position="left">负荷转供倒闸方案</el-divider>
+          <el-card class="box-card">
+            <el-table
+              :data="tableData"
+              border
+              empty-text='暂无数据'
+              height="250px"
+              style="width: 100%">
+              <el-table-column
+                v-for='item in tableHeader'
+                align="center"
+                :prop="item.prop"
+                :label="item.label">
+              </el-table-column>
+
+            </el-table>
+          </el-card>
+        </div>
+
+        <div class='history flex—item'>
+          <el-divider content-position="left">操作轨迹</el-divider>
+          <el-card class="box-card">
+          </el-card>
+        </div>
+
+        <div class="flex—item">
+          <el-divider content-position="left">曲线图</el-divider>
+          <div id="main" style="height: 100%">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!---设置运行参数-->
+    <el-dialog
+      title="设置运行参数"
+      :visible.sync="dialogVisible"
+      width="30%"
+    >
+      <el-form
+        :model="formData"
+        label-width="110px"
+      >
+        <el-form-item
+          label="文件名："
+          prop="file"
+        >
+          <el-select v-model="formData.file" style="width: 100%;">
+            <el-option label="文件一" value="fileName"></el-option>
+            <el-option label="文件二" value="fileName1"></el-option>
+          </el-select>
+        </el-form-item>
+
+
+        <el-form-item
+          label="故障路线编号："
+          prop="lineNo"
+        >
+          <el-input v-model="formData.lineNo"/>
+        </el-form-item>
+
+        <el-form-item
+          label="比例："
+          prop="ratio"
+        >
+          <el-input v-model="formData.ratio"/>
+        </el-form-item>
+
+        <el-form-item
+          label="故障时间："
+          prop="faultTime"
+        >
+          <el-input v-model="formData.faultTime"/>
+        </el-form-item>
+
+
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="settingparametersFn">确 定</el-button>
+      </span>
+    </el-dialog>
+
+  </div>
+
+  <div class="materials-editor" @click="handleEditorClick" @contextmenu.stop.prevent v-else>
     <ToolBar :editorData="editorData" :toolList="toolList" :currentItem="currentItem"></ToolBar>
     <Sketchpad></Sketchpad>
     <PanelLeft :materialList="materialList"></PanelLeft>
-    <PanelRight :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem" :originDataObj='originDataObj' :eventItem='eventItem'></PanelRight>
+    <PanelRight :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem" :originDataObj='originDataObj' :eventItem='eventItem' :mode = 'mode'></PanelRight>
     <PreviewModel></PreviewModel>
     <ContextMenu :editorData="editorData" :toolList="toolList"></ContextMenu>
     <ShortcutList ref="shortcutList" :toolList="toolList" :shortcutMap="shortcutMap"></ShortcutList>
@@ -49,10 +190,19 @@
   import screenfull from 'screenfull'
   // 热键
   import Mousetrap from 'mousetrap'
+  import XLSX from 'xlsx'
+  import moment from 'moment'
   import {
     getDevice,
     getSvgById
   } from '../api/svg'
+  import {
+    settingparameters,
+    startrunning,
+    regtogglers,
+    settoggleraction,
+    getelementparas
+  } from '../api/yuTao'
   import _ from 'lodash'
   import {
     iconStyle,
@@ -79,6 +229,21 @@
     },
     data () {
       return {
+        dialogVisible: false,
+        formData:
+          {"faultTime": 0.2, "ratio": 0.6, "lineNo": 111, "file": "filename"}
+        ,
+        tableData: [],
+        tableHeader: [
+          {
+            label: '开关编号',
+            prop: 'name'
+          },
+          {
+            label: '操作时间',
+            prop: 'date'
+          }
+        ],
         eventItem: {},
         originDataObj: {},
         editorInfo: {},
@@ -114,6 +279,61 @@
       }
     },
     methods: {
+      settingparametersFn(){
+        console.log(this.formData)
+        settingparameters({...this.formData}).then(() => {
+          startrunning()
+        })
+      },
+      getelementparasFn() {
+        getelementparas({"eleNo": 123})
+        let res = {
+          "element_paras": {
+            "qSlack": 777,
+            "aBus": 444,
+            "pSlack": 666,
+            "time": 15129,
+            "deltaGENROU": 30,
+            "vBou": 555,
+            "omegaGENROU": 45,
+            "iLine": 5
+          }
+        }
+        let option = {
+          xAxis: {
+            type: 'category',
+            data: ['15129', '15130', '15131', '15132', '15133', '15134', '15135']
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [{
+            data: [620, 732, 801, 934, 1090, 1130, 1320],
+            type: 'line',
+            smooth: true
+          }]
+        };
+        this.drawChart(option)
+      },
+      settoggleractionFn() {
+        settoggleraction({"togglerNo": 123})
+      },
+      getRegtogglers() {
+        regtogglers().then(res => {
+          this.tableData = res.reg_togglers.map(item => {
+            return {
+              name: item,
+              date: moment().format("YYYY-MM-DD")
+            }
+          })
+        })
+      },
+      async drawChart(option) {
+        if (option) {
+          let myChart = echarts.init(document.getElementById("main"));
+          myChart.setOption(option);
+        }
+      },
       getOriginData (id) {
         const originDataObj = JSON.parse(localStorage.getItem('originDataObj' + String(id)))
         if (originDataObj) {
@@ -273,12 +493,24 @@
                 }
               }
             ],
+            // 微调
+            paramsEdit: [
+              {
+                type: 'params-control',
+                config: {
+                  dragNode: {
+                    // 是否在拖拽节点时更新所有与之相连的边
+                    updateEdge: false
+                  },
+                }
+              }
+            ],
             // 只读，
             preview: [
               'zoom-canvas',
               'drag-canvas',
               'preview-canvas'
-            ]
+            ],
           },
           // 分组样式
           groupType: 'rect',
@@ -484,6 +716,7 @@
         _t.editor.emit('editor:addNode', node)
       },
       doSetMode (name) {
+        console.log(name)
         const _t = this
         _t.mode = name
         _t.editor.setMode(name)
@@ -626,20 +859,13 @@
             _t.editor.fitView()
             break
           }
+          case 'run':
+            _t.doSetMode(info.data)
+            console.log(info)
+            break
           case 'preview': {
             console.log(info, 'preview')
-            _t.doSetMode(info.name)
-            const previewData = {
-              type: info.data,
-              content: ''
-            }
-            if (info.data === 'image') {
-              previewData.content = _t.editor.toDataURL()
-            } else if (info.data === 'json') {
-              previewData.content = _t.editor.save()
-            }
-            // 显示预览弹窗
-            _t.$X.utils.bus.$emit('editor/previewModel/open', previewData)
+            _t.doSetMode(info.data)
             break
           }
           case 'edit': {
@@ -926,6 +1152,38 @@
               link.click()
               // no longer need to read the blob so it's revoked
               URL.revokeObjectURL(url)
+            }else if (info.data === 'excel') {
+              /!* create a new blank workbook *!/
+              let wb = XLSX.utils.book_new();
+              let dataList = []
+              _t.editor.getNodes().forEach((node, index) => {
+                const model = node.getModel()
+                if (model.params) {
+                  dataList.push(model.params)
+                }
+              })
+              if (!dataList.length) return
+              const excelData = _.groupBy(dataList, 'originId')
+              Object.entries(excelData).forEach(sheet => {
+                const sheetData = sheet[1]
+                const sheetName = sheetData[0].form.modelName
+                let s = sheetData.map((row, rowIndex) => {
+                  let obj = {}
+                  row.paramList.map(cell => {
+                    const name = cell.name
+                    obj = {
+                      'uid': rowIndex, ...obj,
+                      [name]: cell.defaultValue
+                    }
+                  });
+                  return obj
+                })
+                console.log(s)
+                XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(s), sheetName);
+              })
+              // let sheetData = [{department: "行政部", count: 2}, {department: "前端部", count: 2}];
+              const workbookBlob = this.workbook2blob(wb);
+              this.openDownloadDialog(workbookBlob, `GUI.xlsx`);
             }
             break
           }
@@ -1060,6 +1318,47 @@
             _t.$X.utils.storage.set('toolList', toolList, _t.$X.config.storage.prefix)
           }
         }
+      },
+      openDownloadDialog(blob, fileName) {
+        if (typeof blob == "object" && blob instanceof Blob) {
+          blob = URL.createObjectURL(blob); // 创建blob地址
+        }
+        var aLink = document.createElement("a");
+        aLink.href = blob;
+        // HTML5新增的属性，指定保存文件名，可以不要后缀，注意，有时候 file:///模式下不会生效
+        aLink.download = fileName || "";
+        var event;
+        if (window.MouseEvent) event = new MouseEvent("click");
+        //   移动端
+        else {
+          event = document.createEvent("MouseEvents");
+          event.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+        }
+        aLink.dispatchEvent(event);
+      },
+      workbook2blob(workbook) {
+        // 生成excel的配置项
+        var wopts = {
+          // 要生成的文件类型
+          bookType: "xlsx",
+          // // 是否生成Shared String Table，官方解释是，如果开启生成速度会下降，但在低版本IOS设备上有更好的兼容性
+          bookSST: false,
+          type: "binary"
+        };
+        var wbout = XLSX.write(workbook, wopts);
+
+        // 将字符串转ArrayBuffer
+        function s2ab(s) {
+          var buf = new ArrayBuffer(s.length);
+          var view = new Uint8Array(buf);
+          for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff;
+          return buf;
+        }
+
+        var blob = new Blob([s2ab(wbout)], {
+          type: "application/octet-stream"
+        });
+        return blob;
       },
       initInfo (data = {}) {
         const _t = this
