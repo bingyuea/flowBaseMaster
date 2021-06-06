@@ -12,6 +12,7 @@ import utils from './global/utils'
 import components from './global/components'
 import config from './config'
 import './assets/styles/main.less'
+import './global/utils/directive' // 自定义指令
 
 import vClickOutside from 'v-click-outside'
 import ElementUI from 'element-ui'

@@ -16,7 +16,7 @@
 </style>
 
 <template>
-  <CardBox class="panel-left" placement="left" position="right" :width="250" :title="$t('L10300')" @expand="toggleHandler">
+  <div class="panel-left" placement="left" position="right" :width="250" :title="$t('L10300')" @expand="toggleHandler">
     <CardItem
       v-for="(item, index) in materials"
       :key="index"
@@ -32,18 +32,16 @@
       >
       </NodeElement>
     </CardItem>
-  </CardBox>
+  </div>
 </template>
 
 <script>
-  import CardBox from '../components/CardBox'
   import CardItem from '../components/CardItem'
   import NodeElement from '../components/NodeElement'
 
   export default {
     name: 'PanelLeft',
     components: {
-      CardBox,
       CardItem,
       NodeElement
     },

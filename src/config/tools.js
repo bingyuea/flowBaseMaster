@@ -30,56 +30,6 @@ export default function (system = {}, disableTools = [], enableTools = [], short
   // 工具列表
   let toolList = [
     {
-      // 工具项名称，保持唯一性，便于区分工具项
-      name: 'logo',
-      // 文本，无lang时可取label值显示
-      label: 'logo',
-      // 多语言code码
-      lang: 'L10000',
-      // 工具项类型，不同的工具类型在ToolBar、ContextMenu里的表现不一样
-      type: 'link',
-      // 工具项图标
-      icon: '',
-      img: system.logo,
-      // 跳转连接
-      link: system.site,
-      // 是否启用该工具项，用户控制是否启用该工具项
-      enableTool: true,
-      // 是否启用，用于动态控制是否在界面上创建该工具项
-      enable: true,
-      // 启用模式，用于控制在什么模式下启用该工具项
-      enableMode: ['edit', 'preview'],
-      // 是否禁用，用于控制界面上已创建的工具项是否处于禁用状态
-      disabled: false,
-      // 禁用模式，用于控制在什么模式下该工具项处于禁用状态，详见Editor/Index.vue 中的doSetMode方法
-      disabledMode: ['edit', 'preview'],
-      // 热键
-      shortcuts: '',
-      // 工具栏
-      toolbar: {
-        // 是否启用
-        enable: true,
-        // 位置
-        position: 'left',
-        // 样式
-        style: {
-          opacity: 1
-        },
-        // 分割线，是否在该工具项后显示分割线，ToolBar中为竖线，ContextMenu中为横线
-        divider: false
-      },
-      // 右键菜单
-      contextmenu: {
-        // 是否启用
-        enable: false,
-        // 目标元素类型，用于控制在什么元素上可以显示该工具项
-        target: [],
-        style: {},
-        // 分割线，是否在该工具项后显示分割线，ToolBar中为竖线，ContextMenu中为横线
-        divider: false
-      }
-    },
-    {
       name: 'undo',
       label: 'Undo',
       lang: 'L10001',
@@ -2139,6 +2089,422 @@ export default function (system = {}, disableTools = [], enableTools = [], short
       }
     }
   ]
+  const sysList = [
+    {
+      name: '系统',
+      label: 'File',
+      type: 'normal',
+      enable: true,
+      enableMode: ['edit'],
+      disabled: false,
+      disabledMode: ['edit'],
+      toolbar: {
+        enable: true,
+        position: 'left',
+        style: {},
+        divider: false
+      }
+    }, {
+      name: '系统',
+      label: 'Edit',
+      type: 'normal',
+      enable: true,
+      enableMode: ['edit'],
+      disabled: false,
+      disabledMode: ['edit'],
+      toolbar: {
+        enable: true,
+        position: 'left',
+        style: {},
+        divider: false
+      }
+    }, {
+      name: '系统',
+      label: 'View',
+      type: 'normal',
+      enable: true,
+      enableMode: ['edit'],
+      disabled: false,
+      disabledMode: ['edit'],
+      toolbar: {
+        enable: true,
+        position: 'left',
+        style: {},
+        divider: false
+      }
+    }, {
+      name: '系统',
+      label: 'Help',
+      type: 'normal',
+      enable: true,
+      enableMode: ['edit'],
+      disabled: false,
+      disabledMode: ['edit'],
+      toolbar: {
+        enable: true,
+        position: 'left',
+        style: {},
+        divider: false
+      }
+    }
+  ]
+   const functionlist = [
+    {
+      name: '绘图模式',
+      label: '绘图模式',
+      type: 'normal',
+      icon: '绘图模式',
+      enable: true,
+      enableMode: ['edit'],
+      disabled: false,
+      disabledMode: ['edit'],
+      toolbar: {
+        enable: true,
+        position: 'left',
+        style: {},
+        divider: false
+      }
+    },
+    {
+      name: '绘图模式',
+      label: '绘图模式',
+      type: 'normal',
+      icon: '潮流计算模式',
+      enable: true,
+      enableMode: ['edit'],
+      disabled: false,
+      disabledMode: ['edit'],
+      toolbar: {
+        enable: true,
+        position: 'left',
+        style: {},
+        divider: false
+      },
+      child: [
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '开始潮流计算',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        },
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '波形单位设定',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        },
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '生成结果报告',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        }
+      ]
+    },
+    // 谐波分析模式
+    {
+      name: '绘图模式',
+      label: '绘图模式',
+      type: 'normal',
+      icon: '谐波分析模式',
+      enable: true,
+      enableMode: ['edit'],
+      disabled: false,
+      disabledMode: ['edit'],
+      toolbar: {
+        enable: true,
+        position: 'left',
+        style: {},
+        divider: false
+      },
+      child: [
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '开始谐波计算',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        },
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '扫频分析',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        },
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '谐波波形',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        },
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '波形单位设定',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        }
+      ]
+    },
+
+    {
+      name: '绘图模式',
+      label: '绘图模式',
+      type: 'normal',
+      icon: '短路计算',
+      enable: true,
+      enableMode: ['edit'],
+      disabled: false,
+      disabledMode: ['edit'],
+      toolbar: {
+        enable: true,
+        position: 'left',
+        style: {},
+        divider: false
+      },
+      child: [
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '三相接地短路',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        },
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '单相接地短路',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        },
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '三相断路',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        }
+      ]
+    },
+
+    // 继电保护
+    {
+      name: '绘图模式',
+      label: '绘图模式',
+      type: 'normal',
+      icon: '继电保护',
+      enable: true,
+      enableMode: ['edit'],
+      disabled: false,
+      disabledMode: ['edit'],
+      toolbar: {
+        enable: true,
+        position: 'left',
+        style: {},
+        divider: false
+      },
+      child: [
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '设置故障',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        },
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '运行继电保护',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        }
+      ]
+    },
+
+    // 可靠性计算模式
+    {
+      name: '绘图模式',
+      label: '绘图模式',
+      type: 'normal',
+      icon: '可靠性计算模式',
+      enable: true,
+      enableMode: ['edit'],
+      disabled: false,
+      disabledMode: ['edit'],
+      toolbar: {
+        enable: true,
+        position: 'left',
+        style: {},
+        divider: false
+      },
+      child: [
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '可靠性计算',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        }
+      ]
+    },
+    // 时域仿真模式
+    {
+      name: '绘图模式',
+      label: '绘图模式',
+      type: 'normal',
+      icon: '时域仿真模式',
+      enable: true,
+      enableMode: ['edit'],
+      disabled: false,
+      disabledMode: ['edit'],
+      toolbar: {
+        enable: true,
+        position: 'left',
+        style: {},
+        divider: false
+      },
+      child: [
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '时域仿真',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        }
+      ]
+    }
+  ]
   // 处理禁用或启用
   if (Array.isArray(disableTools) && disableTools.length) {
     toolList = toolList.filter(item => !disableTools.includes(item.name))
@@ -2147,6 +2513,8 @@ export default function (system = {}, disableTools = [], enableTools = [], short
   }
   return {
     shortcutMap,
-    toolList
+    toolList,
+    sysList,
+    functionlist
   }
 }

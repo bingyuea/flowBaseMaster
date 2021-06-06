@@ -6,20 +6,24 @@
 
 <style scoped lang="less" rel="stylesheet/less">
   .icon {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    height: 100%;
     .iconfont {}
-    .img {
-      width: 100%;
-      height: auto;
-    }
     .label {}
+    .toolbarIcon {
+      width: 16px;
+      height: 16px;
+      display: inline-block;
+      background-size: cover;
+    }
   }
 </style>
 
 <template>
   <div class="icon" :title="title">
     <div v-if="iconfont" class="iconfont" :class="[iconfont ? 'xfv-icon-' + iconfont : '']"></div>
-    <img v-else-if="img" class="img" :src="img">
+    <img v-else-if="img" class  = 'toolbarIcon' :src='require(`../../../assets/images/toolbar/${img}.png`)' alt=""/>
     <div v-else class="label">{{ label }}</div>
   </div>
 </template>

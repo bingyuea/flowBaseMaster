@@ -323,14 +323,16 @@
         _t.doHide()
       },
       handleToolClick (item, val) {
-        console.log('-------------------')
+        console.log(item, '-------234234------------')
+        console.log(item, '-------234234------------')
         const _t = this
         if (item.disabled) {
           return
         }
         let payload = {
           context: 'ContextMenu',
-          name: item.name
+          name: item.name,
+          item
         }
         switch (item.name) {
           case 'paste':

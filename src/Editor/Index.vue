@@ -3,7 +3,7 @@
 *
 * MaterialsEditor 物料编辑器
 */
-
+/* eslint-disable */
 <style scoped lang="less" rel="stylesheet/less">
 .materials-editor {
   display: inline-block;
@@ -17,14 +17,27 @@
 
 <template>
   <div class="materials-editor" @click="handleEditorClick" @contextmenu.stop.prevent>
-    <ToolBar :editorData="editorData" :toolList="toolList" :currentItem="currentItem"></ToolBar>
+    <ToolBar :editorData="editorData" :sysList="sysList" :toolList="toolList" :functionlist="functionlist" :currentItem="currentItem"></ToolBar>
     <Sketchpad></Sketchpad>
-    <PanelLeft :materialList="materialList"></PanelLeft>
-    <PanelRight :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem" :originDataObj='originDataObj' :eventItem='eventItem'></PanelRight>
+<!--    <PanelLeft :materialList="materialList"></PanelLeft>-->
+    <PanelRight :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"
+                :originDataObj='originDataObj' :eventItem='eventItem' :toolbarInfo = 'toolbarInfo' :materialList="materialList"></PanelRight>
     <PreviewModel></PreviewModel>
     <ContextMenu :editorData="editorData" :toolList="toolList"></ContextMenu>
     <ShortcutList ref="shortcutList" :toolList="toolList" :shortcutMap="shortcutMap"></ShortcutList>
     <History ref="history" @on-revert="doRevert"></History>
+    <!--元件信息-->
+    <el-dialog
+      :title="currentShape"
+      :visible.sync="dialogVisible"
+      width="398px"
+    >
+      <Details :originDataObj='originDataObj' :eventItem='eventItem'></Details>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -36,6 +49,7 @@
   import PreviewModel from './containers/PreviewModel'
   import ContextMenu from './containers/ContextMenu'
   import ShortcutList from './containers/ShortcutList'
+  import Details from './containers/Details'
   import History from './containers/History'
   import utils from '@/global/g6/utils'
   // 扩展了节点、边的G6
@@ -59,6 +73,8 @@
     shapeControl
   } from '../config/icon'
 
+  import { icon } from '@/global/g6/node/devices'
+
   export default {
     name: 'MaterialsEditor',
     components: {
@@ -69,7 +85,8 @@
       PreviewModel,
       ContextMenu,
       ShortcutList,
-      History
+      History,
+      Details
     },
     props: {
       maxLogSize: {
@@ -79,6 +96,8 @@
     },
     data () {
       return {
+        toolbarInfo: {},
+        dialogVisible: false,
         eventItem: {},
         originDataObj: {},
         editorInfo: {},
@@ -96,6 +115,8 @@
         },
         // 工具列表
         toolList: [],
+        sysList: [],
+        functionlist: [],
         // 快捷键列表
         shortcutMap: {},
         // 物料列表
@@ -111,6 +132,13 @@
       },
       editorConfig () {
         return this.editor && this.editor.$C ? this.editor.$C : null
+      },
+      currentShape () {
+        if (this.eventItem._cfg && this.eventItem._cfg.currentShape) {
+          return this.eventItem._cfg.currentShape
+        } else {
+          return '--'
+        }
       }
     },
     methods: {
@@ -140,7 +168,8 @@
           this.devices = _.groupBy(res.data, 'typeId')
         } else {
           getDevice().then(res => {
-            localStorage.setItem('devices', JSON.stringify(res.data))
+            // 加载自定义icon
+            localStorage.setItem('devices', JSON.stringify(res.data.concat(icon)))
             this.devices = _.groupBy(res.data, 'typeId')
             window.location.reload()
           })
@@ -155,23 +184,23 @@
               icon: '',
               enable: true,
               children: this.devices[k].map(item => {
-                  const height = iconStyle[item.name].height
-                  const width = iconStyle[item.name].width
-                  return {
-                    shape: item.name,
-                    type: item.name,
-                    originId: item.id,
-                    label: item.name,
-                    data: JSON.stringify(item),
-                    defaultLabel: '',
-                    enable: true,
-                    width: Number(width) / 2,
-                    height: Number(height) / 2,
-                    anchorPoints: iconStyle[item.name].anchorPoints,
-                    shapeControl: shapeControl,
-                    img: item.imgUrl
-                  }
+                const height = iconStyle[item.name].height
+                const width = iconStyle[item.name].width
+                return {
+                  shape: item.name,
+                  type: item.name,
+                  originId: item.id,
+                  label: item.name,
+                  data: JSON.stringify(item),
+                  defaultLabel: '',
+                  enable: true,
+                  width: Number(width) / 2,
+                  height: Number(height) / 2,
+                  anchorPoints: iconStyle[item.name].anchorPoints,
+                  shapeControl: shapeControl,
+                  img: item.imgUrl
                 }
+              }
               )
             }
             materials.push(temp)
@@ -185,14 +214,20 @@
         // 初始化存储数据
         const {
           toolList,
+          sysList,
+          functionlist,
           shortcutMap
         } = _t.$X.config.tools
         const materials = this.materials
         _t.$X.config.materials = this.materials
         _t.toolList = toolList
+        _t.sysList = sysList
+        _t.functionlist = functionlist
         _t.shortcutMap = shortcutMap
         _t.materialList = materials
         _t.$X.utils.storage.set('toolList', toolList, _t.$X.config.storage.prefix)
+        _t.$X.utils.storage.set('functionlist', functionlist, _t.$X.config.storage.prefix)
+        _t.$X.utils.storage.set('sysList', sysList, _t.$X.config.storage.prefix)
         _t.$X.utils.storage.set('shortcutMap', shortcutMap, _t.$X.config.storage.prefix)
         _t.$X.utils.storage.set('materials', materials, _t.$X.config.storage.prefix)
         _t.$X.utils.storage.set('log', {
@@ -377,6 +412,7 @@
         this.eventItem = event.item
         if (id) this.getOriginData(id)
         _t.editor.setItemState(event.item, 'active', true)
+        this.dialogVisible = true
       },
       _nodeHover (event) {
         const _t = this
@@ -1028,6 +1064,12 @@
             if (ref && ref.show) {
               ref.show()
             }
+            break
+          }
+          case '绘图模式': {
+            console.log(info, 'item')
+            this.toolbarInfo = info
+            break
           }
         }
         if (isRecord) {
@@ -1096,10 +1138,10 @@
         })
       },
       bindUnload () {
-        window.onbeforeunload = function (event) {
-          event.returnValue = false
-          return false
-        }
+        // window.onbeforeunload = function (event) {
+        //   event.returnValue = false
+        //   return false
+        // }
       },
       handleEditorClick () {
         const _t = this

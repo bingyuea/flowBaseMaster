@@ -5,11 +5,16 @@
 
 <style scoped lang="less" rel="stylesheet/less">
   .tool-box {
-    padding: 5px;
+    padding: 2px;
     background: #fff;
     cursor: pointer;
     z-index: 10;
-
+    border-bottom: #cccccc solid 1px;
+    -webkit-box-shadow: 0px 1px 1px rgb(0 0 0 / 10%);
+    -moz-box-shadow: 0px 1px 1px rgba(0,0,0,.1);
+    -ms-box-shadow: 0px 1px 1px rgba(0,0,0,.1);
+    box-shadow: 0px 1px 1px rgb(0 0 0 / 10%);
+    text-shadow: 0 1px 0 rgb(255 255 255 / 33%);
     // 水平
     &.horizontal {
       display: flex;
@@ -20,11 +25,10 @@
 
       .tool-item {
         min-width: 25px;
-        height: 30px;
-        line-height: 30px;
+        height: 15px;
+        line-height: 15px;
         vertical-align: middle;
         text-align: center;
-        opacity: .3;
         margin: 0 2px;
         color: #000000;
 

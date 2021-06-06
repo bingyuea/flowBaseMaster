@@ -5,58 +5,64 @@
 */
 
 <style scoped lang="less" rel="stylesheet/less">
-  .tool-bar {
+.tool-bar {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, .1);
+  background: #ffffff;
+  z-index: 500;
+  transition: all .5s ease-in-out;
+  flex-direction: column;
+
+  .tool-box {
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-content: flex-start;
-    width: 100%;
-    padding: 0 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    box-shadow: 0 0 2px 2px rgba(0, 0, 0, .1);
-    background: #ffffff;
-    z-index: 500;
-    transition: all .5s ease-in-out;
-
-    .tool-box {
-      display: flex;
-      flex-wrap: nowrap;
+    z-index: 10;
+    align-items: center;
+    &.left {
       justify-content: flex-start;
-      align-content: flex-start;
-      flex: 1 1 auto;
-      z-index: 10;
+    }
 
-      &.left {
-        justify-content: flex-start;
-      }
-      &.center {
-        justify-content: flex-start;
-      }
-      &.right {
-        justify-content: flex-end;
-      }
-      .tool-item {
+    &.center {
+      justify-content: center;
+    }
+
+    &.right {
+      justify-content: flex-end;
+    }
+
+    .tool-item {
+      display: inline-block;
+
+      .link {
         display: inline-block;
+        line-height: 1;
+        vertical-align: middle;
 
-        .link {
-          display: inline-block;
-          line-height: 1;
-          vertical-align: middle;
+        .icon {
+        }
 
-          .icon {
-            width: 40px;
-            height: auto;
-          }
+        .img {
+          width: 40px;
+          height: auto;
         }
       }
-      .divider {
-        height: calc(~"100% - 10px");
-      }
+    }
+
+    .divider {
+      height: 20px;
     }
   }
+}
 </style>
 
 <template>
@@ -69,9 +75,9 @@
       :callback="toggleHandler"
     >
     </Handler>
-    <template v-for="(type, typeIndex) in Object.keys(toolMap)">
+    <template v-for="(type, typeIndex) in Object.keys(sysMap)">
       <ToolBox mode="horizontal" :key="typeIndex" :class="type">
-        <template v-for="(item, index) in toolMap[type]">
+        <template v-for="(item, index) in sysMap[type]">
           <ToolItem
             v-if="item.type === 'text'"
             :key="'tool_' + type + '_item_' + index"
@@ -223,7 +229,339 @@
             @click.native="handleToolClick(item)"
           >
             <template v-slot:label>
+              <XIcon :label="item.label"></XIcon>
+            </template>
+          </ToolItem>
+          <XDivider
+            class="divider"
+            v-if="item.toolbar.divider"
+            :key="'tool_' + type + '_divider_' + index"
+            mode="vertical"
+          />
+        </template>
+      </ToolBox>
+    </template>
+    <template v-for="(type, typeIndex) in Object.keys(toolMap)">
+      <ToolBox mode="horizontal" :key="typeIndex" :class="type">
+        <template v-for="(item, index) in toolMap[type]">
+          <ToolItem
+            v-if="item.type === 'text'"
+            :key="'tool_' + type + '_item_' + index"
+            :title="handleLabel(item)"
+            :active="item.active"
+            :disabled="item.disabled"
+            :style="item.toolbar.style"
+            @click.native="handleToolClick(item)"
+          >
+            <template v-slot:label>
               <XIcon :iconfont="item.icon" :label="handleLabel(item)"></XIcon>
+            </template>
+          </ToolItem>
+          <ToolItem
+            v-if="item.type === 'dropdown-color-picker'"
+            :key="'tool_' + type + '_item_' + index"
+            :title="handleLabel(item)"
+            :active="item.active"
+            :disabled="item.disabled"
+            :style="item.toolbar.style"
+          >
+            <template v-slot:label>
+              <template v-if="item.disabled">
+                <div style="margin: 0 3px;">
+                  <XIcon :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;"></XIcon>
+<!--                  <Icon type="ios-arrow-down"></Icon>-->
+                </div>
+              </template>
+              <template v-else>
+                <XColorPicker v-model="formData[item.name]" @on-change="(val) => handleToolClick(item, val, null)">
+                  <div style="margin: 0 3px;" slot="preview">
+                    <XIcon :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;"></XIcon>
+<!--                    <Icon type="ios-arrow-down"></Icon>-->
+                  </div>
+                </XColorPicker>
+              </template>
+            </template>
+          </ToolItem>
+          <ToolItem
+            v-if="item.type === 'dropdown-list'"
+            :key="'tool_' + type + '_item_' + index"
+            :title="handleLabel(item)"
+            :active="item.active"
+            :disabled="item.disabled"
+            :style="item.toolbar.style"
+          >
+            <template v-slot:label>
+              <template v-if="item.disabled">
+                <div style="margin: 0 3px;">
+                  <template v-if="item.lockLabel">
+                    <XIcon :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;"></XIcon>
+                  </template>
+                  <template v-else-if="item.custom && item.custom.enable">
+                    <XIcon
+                      :iconfont="item.custom.icon"
+                      :label="item.custom.label"
+                      style="vertical-align: middle;"
+                      :style="item.custom.style"
+                    ></XIcon>
+                  </template>
+                  <template v-else>
+                    <XIcon
+                      :iconfont="item.children[item.selected].icon"
+                      :label="item.children[item.selected].label"
+                      style="vertical-align: middle;"
+                      :style="item.children[item.selected].style"
+                    >
+                    </XIcon>
+                  </template>
+<!--                  <Icon type="ios-arrow-down"></Icon>-->
+                </div>
+              </template>
+              <template v-else>
+                <Dropdown trigger="click" @on-click="(val) => handleDropdownClick(item, type, index, val)">
+                  <div style="margin: 0 3px;">
+                    <template v-if="item.lockLabel">
+                      <XIcon :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;"></XIcon>
+                    </template>
+                    <template v-else-if="item.custom && item.custom.enable">
+                      <XIcon
+                        :iconfont="item.custom.icon"
+                        :label="item.custom.label"
+                        style="vertical-align: middle;"
+                        :style="item.custom.style"
+                      >
+                      </XIcon>
+                    </template>
+                    <template v-else>
+                      <XIcon
+                        :iconfont="item.children[item.selected].icon"
+                        :label="item.children[item.selected].label"
+                        style="vertical-align: middle;"
+                        :style="item.children[item.selected].style"
+                      >
+                      </XIcon>
+                    </template>
+<!--                    <Icon type="ios-arrow-down"></Icon>-->
+                  </div>
+                  <DropdownMenu slot="list">
+                    <DropdownItem
+                      v-for="(child, childIndex) in item.children"
+                      :key="childIndex"
+                      :name="childIndex"
+                      :disabled="child.disabled"
+                      :divided="child.divider"
+                      :selected="item.selected === childIndex"
+                    >
+                      <template v-if="child.type === 'normal'">
+                        <XIcon
+                          :iconfont="child.icon"
+                          :title="$t(child.lang)"
+                          :label="child.lang ? $t(child.lang) : child.label"
+                          :style="child.style"
+                        ></XIcon>
+                      </template>
+                      <template v-else-if="child.type === 'link'">
+                        <a class="link" :href="child.link" target="_blank" style="color: #333333;">
+                          <XIcon :iconfont="child.icon" :img="child.img" :label="$t(child.lang)"></XIcon>
+                        </a>
+                      </template>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </template>
+            </template>
+          </ToolItem>
+          <ToolItem
+            v-if="item.type === 'link'"
+            :key="'tool_' + type + '_item_' + index"
+            :title="handleLabel(item)"
+            :active="item.active"
+            :disabled="item.disabled"
+            :style="item.toolbar.style"
+            @click.native="handleToolClick(item)"
+          >
+            <template v-slot:label>
+              <a class="link" :href="item.link" target="_blank" style="color: #333333;">
+                <XIcon :iconfont="item.icon" :img="item.img" :label="handleLabel(item)"></XIcon>
+              </a>
+            </template>
+          </ToolItem>
+          <ToolItem
+            v-if="item.type === 'normal'"
+            :key="'tool_' + type + '_item_' + index"
+            :title="handleLabel(item)"
+            :active="item.active"
+            :disabled="item.disabled"
+            :style="item.toolbar.style"
+            @click.native="handleToolClick(item)"
+          >
+            <template v-slot:label>
+              <XIcon :iconfont="item.icon" :label="handleLabel(item)"></XIcon>
+            </template>
+          </ToolItem>
+          <XDivider
+            class="divider"
+            v-if="item.toolbar.divider"
+            :key="'tool_' + type + '_divider_' + index"
+            mode="vertical"
+          />
+        </template>
+      </ToolBox>
+    </template>
+    <template v-for="(type, typeIndex) in Object.keys(functionMap)">
+      <ToolBox mode="horizontal" :key="typeIndex" :class="type">
+        <template v-for="(item, index) in functionMap[type]">
+          <ToolItem
+            v-if="item.type === 'text'"
+            :key="'tool_' + type + '_item_' + index"
+            :title="handleLabel(item)"
+            :active="item.active"
+            :disabled="item.disabled"
+            :style="item.toolbar.style"
+            @click.native="handleToolClick(item)"
+          >
+            <template v-slot:label>
+              <XIcon :iconfont="item.icon" :label="handleLabel(item)"></XIcon>
+            </template>
+          </ToolItem>
+          <ToolItem
+            v-if="item.type === 'dropdown-color-picker'"
+            :key="'tool_' + type + '_item_' + index"
+            :title="handleLabel(item)"
+            :active="item.active"
+            :disabled="item.disabled"
+            :style="item.toolbar.style"
+          >
+            <template v-slot:label>
+              <template v-if="item.disabled">
+                <div style="margin: 0 3px;">
+                  <XIcon :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;"></XIcon>
+                  <Icon type="ios-arrow-down"></Icon>
+                </div>
+              </template>
+              <template v-else>
+                <XColorPicker v-model="formData[item.name]" @on-change="(val) => handleToolClick(item, val, null)">
+                  <div style="margin: 0 3px;" slot="preview">
+                    <XIcon :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;"></XIcon>
+                    <Icon type="ios-arrow-down"></Icon>
+                  </div>
+                </XColorPicker>
+              </template>
+            </template>
+          </ToolItem>
+          <ToolItem
+            v-if="item.type === 'dropdown-list'"
+            :key="'tool_' + type + '_item_' + index"
+            :title="handleLabel(item)"
+            :active="item.active"
+            :disabled="item.disabled"
+            :style="item.toolbar.style"
+          >
+            <template v-slot:label>
+              <template v-if="item.disabled">
+                <div style="margin: 0 3px;">
+                  <template v-if="item.lockLabel">
+                    <XIcon :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;"></XIcon>
+                  </template>
+                  <template v-else-if="item.custom && item.custom.enable">
+                    <XIcon
+                      :iconfont="item.custom.icon"
+                      :label="item.custom.label"
+                      style="vertical-align: middle;"
+                      :style="item.custom.style"
+                    ></XIcon>
+                  </template>
+                  <template v-else>
+                    <XIcon
+                      :iconfont="item.children[item.selected].icon"
+                      :label="item.children[item.selected].label"
+                      style="vertical-align: middle;"
+                      :style="item.children[item.selected].style"
+                    >
+                    </XIcon>
+                  </template>
+                  <Icon type="ios-arrow-down"></Icon>
+                </div>
+              </template>
+              <template v-else>
+                <Dropdown trigger="click" @on-click="(val) => handleDropdownClick(item, type, index, val)">
+                  <div style="margin: 0 3px;">
+                    <template v-if="item.lockLabel">
+                      <XIcon :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;"></XIcon>
+                    </template>
+                    <template v-else-if="item.custom && item.custom.enable">
+                      <XIcon
+                        :iconfont="item.custom.icon"
+                        :label="item.custom.label"
+                        style="vertical-align: middle;"
+                        :style="item.custom.style"
+                      >
+                      </XIcon>
+                    </template>
+                    <template v-else>
+                      <XIcon
+                        :iconfont="item.children[item.selected].icon"
+                        :label="item.children[item.selected].label"
+                        style="vertical-align: middle;"
+                        :style="item.children[item.selected].style"
+                      >
+                      </XIcon>
+                    </template>
+                    <Icon type="ios-arrow-down"></Icon>
+                  </div>
+                  <DropdownMenu slot="list">
+                    <DropdownItem
+                      v-for="(child, childIndex) in item.children"
+                      :key="childIndex"
+                      :name="childIndex"
+                      :disabled="child.disabled"
+                      :divided="child.divider"
+                      :selected="item.selected === childIndex"
+                    >
+                      <template v-if="child.type === 'normal'">
+                        <XIcon
+                          :iconfont="child.icon"
+                          :title="$t(child.lang)"
+                          :label="child.lang ? $t(child.lang) : child.label"
+                          :style="child.style"
+                        ></XIcon>
+                      </template>
+                      <template v-else-if="child.type === 'link'">
+                        <a class="link" :href="child.link" target="_blank" style="color: #333333;">
+                          <XIcon :iconfont="child.icon" :img="child.img" :label="$t(child.lang)"></XIcon>
+                        </a>
+                      </template>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
+              </template>
+            </template>
+          </ToolItem>
+          <ToolItem
+            v-if="item.type === 'link'"
+            :key="'tool_' + type + '_item_' + index"
+            :title="handleLabel(item)"
+            :active="item.active"
+            :disabled="item.disabled"
+            :style="item.toolbar.style"
+            @click.native="handleToolClick(item)"
+          >
+            <template v-slot:label>
+              <a class="link" :href="item.link" target="_blank" style="color: #333333;">
+                <XIcon :iconfont="item.icon" :img="item.img" :label="handleLabel(item)"></XIcon>
+              </a>
+            </template>
+          </ToolItem>
+          <ToolItem
+            v-if="item.type === 'normal'"
+            :key="'tool_' + type + '_item_' + index"
+            :title="handleLabel(item)"
+            :active="item.active"
+            :disabled="item.disabled"
+            :style="item.toolbar.style"
+            @click.native="handleToolClick(item)"
+          >
+            <template v-slot:label>
+              <XIcon :img="item.icon" :label="handleLabel(item)"></XIcon>
             </template>
           </ToolItem>
           <XDivider
@@ -253,6 +591,8 @@
     props: {
       editorData: Object,
       toolList: Array,
+      sysList: Array,
+      functionlist: Array,
       currentItem: Array
     },
     data () {
@@ -274,12 +614,40 @@
         }
         return style
       },
+      functionMap () {
+        const _t = this
+        const toolMap = {}
+        _t.functionlist.forEach(item => {
+          if (item.enable && item.toolbar && item.toolbar.enable) {
+            const position = 'left' || item.toolbar.position
+            if (!toolMap.hasOwnProperty(position)) {
+              toolMap[position] = []
+            }
+            toolMap[position].push(item)
+          }
+        })
+        return toolMap
+      },
+      sysMap () {
+        const _t = this
+        const toolMap = {}
+        _t.sysList.forEach(item => {
+          if (item.enable && item.toolbar && item.toolbar.enable) {
+            const position = 'left' || item.toolbar.position
+            if (!toolMap.hasOwnProperty(position)) {
+              toolMap[position] = []
+            }
+            toolMap[position].push(item)
+          }
+        })
+        return toolMap
+      },
       toolMap () {
         const _t = this
         const toolMap = {}
         _t.toolList.forEach(item => {
           if (item.enableTool && item.enable && item.toolbar && item.toolbar.enable) {
-            const position = item.toolbar.position
+            const position = 'left' || item.toolbar.position
             if (!toolMap.hasOwnProperty(position)) {
               toolMap[position] = []
             }
@@ -313,13 +681,14 @@
       },
       handleToolClick (item, val) {
         const _t = this
-        console.log('handleToolClick', item.name, val)
+        console.log('handleToolClick', item, val)
         if (item.disabled) {
           return
         }
         let payload = {
           context: 'ToolBar',
-          name: item.name
+          name: item.name,
+          item
         }
         switch (item.name) {
           case 'fill':

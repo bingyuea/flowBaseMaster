@@ -8,8 +8,9 @@
   .card-box {
     display: inline-block;
     position: absolute;
-    top: 0;
+    top: 65px;
     bottom: 0;
+    height: 500px;
     /*padding-top: 40px;*/
     box-shadow: 0 0 2px 2px rgba(0, 0, 0, .1);
     background: #ffffff;
@@ -27,6 +28,11 @@
         font-size: 16px;
         font-weight: bolder;
         color: #000;
+        border-top: #bfbfbf solid 1px;
+        border-bottom: #666666 solid 1px;
+        text-shadow: 0 1px 0 rgb(255 255 255 / 33%);
+        background-color: #a6a6a6;
+        background-image: -webkit-linear-gradient(top,#b2b2b2,#9b9b9b);
       }
     }
 
