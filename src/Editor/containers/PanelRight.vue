@@ -6,6 +6,12 @@
 
 <style scoped lang="less" rel="stylesheet/less">
 
+.el-tabs--border-card {
+  background: #FFF;
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+
 .el-tabs {
   height: 100%;
 
@@ -27,27 +33,25 @@
     placement="right"
     position="left"
     :width="360"
-    :title="$t('L10100')"
+    title="控制面板"
     @expand="toggleHandler"
   >
 
     <el-tabs v-model="activeName" type="border-card">
       <el-tab-pane label="元件设备" name="first">
-        <PanelLeft :devices='materialList'></PanelLeft>
-        <CardItem v-if="isEnableOptions" :title="$t('L10101')" :enableFold="true" :bold="true">
-          <Options :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"></Options>
-        </CardItem>
+        <PanelLeft :materialList='materialList'></PanelLeft>
       </el-tab-pane>
+
       <el-tab-pane label="配置" name="second">
-        <CardItem title="属性设置" :enableFold="true" :bold="true">
+          <Options :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"></Options>
           <Details :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"
                    :originDataObj='originDataObj' :eventItem='eventItem'></Details>
-        </CardItem>
+
       </el-tab-pane>
       <el-tab-pane :label="toolbarInfo && toolbarInfo.item && toolbarInfo.item.icon" name="three">
         <div class="content" title="title" v-if='toolbarInfo.item && toolbarInfo.item.child'>
-<!--          <img v-for='(item,key) in toolbarInfo.item.child' :key='key' class='toolbarIcon'
-               :src='item.icon ? require(`../../../assets/images/toolbar/${item.icon}.png`) : ""' alt=""/>-->
+         <img v-for='(item,key) in toolbarInfo.item.child' :key='key' class='toolbarIcon'
+               :src='item.icon ? require(`../../assets/images/toolbar/${item.icon}.png`) : ""' alt=""/>
         </div>
       </el-tab-pane>
     </el-tabs>
@@ -66,7 +70,6 @@
     name: 'PanelRight',
     components: {
       CardBox,
-      CardItem,
       Options,
       Details,
       PanelLeft

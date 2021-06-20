@@ -10,7 +10,7 @@
     box-sizing: content-box;
     padding: 0 10px;
     padding-top: 10px;
-    height:398px;
+    height:180px;
     overflow-y: auto;
     .el-form-item {
       margin-bottom: 5px;

@@ -19,7 +19,6 @@
   <div class="materials-editor" @click="handleEditorClick" @contextmenu.stop.prevent>
     <ToolBar :editorData="editorData" :sysList="sysList" :toolList="toolList" :functionlist="functionlist" :currentItem="currentItem"></ToolBar>
     <Sketchpad></Sketchpad>
-<!--    <PanelLeft :materialList="materialList"></PanelLeft>-->
     <PanelRight :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"
                 :originDataObj='originDataObj' :eventItem='eventItem' :toolbarInfo = 'toolbarInfo' :materialList="materialList"></PanelRight>
     <PreviewModel></PreviewModel>
@@ -44,7 +43,6 @@
 <script>
   import ToolBar from './containers/ToolBar'
   import Sketchpad from './containers/Sketchpad'
-  import PanelLeft from './containers/PanelLeft'
   import PanelRight from './containers/PanelRight'
   import PreviewModel from './containers/PreviewModel'
   import ContextMenu from './containers/ContextMenu'
@@ -80,7 +78,6 @@
     components: {
       ToolBar,
       Sketchpad,
-      PanelLeft,
       PanelRight,
       PreviewModel,
       ContextMenu,
@@ -340,7 +337,7 @@
           lineColor: '#000000',
           strokeOpacity: 1,
           lineWidth: 1,
-          lineType: 'x-line',
+          lineType: 'x-broken',
           lineDash: 'solid',
           startArrow: false,
           endArrow: false,
@@ -355,6 +352,9 @@
         _t.editor.on('canvas:mousedown', _t._canvasMousedown)
         // 绑定事件
         _t.editor.on('node:mousedown', _t._nodeMousedown)
+        _t.editor.on('node:dblclick', function () {
+          console.log('node:dblclic')
+        })
         _t.editor.on('node:mouseover', _t._nodeHover)
         _t.editor.on('node:mouseout', _t._nodeOut)
         _t.editor.on('edge:mousedown', _t._edgeMousedown)
@@ -412,7 +412,7 @@
         this.eventItem = event.item
         if (id) this.getOriginData(id)
         _t.editor.setItemState(event.item, 'active', true)
-        this.dialogVisible = true
+        // this.dialogVisible = true
       },
       _nodeHover (event) {
         const _t = this
