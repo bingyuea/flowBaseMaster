@@ -5,73 +5,84 @@
 */
 
 <style scoped lang="less" rel="stylesheet/less">
+.panelRight {
+  width: 100px;
+  right: 0px;
+  background: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: inline-block;
+  position: absolute;
+  top: 84px;
+  height: 500px;
+  -webkit-box-shadow: 0 0 2px 2px rgb(0 0 0 / 10%);
+  z-index: 200;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  box-shadow: 0px 0px 10px 5px;
+  padding: 10px;
 
-.el-tabs--border-card {
-  background: #FFF;
-  border: 1px solid transparent;
-  box-shadow: none;
-}
+  &_title {
+    font-size: 16px;
+    text-align: center;
+    border-bottom: 1px solid #000000;
+  }
 
-.el-tabs {
-  height: 100%;
+  &_content {
+    height: calc(100% - 30px);
+    overflow-y: auto;
 
-  .content {
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 0 5px rgb(78 78 78 / 20%);
+      background: hsla(0, 0%, 79%, .8);
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    &_item{
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
     .toolbarIcon {
-      width: 25px;
-      height: 25px;
-      display: inline-block;
+      width: 35px;
+      height: 35px;
+      margin-top:15px ;
+      padding: 2px;
       background-size: cover;
-      margin-right: 5px;
+      border:1px solid transparent;
+      &:hover {
+        border-color: rgba(0, 0, 0, .1);
+        cursor: pointer;
+      }
     }
   }
 }
 </style>
 
 <template>
-  <CardBox
-    v-if="isEnablePanel"
-    placement="right"
-    position="left"
-    :width="360"
-    title="控制面板"
-    @expand="toggleHandler"
-  >
-
-    <el-tabs v-model="activeName" type="border-card">
-      <el-tab-pane label="元件设备" name="first">
-        <PanelLeft :materialList='materialList'></PanelLeft>
-      </el-tab-pane>
-
-      <el-tab-pane label="配置" name="second">
-          <Options :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"></Options>
-          <Details :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"
-                   :originDataObj='originDataObj' :eventItem='eventItem'></Details>
-
-      </el-tab-pane>
-      <el-tab-pane :label="toolbarInfo && toolbarInfo.item && toolbarInfo.item.icon" name="three">
-        <div class="content" title="title" v-if='toolbarInfo.item && toolbarInfo.item.child'>
-         <img v-for='(item,key) in toolbarInfo.item.child' :key='key' class='toolbarIcon'
-               :src='item.icon ? require(`../../assets/images/toolbar/${item.icon}.png`) : ""' alt=""/>
-        </div>
-      </el-tab-pane>
-    </el-tabs>
-
-  </CardBox>
+  <div class='panelRight'>
+    <div class='panelRight_title'>{{title}}</div>
+    <div class='panelRight_content'>
+      <div v-if = 'toolbarIcon' class="panelRight_content_item">
+        <img v-for='(item,key) in toolbarIcon' :key='key' class='toolbarIcon'
+             :src='item.icon ? require(`../../assets/images/toolbar/${item.icon}.png`) : ""'
+             alt=""/>
+      </div>
+      <PanelLeft v-else :materialList='materialList'></PanelLeft>
+    </div>
+  </div>
 </template>
 
 <script>
-  import CardBox from '../components/CardBox'
-  import CardItem from '../components/CardItem'
-  import Options from '../components/Options'
-  import Details from '../containers/Details'
   import PanelLeft from './PanelLeft'
 
   export default {
     name: 'PanelRight',
     components: {
-      CardBox,
-      Options,
-      Details,
       PanelLeft
     },
     props: {
@@ -84,26 +95,17 @@
       materialList: Array
     },
     computed: {
-      infoPanel () {
-        return this.$X.config.infoPanel
-      },
-      isEnableOptions () {
-        return this.infoPanel.options.enable
-      },
-      isEnableNavigator () {
-        return this.infoPanel.navigator.enable
-      },
-      isEnablePanel () {
-        return this.isEnableOptions || this.isEnableNavigator
-      },
-      activeName: {
-        get () {
-          if (Object.entries(this.toolbarInfo).length) return 'three'
-          return 'first'
-        },
-        set (val) {
-          return val
+      toolbarIcon () {
+        if (this.toolbarInfo && this.toolbarInfo.item && this.toolbarInfo.item.child) {
+          return this.toolbarInfo.item.child
         }
+        return null
+      },
+      title () {
+        if (this.toolbarInfo && this.toolbarInfo.item && this.toolbarInfo.item.icon) {
+          return this.toolbarInfo.item.icon === '绘图模式' ? '元件库' : this.toolbarInfo.item.icon
+        }
+        return '元件库'
       }
     },
     methods: {

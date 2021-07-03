@@ -5,14 +5,12 @@
  */
 
 import general from './general'
-import arrow from './arrow'
 import base from './base'
 import * as G6Util from '@antv/util'
 import { iconStyle } from '../../../config/icon'
 
 const obj = {
-  ...general,
-  ...arrow
+  ...general
 }
 
 export default function (G6, devices) {

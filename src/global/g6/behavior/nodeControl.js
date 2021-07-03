@@ -151,10 +151,9 @@ export default {
       }
     },
     onNodeDblclick (event) {
-      // console.log('onNodeDblclick')
       const _t = this
       if (_t.config.nodeLabel) {
-        _t.nodeLabel.create.call(_t, event)
+        // _t.nodeLabel.create.call(_t, event)
       }
     },
     onNodeContextmenu (event) {

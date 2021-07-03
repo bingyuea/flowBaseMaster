@@ -8,7 +8,7 @@ export default {
   style: {
     default: {
       point: {
-        r: 3,
+        r: 1,
         symbol: 'square',
         fill: '#FFFFFF',
         fillOpacity: 0,

@@ -6,6 +6,7 @@
  */
 
 import anchor from './anchor'
+import anchorMum from './anchorMum'
 import anchorBg from './anchorBg'
 import dottedNode from './dottedNode'
 import edgeAnimate from './edgeAnimate'
@@ -14,6 +15,7 @@ import edge from './edge'
 
 export default {
   anchor,
+  anchorMum,
   anchorBg,
   dottedNode,
   edgeAnimate,

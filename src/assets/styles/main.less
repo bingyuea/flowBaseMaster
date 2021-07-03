@@ -18,6 +18,7 @@ html {
   padding: 0;
 }
 
+
 body {
   position: absolute;
   top: 0;
@@ -30,6 +31,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 .clear {
@@ -51,4 +53,18 @@ body {
 .g6-grid-container {
   inset: 0 !important;
   width: 100% !important;
+}
+
+*::-webkit-scrollbar-thumb{
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 0 5px rgb(78 78 78 / 20%);
+  background: hsla(0,0%,79%,.8);
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.el-dialog__body{
+  padding: 15px !important;
 }

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-
+/* eslint-disable */
 /** v-dialogDrag: 弹窗拖拽 **/
 Vue.directive('dialogDrag', {
   bind (el, binding) {
@@ -14,7 +14,7 @@ Vue.directive('dialogDrag', {
     // 当前顶部高度
     let nowMarginTop = 0
     // 获取弹框头部（这部分可双击全屏）
-    const dialogHeaderEl = el.querySelector('.card-header')
+    const dialogHeaderEl = el.querySelector('.panelRight')
     // 弹窗默认传值
     const dragDom = el
     if (!_.isEmpty(binding.value)) {
@@ -25,7 +25,8 @@ Vue.directive('dialogDrag', {
     // 给弹窗加上overflow auto；不然缩小时框内的标签可能超出dialog；
     dragDom.style.overflow = 'auto'
     // 清除选择头部文字效果
-    dialogHeaderEl.onselectstart = new Function('return false')
+    // eslint-disable-next-line
+    // dialogHeaderEl.onselectstart = new Function('return false')
     // 头部加上可拖动cursor
     dialogHeaderEl.style.cursor = 'move'
     // 获取原有属性 ie dom元素.currentStyle 火狐谷歌 window.getComputedStyle(dom元素, null);

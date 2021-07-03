@@ -33,13 +33,14 @@ export default function (name, value, item) {
             }
             break
           case 'shapeControlRotate':
-            if (value) {
-              child.show()
-              child.attr(config.shapeControl.style.active.rotate)
-            } else {
-              child.attr(config.shapeControl.style.inactive.rotate)
-              child.hide()
-            }
+            // todo shapeControlRotate 暂不用
+            // if (value) {
+            //   child.show()
+            //   child.attr(config.shapeControl.style.active.rotate)
+            // } else {
+            //   child.attr(config.shapeControl.style.inactive.rotate)
+            //   child.hide()
+            // }
             break
           case 'anchorPoint':
             child.hide()

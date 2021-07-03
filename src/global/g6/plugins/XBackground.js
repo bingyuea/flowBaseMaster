@@ -18,7 +18,7 @@ export default class XBackground extends Grid {
       '<div class="x-background" style="position: absolute; left: 0; top:0; right:0; bottom:0; overflow: hidden; z-index: -999;"></div>'
     )
     const imgDom = G6DomUtil.createDom(
-      '<img class="x-background-img" style="width: 100%; height: 100%; visibility: hidden;"></img>'
+      `<div class="x-background-img" style="width: 100%; height: 100%;" ></div>`
     )
     backgroundContainer.appendChild(imgDom)
     graphContainer.insertBefore(backgroundContainer, canvas)
@@ -28,7 +28,19 @@ export default class XBackground extends Grid {
   getEvents () {
     return {
       'background:reset': 'resetBackground',
+      'background:set': 'setBackground',
       'background:update': 'updateBackground'
+    }
+  }
+  setBackground (e) {
+    const _t = this
+    this.resetBackground()
+    const imgDom = _t.get('imgDom')
+    if (imgDom) {
+      G6DomUtil.modifyCSS(imgDom, {
+        visibility: 'visible',
+        backgroundColor: e
+      })
     }
   }
   // 重置背景

@@ -20,5 +20,11 @@ module.exports = {
         javascriptEnabled: true
       }
     }
+  },
+  configureWebpack: {
+    devtool: 'source-map',
+    output: {
+      chunkFilename: '[name].[chunkhash].js'
+    }
   }
 }

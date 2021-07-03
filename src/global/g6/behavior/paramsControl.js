@@ -7,7 +7,6 @@
 import G6 from '@antv/g6'
 import config from '../config'
 import utils from '../utils'
-import { Message } from 'element-ui'
 
 export default {
   name: 'params-control',

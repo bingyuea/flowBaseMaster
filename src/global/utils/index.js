@@ -7,9 +7,11 @@
 import bus from './bus'
 import filters from './filters'
 import storage from './storage'
+import exportExcel from './exportExcel'
 
 export default {
   bus,
   filters,
+  exportExcel,
   storage
 }

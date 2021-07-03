@@ -25,16 +25,19 @@
     <ContextMenu :editorData="editorData" :toolList="toolList"></ContextMenu>
     <ShortcutList ref="shortcutList" :toolList="toolList" :shortcutMap="shortcutMap"></ShortcutList>
     <History ref="history" @on-revert="doRevert"></History>
+
     <!--元件信息-->
+    <!--:title="currentShape"-->
     <el-dialog
-      :title="currentShape"
+      :title="currentShape ? currentShape + '属性设置' : '属性设置'"
       :visible.sync="dialogVisible"
+      :destroy-on-close = 'true'
       width="398px"
     >
-      <Details :originDataObj='originDataObj' :eventItem='eventItem'></Details>
+      <Details ref = 'details' :originDataObj='originDataObj' :eventItem='eventItem' :currentItem="currentItem"></Details>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        <el-button type="primary" @click="onSubmit">确 定</el-button>
       </span>
     </el-dialog>
   </div>
@@ -65,14 +68,13 @@
     getDevice,
     getSvgById
   } from '../api/svg'
-  import _ from 'lodash'
   import {
     iconStyle,
     shapeControl
   } from '../config/icon'
 
   import { icon } from '@/global/g6/node/devices'
-
+  import _ from 'lodash'
   export default {
     name: 'MaterialsEditor',
     components: {
@@ -273,6 +275,8 @@
           // 模式
           modes: {
             edit: [
+              'zoom-canvas',
+              'drag-canvas',
               {
                 type: 'node-control',
                 config: {
@@ -353,7 +357,7 @@
         // 绑定事件
         _t.editor.on('node:mousedown', _t._nodeMousedown)
         _t.editor.on('node:dblclick', function () {
-          console.log('node:dblclic')
+          _t.dialogVisible = true
         })
         _t.editor.on('node:mouseover', _t._nodeHover)
         _t.editor.on('node:mouseout', _t._nodeOut)
@@ -398,6 +402,11 @@
         _t.bindShortcuts()
         // 绑定unload
         _t.bindUnload()
+      },
+      onSubmit () {
+        // 触发子节点方法
+        this.$refs.details.onSubmit()
+        this.dialogVisible = false
       },
       _canvasMousedown () {
         const _t = this
@@ -945,6 +954,8 @@
             break
           }
           case 'download': {
+            debugger
+            console.log(info)
             const fileName = _t.$X.utils.filters.formatDate(new Date(), 'YYYYMMDDhhmmss')
             if (info.data === 'image') {
               _t.editor.downloadImage(fileName)
@@ -962,6 +973,23 @@
               link.click()
               // no longer need to read the blob so it's revoked
               URL.revokeObjectURL(url)
+            } else if (info.data === 'excel') {
+              debugger
+              const dataList = []
+              console.log(_t.editor.getNodes())
+              _t.editor.getNodes().forEach((node, index) => {
+                const model = node.getModel()
+                if (model.params) {
+                  dataList.push(model.params)
+                }
+              })
+              console.log(dataList)
+              if (!dataList.length) {
+                this.$message.error('元件数据不存在，请先录入数据在导出！')
+                return
+              }
+              const excelData = _.groupBy(dataList, 'originId')
+              _t.$X.utils.exportExcel.createExcel(excelData)
             }
             break
           }
@@ -977,37 +1005,8 @@
             break
           }
           case 'canvasBackground': {
-            switch (info.data) {
-              case 'default':
-                _t.editor.emit('background:reset')
-                break
-              case 'image':
-                // 打开文件选择窗口
-                const input = document.createElement('input')
-                input.type = 'file'
-                // 限定文件类型
-                input.accept = 'image/png, image/jpeg, image/jpg'
-                input.click()
-                input.onchange = function () {
-                  const file = input.files[0]
-                  // FileReader实例
-                  const reader = new FileReader()
-                  // 读取图片
-                  if (file) {
-                    reader.readAsDataURL(file)
-                    // 处理数据
-                    reader.onload = function (event) {
-                      try {
-                        const imgFile = reader.result
-                        _t.editor.emit('background:update', imgFile)
-                      } catch (e) {
-                        console.error(' EDITOR ERROR:: update background failed!', e)
-                      }
-                    }
-                  }
-                }
-                break
-            }
+            console.log(info)
+            _t.editor.emit('background:set', info.data)
             break
           }
           case 'up':

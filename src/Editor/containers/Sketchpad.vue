@@ -40,7 +40,7 @@
 <script>
   export default {
     name: 'Sketchpad',
-    props:['sketchpadStyle'],
+    props: ['sketchpadStyle'],
     data () {
       return {
         // 面板样式
@@ -65,7 +65,7 @@
           }
         })
         return {
-          right:0
+          right: 0
         }
       }
     },

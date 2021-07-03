@@ -28,6 +28,7 @@
     align-content: flex-start;
     z-index: 10;
     align-items: center;
+    padding-left: 20px;
     &.left {
       justify-content: flex-start;
     }
@@ -59,7 +60,7 @@
     }
 
     .divider {
-      height: 20px;
+      height: 10px;
     }
   }
 }
@@ -75,9 +76,9 @@
       :callback="toggleHandler"
     >
     </Handler>
-    <template v-for="(type, typeIndex) in Object.keys(sysMap)">
+    <template v-for="(type, typeIndex) in Object.keys(sysMap)" >
       <ToolBox mode="horizontal" :key="typeIndex" :class="type">
-        <template v-for="(item, index) in sysMap[type]">
+        <div v-for="(item, index) in sysMap[type]" :key="index">
           <ToolItem
             v-if="item.type === 'text'"
             :key="'tool_' + type + '_item_' + index"
@@ -238,12 +239,12 @@
             :key="'tool_' + type + '_divider_' + index"
             mode="vertical"
           />
-        </template>
+        </div>
       </ToolBox>
     </template>
-    <template v-for="(type, typeIndex) in Object.keys(toolMap)">
-      <ToolBox mode="horizontal" :key="typeIndex" :class="type">
-        <template v-for="(item, index) in toolMap[type]">
+    <template v-for="(type, typeIndex,key) in Object.keys(toolMap)">
+      <ToolBox mode="horizontal" :key="key" :class="type" style="z-index: 999">
+        <div v-for="(item, index) in toolMap[type]" :key="index">
           <ToolItem
             v-if="item.type === 'text'"
             :key="'tool_' + type + '_item_' + index"
@@ -404,12 +405,12 @@
             :key="'tool_' + type + '_divider_' + index"
             mode="vertical"
           />
-        </template>
+        </div>
       </ToolBox>
     </template>
-    <template v-for="(type, typeIndex) in Object.keys(functionMap)">
-      <ToolBox mode="horizontal" :key="typeIndex" :class="type">
-        <template v-for="(item, index) in functionMap[type]">
+    <template v-for="(type, typeIndex,key) in Object.keys(functionMap)">
+      <ToolBox mode="horizontal" :key="key" :class="type">
+        <div v-for="(item, index) in functionMap[type]" :key="index">
           <ToolItem
             v-if="item.type === 'text'"
             :key="'tool_' + type + '_item_' + index"
@@ -570,7 +571,7 @@
             :key="'tool_' + type + '_divider_' + index"
             mode="vertical"
           />
-        </template>
+        </div>
       </ToolBox>
     </template>
   </div>
@@ -610,7 +611,7 @@
         if (_t.isExpand) {
           style.top = 0
         } else {
-          style.top = '-40px'
+          style.top = '-68px'
         }
         return style
       },
@@ -692,6 +693,7 @@
         }
         switch (item.name) {
           case 'fill':
+          case 'canvasBackground':
           case 'lineColor':
             _t.formData[item.name] = val
             payload = {

@@ -4,24 +4,40 @@
 */
 
 <style scoped lang="less" rel="stylesheet/less">
-  .nodeDetails {
-    display: inline-block;
-    width: calc(100% - 20px);
-    box-sizing: content-box;
-    padding: 0 10px;
-    padding-top: 10px;
-    height:180px;
-    overflow-y: auto;
-    .el-form-item {
-      margin-bottom: 5px;
+.nodeDetails {
+  width: calc(100% - 20px);
+  box-sizing: content-box;
+  padding: 0 10px;
+  padding-top: 10px;
+  height: 200px;
+  overflow-y: auto;
+
+  .el-form-item {
+    margin-bottom: 5px;
+  }
+
+  .el-form-details-list{
+    .el-form-item__label{
+      position: absolute;
+      left: 30px;
+    }
+    ::v-deep .el-form-item__content{
+      margin-left: 0 !important;
+      padding-left: 100px;
     }
   }
+}
 </style>
 
 <template>
   <div class="nodeDetails">
-    <el-form :model="form" label-position='top' label-width="100px">
-      <el-form-item label="tagName" prop="tagName" class='el-form-details'>
+    <el-form :model="form" label-width="100px">
+
+      <el-form-item label="设备名称" prop="name" class='el-form-details'>
+        <el-input disabled v-model="currentShape"></el-input>
+      </el-form-item>
+
+      <el-form-item label="设备类型" prop="tagName" class='el-form-details'>
         <el-select
           v-model="form.tagName"
           :disabled="preview"
@@ -37,7 +53,7 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item label="modelName" prop="modelName" class='el-form-details'>
+      <el-form-item label="模型类型" prop="modelName" class='el-form-details'>
         <el-select
           v-model="form.modelName"
           :disabled="preview"
@@ -53,24 +69,30 @@
         </el-select>
       </el-form-item>
 
-      <div v-for='(item,key) in paramList' :key='key'>
-        <el-form-item :prop="item.name" class='el-form-details'>
-            <span :label="item.name" :prop="item.name" class='el-form-item__label'>
-              {{item.name}}
-              <el-tooltip slot="label" v-show='item.description' effect="dark" :content="item.description"
-                          placement="top">
-              <i
-                class="el-icon-question el-input__icon"
-              >
-              </i>
-              </el-tooltip>
+      <el-form-item label="视在功率" prop="name" class='el-form-details'>
+        <el-input disabled placeholder='请输入视在功率' v-model="test1"></el-input>
+      </el-form-item>
 
-            </span>
-          <el-input :disabled="preview" v-model="item.defaultValue" :placehold='item.description'>
-            <template v-if='item.unit' slot="append">{{item.unit}}</template>
-          </el-input>
-        </el-form-item>
-      </div>
+      <el-form-item label="额定功率" prop="name" class='el-form-details'>
+        <el-input disabled placeholder='请输入额定功率' v-model="test2"></el-input>
+      </el-form-item>
+
+      <el-form-item v-for='(item,key) in paramList' :key='key' :prop="item.name" class='el-form-details el-form-details-list'>
+        <div :label="item.name" :prop="item.name" class='el-form-item__label'>
+          {{ item.name }}
+          <el-tooltip slot="label" v-show='item.description' effect="dark" :content="item.description"
+                      placement="top">
+            <i
+              class="el-icon-question el-input__icon"
+            >
+            </i>
+          </el-tooltip>
+        </div>
+
+        <el-input :disabled="preview" v-model="item.defaultValue" :placehold='item.description'>
+          <template v-if='item.unit' slot="append">{{ item.unit }}</template>
+        </el-input>
+      </el-form-item>
     </el-form>
 
   </div>
@@ -85,6 +107,8 @@
           tagName: '',
           modelName: ''
         },
+        test1: '',
+        test2: '',
         paramList: [],
         firstItem: null,
         watchFlag: false,
@@ -94,7 +118,7 @@
     name: 'Details',
     props: {
       editorConfig: Object,
-      mode: [String,Object],
+      mode: [String, Object],
       toolList: Array,
       currentItem: Array,
       originDataObj: {
@@ -154,6 +178,8 @@
         handler (val) {
           if (val && val.paramList && !this.watchFlag) {
             this.paramList = this.modelList.paramList
+          } else {
+            this.paramList = []
           }
         },
         deep: true

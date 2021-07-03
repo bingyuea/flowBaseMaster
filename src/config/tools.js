@@ -80,31 +80,6 @@ export default function (system = {}, disableTools = [], enableTools = [], short
       }
     },
     {
-      name: 'history',
-      label: 'history',
-      lang: 'L10041',
-      type: 'normal',
-      icon: 'history',
-      enableTool: true,
-      enable: true,
-      enableMode: ['edit'],
-      disabled: false,
-      disabledMode: ['edit'],
-      shortcuts: shortcutMap.history,
-      toolbar: {
-        enable: true,
-        position: 'center',
-        style: {},
-        divider: false
-      },
-      contextmenu: {
-        enable: true,
-        target: ['canvas'],
-        style: {},
-        divider: false
-      }
-    },
-    {
       name: 'redo',
       label: 'Redo',
       lang: 'L10002',
@@ -475,8 +450,8 @@ export default function (system = {}, disableTools = [], enableTools = [], short
     {
       name: 'canvasBackground',
       label: 'Canvas background',
-      lang: 'L10034',
-      type: 'dropdown-list',
+      lang: '画布背景颜色',
+      type: 'dropdown-color-picker',
       icon: 'canvas-background',
       enableTool: true,
       enable: true,
@@ -498,34 +473,8 @@ export default function (system = {}, disableTools = [], enableTools = [], short
       },
       // 默认选中项index
       selected: 0,
-      lockLabel: true,
+      lockLabel: true
       // 子节点
-      children: [
-        {
-          name: 'default',
-          label: 'Default',
-          lang: 'L10039',
-          type: 'normal',
-          icon: '',
-          style: {},
-          data: 'default',
-          enable: true,
-          disabled: false,
-          divider: false
-        },
-        {
-          name: 'image',
-          label: 'Image',
-          lang: 'L10040',
-          type: 'normal',
-          icon: '',
-          style: {},
-          data: 'image',
-          enable: true,
-          disabled: false,
-          divider: false
-        }
-      ]
     },
     {
       name: 'fill',
@@ -1371,9 +1320,9 @@ export default function (system = {}, disableTools = [], enableTools = [], short
       icon: 'edit',
       enableTool: true,
       enable: true,
-      enableMode: ['edit', 'preview','paramsEdit'],
+      enableMode: ['edit', 'preview', 'paramsEdit'],
       disabled: false,
-      disabledMode: ['edit', 'preview','paramsEdit'],
+      disabledMode: ['edit', 'preview', 'paramsEdit'],
       shortcuts: '',
       toolbar: {
         enable: true,
@@ -1499,10 +1448,9 @@ export default function (system = {}, disableTools = [], enableTools = [], short
       children: [
         {
           name: 'image',
-          label: 'Image',
+          label: '导出为图片',
           lang: '',
           type: 'normal',
-          icon: 'image',
           style: {},
           data: 'image',
           enable: true,
@@ -1511,10 +1459,9 @@ export default function (system = {}, disableTools = [], enableTools = [], short
         },
         {
           name: 'json',
-          label: 'Json',
+          label: '导出为JSON数据',
           lang: '',
           type: 'normal',
-          icon: 'json',
           style: {},
           data: 'json',
           enable: true,
@@ -1523,7 +1470,7 @@ export default function (system = {}, disableTools = [], enableTools = [], short
         },
         {
           name: 'excel',
-          label: 'Excel',
+          label: '导出为excel数据',
           lang: '',
           type: 'normal',
           icon: '',
