@@ -69,7 +69,7 @@ export default {
       if (!cfg.sourceNode) {
         return cfg.controlPoints
       }
-      return utils.edge.polylineFinding(cfg.sourceNode, cfg.targetNode, cfg.startPoint, cfg.endPoint, 40)
+      return utils.edge.polylineFinding(cfg.sourceNode, cfg.targetNode, cfg.startPoint, cfg.endPoint, 40, cfg)
     }
   }
 }

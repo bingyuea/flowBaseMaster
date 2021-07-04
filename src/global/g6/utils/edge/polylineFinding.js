@@ -9,16 +9,16 @@
  */
 
 // 折线寻径
-export default function (sNode, tNode, sPort, tPort, offset = 10, cfg) {
-  // sPort = {y:sPort.y+20,x:sPort.x}
+export default function (sNode, tNode, sPort, tPort, offset = 10, cfg, group) {
+  // console.log(sNode, tNode, 'sNode, tNode')
   const sourceBBox = sNode && sNode.getBBox ? sNode.getBBox() : getPointBBox(sPort)
   const targetBBox = tNode && tNode.getBBox ? tNode.getBBox() : getPointBBox(tPort)
   // 获取节点带 offset 的区域（扩展区域）
   const sBBox = getExpandedBBox(sourceBBox, offset)
   const tBBox = getExpandedBBox(targetBBox, offset)
   // 获取扩展区域上的起始和终止连接点
-  const sPoint = getExpandedPort(sBBox, sPort)
-  const tPoint = getExpandedPort(tBBox, tPort)
+  const sPoint = getExpandedPort(sBBox, sPort, isMumLine(sNode))
+  const tPoint = getExpandedPort(tBBox, tPort, isMumLine(tNode))
   // 获取合法折点集
   const points = getConnectablePoints(sBBox, tBBox, sPoint, tPoint)
   // 过滤合法点集，预处理、剪枝等
@@ -29,6 +29,12 @@ export default function (sNode, tNode, sPort, tPort, offset = 10, cfg) {
   const polylinePoints = AStar(points, sPoint, tPoint, sBBox, tBBox)
   // console.log(polylinePoints, 'polylinePoints')
   return polylinePoints
+}
+
+const isMumLine = function (node) {
+  if (node && node._cfg && node._cfg.currentShape) {
+    return node._cfg.currentShape === '交流母线'
+  }
 }
 
 const getPointBBox = function (t) {
@@ -62,7 +68,14 @@ const getExpandedBBox = function (bbox, offset) {
 }
 
 // 获取扩展区域上的连接点
-const getExpandedPort = function (bbox, point) {
+const getExpandedPort = function (bbox, point, isMumLine) {
+  // 这里判断起点是否是母线
+  if (isMumLine) {
+    return {
+      x: point.x,
+      y: point.y > bbox.centerY ? point.y + 10 : point.y - 10
+    }
+  }
   // 判断连接点在上下左右哪个区域，相应地给 x 或 y 加上或者减去 offset
   if (Math.abs(point.x - bbox.centerX) / bbox.width > Math.abs(point.y - bbox.centerY) / bbox.height) {
     return {
