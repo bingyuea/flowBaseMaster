@@ -61,7 +61,7 @@ export default {
         'edge:mouseup': 'onEdgeMouseup',
         'edge:dblclick': 'onEdgeDblclick',
         'edge:contextmenu': 'onEdgeContextmenu',
-        'canvas:mousedown': 'onCanvasMousedown',
+        'canvas:dblclick': 'onCanvasMousedown',
         // 'canvas:mousemove': 'onCanvasMousemove',
         'canvas:mouseup': 'onCanvasMouseup',
         'canvas:mouseenter': 'onCanvasMouseenter',
@@ -261,7 +261,7 @@ export default {
     },
     onCanvasMouseup (event) {
       const _t = this
-      // console.log('onCanvasMouseup', _t.info.type)
+      console.log('onCanvasMouseup', _t.info)
       if (_t.info && _t.info.type && _t[_t.info.type].stop) {
         _t[_t.info.type].stop.call(_t, event)
       }
