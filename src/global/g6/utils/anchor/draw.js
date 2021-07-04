@@ -10,7 +10,6 @@ export default function (cfg, group) {
   const { anchorPoints, width, height, id, name } = cfg
   const shape = group.getFirst()
   let style = config.anchor.style.default
-  // todo 母线
   if (name === '交流母线') {
     style = config.anchorMum.style.default
   }
