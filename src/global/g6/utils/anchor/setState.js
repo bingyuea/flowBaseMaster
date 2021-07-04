@@ -12,7 +12,6 @@ export default function (name, value, item) {
     const children = group.get('children')
     for (let i = 0, len = children.length; i < len; i++) {
       const child = children[i]
-      // console.log('child name', child, child.name, child.attr('name'))
       if (child.attr('name')) {
         switch (child.attr('name')) {
           case 'anchorPoint':

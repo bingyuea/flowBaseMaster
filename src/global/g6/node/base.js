@@ -43,7 +43,7 @@ export default {
       ...style
     })
     // 更新图形文本
-    this.updateLabel(cfg, item)
+    // this.updateLabel(cfg, item)
   },
   // 绘制完成后附加锚点
   afterDraw (cfg, group) {
