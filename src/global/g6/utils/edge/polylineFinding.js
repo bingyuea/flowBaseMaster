@@ -9,7 +9,8 @@
  */
 
 // 折线寻径
-export default function (sNode, tNode, sPort, tPort, offset = 10) {
+export default function (sNode, tNode, sPort, tPort, offset = 10, cfg) {
+  // sPort = {y:sPort.y+20,x:sPort.x}
   const sourceBBox = sNode && sNode.getBBox ? sNode.getBBox() : getPointBBox(sPort)
   const targetBBox = tNode && tNode.getBBox ? tNode.getBBox() : getPointBBox(tPort)
   // 获取节点带 offset 的区域（扩展区域）
@@ -26,6 +27,7 @@ export default function (sNode, tNode, sPort, tPort, offset = 10) {
   filterConnectablePoints(points, tBBox)
   // 用 A-Star 算法寻径
   const polylinePoints = AStar(points, sPoint, tPoint, sBBox, tBBox)
+  // console.log(polylinePoints, 'polylinePoints')
   return polylinePoints
 }
 
@@ -229,9 +231,9 @@ const AStar = function (points, sPoint, tPoint, sBBox, tBBox) {
     openList.splice(openList.findIndex(o => o.x === minCostPoint.x && o.y === minCostPoint.y), 1)
     closeList.push(minCostPoint)
     const neighbor = points.filter(p => {
-      return (p.x === minCostPoint.x || p.y === minCostPoint.y) &&
-        !(p.x === minCostPoint.x && p.y === minCostPoint.y) &&
-        !crossBBox([sBBox, tBBox], minCostPoint, p)
+        return (p.x === minCostPoint.x || p.y === minCostPoint.y) &&
+          !(p.x === minCostPoint.x && p.y === minCostPoint.y) &&
+          !crossBBox([sBBox, tBBox], minCostPoint, p)
       }
     )
     neighbor.forEach(p => {

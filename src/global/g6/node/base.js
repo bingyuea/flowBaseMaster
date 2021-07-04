@@ -22,14 +22,6 @@ export default {
     this.keyShape = keyShape
     return keyShape
   },
-  getAnchorPoints (cfg) {
-    return [
-      [0.5, 0], // top
-      [1, 0.5], // right
-      [0.5, 1], // bottom
-      [0, 0.5] // left
-    ]
-  },
   setState (name, value, item) {
     // 设置锚点状态
     utils.anchor.setState(name, value, item)

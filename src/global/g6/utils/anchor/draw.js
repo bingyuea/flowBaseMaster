@@ -11,9 +11,9 @@ export default function (cfg, group) {
   const shape = group.getFirst()
   let style = config.anchor.style.default
   // todo 母线
-  // if (name === '交流母线') {
-  //   style = config.anchorMum.style.default
-  // }
+  if (name === '交流母线') {
+    style = config.anchorMum.style.default
+  }
   if (anchorPoints && anchorPoints.length) {
     for (let i = 0, len = anchorPoints.length; i < len; i++) {
       let anchorX
@@ -41,8 +41,8 @@ export default function (cfg, group) {
           y: anchorY,
           // 锚点默认样式
           ...config.anchorBg.style.default
-        },
-        zIndex: 100
+          // zIndex:100
+        }
       })
       // 添加锚点Marker形状
       const anchorShape = group.addShape('marker', {

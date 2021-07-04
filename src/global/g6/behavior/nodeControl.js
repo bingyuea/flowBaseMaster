@@ -73,7 +73,7 @@ export default {
     },
     onEditorAddNode (node) {
       const _t = this
-      console.log('onEditorAddNode', node)
+      // console.log('onEditorAddNode', node)
       // 初始化数据
       _t.info = {
         type: 'dragNode',
@@ -410,10 +410,11 @@ export default {
             _t.graph.updateItem(_t.drawLine.currentLine, {
               target: endModel.id,
               targetAnchor: targetAnchor ? targetAnchor.anchorIndex : '',
-              // 存储起始点ID，用于拖拽节点时更新线条
+              // 存储起始点ID，用于拖拽节点时更新线条 todo
               attrs: {
                 start: startModel.id,
-                end: endModel.id
+                end: endModel.id,
+                label: `X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}`
               }
             })
             // 记录操作日志
@@ -448,7 +449,8 @@ export default {
         _t.shapeControlPoint.isMoving = true
         // 是否等比缩放
         // FIXME !!! 此处应该通过物料配置控制
-        _t.shapeControlPoint.isProportional = ['square', 'circle', 'bidirectional-arrow', 'arrow'].includes(model.type)
+        // _t.shapeControlPoint.isProportional = ['square', 'circle', 'bidirectional-arrow', 'arrow'].includes(model.shape)
+        _t.shapeControlPoint.isProportional = false
         if (_t.config.tooltip.shapeControl) {
           _t.toolTip.create.call(_t, {
             left: model.x,
@@ -493,10 +495,12 @@ export default {
               attrs.size[0] = originNodeModel.size[0]
               attrs.size[1] = Math.abs(referencePoint.y - event.y)
             } else if (position.y > 0 && position.y < 1 && (position.x === 0 || position.x === 1)) {
+              // 横向
               attrs.y = originNodeModel.y
               attrs.size[0] = Math.abs(referencePoint.x - event.x)
               attrs.size[1] = originNodeModel.size[1]
             } else {
+              // 对角线
               attrs.size[0] = Math.abs(referencePoint.x - event.x)
               attrs.size[1] = Math.abs(referencePoint.y - event.y)
             }

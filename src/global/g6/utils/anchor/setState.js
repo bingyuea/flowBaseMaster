@@ -19,12 +19,12 @@ export default function (name, value, item) {
             if (value) {
               child.show()
               // todo 母线
-              // if (item._cfg.currentShape === '交流母线') {
-              //   child.attr(config.anchorMum.style.hover)
-              // } else {
-              //   child.attr(config.anchor.style.hover)
-              // }
-              child.attr(config.anchor.style.hover)
+              if (item._cfg.currentShape === '交流母线') {
+                child.attr(config.anchorMum.style.hover)
+              } else {
+                child.attr(config.anchor.style.hover)
+              }
+              // child.attr(config.anchor.style.hover)
             } else {
               child.attr(config.anchor.style.unhover)
               child.hide()
