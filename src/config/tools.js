@@ -761,23 +761,23 @@ export default function (system = {}, disableTools = [], enableTools = [], short
       // 子节点
       children: [
         {
-          name: 'x-line',
-          label: 'line',
-          lang: '',
-          type: 'normal',
-          icon: 'flow-line',
-          data: 'x-line',
-          enable: true,
-          disabled: false,
-          divider: false
-        },
-        {
           name: 'x-broken',
           label: 'broken',
           lang: '',
           type: 'normal',
           icon: 'flow-broken',
           data: 'x-broken',
+          enable: true,
+          disabled: false,
+          divider: false
+        },
+        {
+          name: 'x-line',
+          label: 'line',
+          lang: '',
+          type: 'normal',
+          icon: 'flow-line',
+          data: 'x-line',
           enable: true,
           disabled: false,
           divider: false

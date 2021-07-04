@@ -13,11 +13,9 @@ export default {
   drawShape (cfg, group) {
     const shapeType = this.shapeType
     const style = this.getShapeStyle(cfg)
-    console.log(style, 'drawShape')
-    console.log(shapeType, 'drawShape')
     const keyShape = group.addShape(shapeType, {
       attrs: style,
-      name: 'XFCNodeKeyShape',
+      name: this.name,
       className: 'XFCNodeKeyShape',
       draggable: true
     })

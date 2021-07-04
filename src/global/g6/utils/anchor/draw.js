@@ -7,11 +7,13 @@
 import config from '../../config'
 
 export default function (cfg, group) {
-  const { anchorPoints, width, height, id } = cfg
+  const { anchorPoints, width, height, id, name } = cfg
   const shape = group.getFirst()
-  console.log(group, '------------------')
-  console.log(shape, '------------------')
-  console.log('getAnchorPoints', id, shape, anchorPoints.length)
+  let style = config.anchor.style.default
+  // todo 母线
+  // if (name === '交流母线') {
+  //   style = config.anchorMum.style.default
+  // }
   if (anchorPoints && anchorPoints.length) {
     for (let i = 0, len = anchorPoints.length; i < len; i++) {
       let anchorX
@@ -52,7 +54,7 @@ export default function (cfg, group) {
           x: anchorX,
           y: anchorY,
           // 锚点默认样式
-          ...config.anchor.style.default
+          ...style
         }
       })
       // FIXME 【调试用代码】添加锚点文本

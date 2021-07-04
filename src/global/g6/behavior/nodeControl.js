@@ -8,6 +8,7 @@ import * as G6Util from '@antv/util'
 import * as G6DomUtil from '@antv/dom-util'
 import config from '../config'
 import utils from '../utils'
+import { Message } from 'element-ui'
 
 const TIME_FRAME = 200
 
@@ -384,6 +385,20 @@ export default {
             const endNode = event.item
             const startModel = _t.info.node.getModel()
             const endModel = endNode.getModel()
+            // type 一样不能连线
+            if (endModel && startModel) {
+              const endData = JSON.parse(endModel.data)
+              const startData = JSON.parse(startModel.data)
+              if (startData.type === endData.type && startData.id !== endData.id) {
+                Message.error(startData.type + '类型相同不能连线！')
+                _t.graph.removeItem(_t.drawLine.currentLine)
+                return
+              }
+              // 起始点相同不能划线
+              if (startModel.id === endModel.id) {
+                return false
+              }
+            }
             let targetAnchor
             // 锚点数据
             const anchorPoints = endNode.getAnchorPoints()
@@ -685,7 +700,7 @@ export default {
           const node = {
             ..._t.info.node,
             id: G6Util.uniqueId(),
-            name: 'XFC_NODE_' + utils.common.firstUpperCase(type),
+            name: type,
             draggable: true,
             x: event.x,
             y: event.y,
@@ -857,7 +872,12 @@ export default {
         const _t = this
         // console.log('drawGroup stop')
         if (_t.info && _t.drawGroup.isMoving && _t.drawGroup.marqueeNode) {
-          const { minX: marqueeNodeMinX, maxX: marqueeNodeMaxX, minY: marqueeNodeMinY, maxY: marqueeNodeMaxY } = _t.drawGroup.marqueeNode.getBBox()
+          const {
+            minX: marqueeNodeMinX,
+            maxX: marqueeNodeMaxX,
+            minY: marqueeNodeMinY,
+            maxY: marqueeNodeMaxY
+          } = _t.drawGroup.marqueeNode.getBBox()
           // 当前节点数组
           const currentItemArr = []
           const groupId = G6Util.uniqueId()
@@ -1132,9 +1152,11 @@ export default {
             }
             return out
           }
+
           function dot (a, b) {
             return a[0] * b[0] + a[1] * b[1]
           }
+
           const pointLineDistance = function (lineX1, lineY1, lineX2, lineY2, pointX, pointY) {
             const lineLength = [lineX2 - lineX1, lineY2 - lineY1]
             if (lineLength[0] === 0 && lineLength[1] === 0) {
