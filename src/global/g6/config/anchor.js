@@ -11,7 +11,7 @@ export default {
       symbol: 'circle',
       fill: '#FFFFFF',
       fillOpacity: 0,
-      stroke: '#1890FF',
+      stroke: '#000',
       strokeOpacity: 0,
       cursor: 'crosshair'
     },

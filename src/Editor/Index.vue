@@ -510,7 +510,7 @@
         }
       },
       doAddNode (info) {
-        console.log(info, 'doAddNode')
+        // console.log(info, 'doAddNode')
         const _t = this
         const node = {
           ...info,
@@ -672,19 +672,8 @@
             break
           }
           case 'preview': {
-            console.log(info, 'preview')
-            _t.doSetMode(info.name)
-            const previewData = {
-              type: info.data,
-              content: ''
-            }
-            if (info.data === 'image') {
-              previewData.content = _t.editor.toDataURL()
-            } else if (info.data === 'json') {
-              previewData.content = _t.editor.save()
-            }
-            // 显示预览弹窗
-            _t.$X.utils.bus.$emit('editor/previewModel/open', previewData)
+            console.log(info, '不同模式')
+            _t.doSetMode(info.data)
             break
           }
           case 'edit': {
@@ -1066,7 +1055,6 @@
             break
           }
           case '绘图模式': {
-            console.log(info, 'item')
             this.toolbarInfo = info
             break
           }

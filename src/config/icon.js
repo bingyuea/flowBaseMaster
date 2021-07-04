@@ -29,7 +29,9 @@ export const iconStyle = {
   三相接地故障: { width: '196', height: '86', anchorPoints: [[0.5, 0]] },
   交流传输线: { width: '167', height: '27', anchorPoints: [[1, 0.5], [0, 0.5]] },
   交流母线: { width: '206', height: '12', anchorPoints: points },
-  光伏: { width: '165', height: '311', anchorPoints: [[0.5, 1]] },
+  // 光伏: { width: '165', height: '311', anchorPoints: [[0.5, 1]] },
+  // todo 母线
+  光伏: { width: '165', height: '311', anchorPoints: points },
   开关动作: { width: '113', height: '54', anchorPoints: [[1, 0.5], [0, 0.5]] },
   接地: { width: '93', height: '93', anchorPoints: [[0.5, 0]] },
   柴油发电机: { width: '93', height: '79', anchorPoints: [[0.5, 0]] },
