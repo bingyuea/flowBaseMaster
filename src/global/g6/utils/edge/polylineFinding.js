@@ -73,7 +73,8 @@ const getExpandedPort = function (bbox, point, isMumLine) {
   if (isMumLine) {
     return {
       x: point.x,
-      y: point.y > bbox.centerY ? point.y + 10 : point.y - 10
+      y: point.y > bbox.centerY ? bbox.maxY : bbox.minY
+      // y: point.y > bbox.centerY ? point.y + 20 : point.y - 20
     }
   }
   // 判断连接点在上下左右哪个区域，相应地给 x 或 y 加上或者减去 offset
