@@ -147,6 +147,7 @@
           this.originDataObj = { ...originDataObj }
         } else {
           getSvgById(id).then(res => {
+            // 返回结果 如果res.data为空 取自定义 并且id 等于自定义
             this.originDataObj = {
               originData: res.data,
               originId: id
