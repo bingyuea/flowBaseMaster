@@ -50,6 +50,7 @@ export default {
     getEvents () {
       return {
         'editor:addNode': 'onEditorAddNode',
+        'node:click': 'onNodeClick',
         'node:mousedown': 'onNodeMousedown',
         'node:dragstart': 'onNodeDragStart',
         'node:drag': 'onNodeDrag',
@@ -82,8 +83,11 @@ export default {
       }
       _t.dragNode.status = 'dragNodeToEditor'
     },
+
+    onNodeClick (event) {
+    },
     onNodeMousedown (event) {
-      // console.log('onNodeMousedown')
+      console.log('onNodeMousedown')
       // 非左键忽略
       if (!utils.common.isLeftKey(event)) {
         return
@@ -103,6 +107,7 @@ export default {
         node: event.item,
         target: event.target
       }
+
       if (_t.info.target && _t.info.target.attr('name')) {
         switch (_t.info.target.attr('name')) {
           case 'anchorPoint':
@@ -114,6 +119,13 @@ export default {
           case 'shapeControlRotate':
             _t.info.type = 'shapeControlRotate'
             break
+        }
+      }
+      // 判断当前点 是否在 母线包围盒子里面,是的话不用划线
+      if (event.item){
+        const {maxX,minX,maxY,minY} = event.item.getBBox()
+        if (event.x >= minX && event.x <= maxX && event.y >= minY && event.y <= maxY) {
+          _t.info.type = 'shapeControlPoint'
         }
       }
       if (_t.info && _t.info.type && _t[_t.info.type].start) {
@@ -145,7 +157,7 @@ export default {
       }
     },
     onNodeMouseup (event) {
-      // console.log('onNodeMouseup')
+      console.log('onNodeMouseup',_t.info)
       const _t = this
       if (_t.info && _t.info.type && _t[_t.info.type].stop) {
         _t[_t.info.type].stop.call(_t, event)

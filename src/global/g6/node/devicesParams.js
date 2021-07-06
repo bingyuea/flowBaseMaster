@@ -171,16 +171,21 @@ export const icon = [{
     typeId: 'icon',
     originData:[
       {
-        tagName:'G1',
+        tagName:'请选择',
         tagModel:[
           {
-            modelName:'',
+            modelName:'请选择',
             paramList:[
               {
-                defaultValue:'',
+                defaultValue:'IFC5502-8TA42',
                 description:'',
-                name:'',
+                name:'型号',
                 unit:'',
+              },{
+                defaultValue:'550',
+                description:'',
+                name:'Srg',
+                unit:'（kVA）',
               }
             ]
           }

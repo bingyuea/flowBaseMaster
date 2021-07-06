@@ -73,7 +73,7 @@
     shapeControl
   } from '../config/icon'
 
-  import { icon } from '@/global/g6/node/devices'
+  import { icon } from '@/global/g6/node/devicesParams'
   import _ from 'lodash'
   export default {
     name: 'MaterialsEditor',
@@ -143,19 +143,18 @@
     methods: {
       getOriginData (id) {
         const originDataObj = JSON.parse(localStorage.getItem('originDataObj' + String(id)))
+        // todo test
         if (originDataObj) {
           this.originDataObj = { ...originDataObj }
         } else {
           getSvgById(id).then(res => {
             // 返回结果 如果res.data为空 取自定义 并且id 等于自定义
+            const originData = icon.find(item => item.id === id).originData || ''
             this.originDataObj = {
-              originData: res.data,
+              originData: originData ? originData : res.data,
               originId: id
             }
-            localStorage.setItem('originDataObj' + String(id), JSON.stringify({
-              originData: res.data,
-              originId: id
-            }))
+            localStorage.setItem('originDataObj' + String(id), JSON.stringify( this.originDataObj))
           })
         }
       },
