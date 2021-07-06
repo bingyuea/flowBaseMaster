@@ -408,7 +408,8 @@ export default {
               }
               // 起始点相同不能划线
               if (startModel.id === endModel.id) {
-                return false
+                _t.graph.removeItem(_t.drawLine.currentLine)
+                return
               }
             }
             let targetAnchor
