@@ -122,12 +122,12 @@ export default {
         }
       }
       // 判断当前点 是否在 母线包围盒子里面,是的话不用划线
-      if (event.item){
-        const {maxX,minX,maxY,minY} = event.item.getBBox()
-        if (event.x >= minX && event.x <= maxX && event.y >= minY && event.y <= maxY) {
-          _t.info.type = 'shapeControlPoint'
-        }
-      }
+      // if (event.item){
+      //   const {maxX,minX,maxY,minY} = event.item.getBBox()
+      //   if (event.x >= minX && event.x <= maxX && event.y >= minY && event.y <= maxY) {
+      //     _t.info.type = 'shapeControlPoint'
+      //   }
+      // }
       if (_t.info && _t.info.type && _t[_t.info.type].start) {
         _t[_t.info.type].start.call(_t, event)
       }
