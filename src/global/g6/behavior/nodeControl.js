@@ -143,11 +143,11 @@ export default {
     onNodeDrag (event) {
       // console.log('onNodeDrag', new Date().getTime())
       const _t = this
-      utils.common.throttle(function () {
+      // utils.common.throttle(function () {
         if (_t.info && _t.info.type && _t[_t.info.type].move) {
           _t[_t.info.type].move.call(_t, event)
         }
-      }, TIME_FRAME)()
+      // }, TIME_FRAME)()
     },
     onNodeDragEnd (event) {
       // console.log('onNodeDragEnd')
@@ -157,7 +157,7 @@ export default {
       }
     },
     onNodeMouseup (event) {
-      console.log('onNodeMouseup',_t.info)
+      console.log('onNodeMouseup',_t)
       const _t = this
       if (_t.info && _t.info.type && _t[_t.info.type].stop) {
         _t[_t.info.type].stop.call(_t, event)

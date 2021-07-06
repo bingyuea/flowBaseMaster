@@ -149,7 +149,7 @@
         } else {
           getSvgById(id).then(res => {
             // 返回结果 如果res.data为空 取自定义 并且id 等于自定义
-            const originData = icon.find(item => item.id === id).originData || ''
+            const originData = icon.find(item => item.id === id) && icon.find(item => item.id === id).originData
             this.originDataObj = {
               originData: originData ? originData : res.data,
               originId: id

@@ -76,7 +76,7 @@ export default function (cfg, group) {
             ...config.anchorBg.style.active
           })
         })
-        anchorShape.on('mouseleave', function () {
+        anchorShape.on('mouseout', function () {
           anchorBgShape.attr({
             ...config.anchorBg.style.inactive
           })
