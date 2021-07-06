@@ -141,7 +141,7 @@ export default {
       }
     },
     onNodeDrag (event) {
-      // console.log('onNodeDrag', new Date().getTime())
+      console.log('onNodeDrag', new Date().getTime())
       const _t = this
       // utils.common.throttle(function () {
         if (_t.info && _t.info.type && _t[_t.info.type].move) {
@@ -150,7 +150,7 @@ export default {
       // }, TIME_FRAME)()
     },
     onNodeDragEnd (event) {
-      // console.log('onNodeDragEnd')
+      console.log('onNodeDragEnd')
       const _t = this
       if (_t.info && _t.info.type && _t[_t.info.type].stop) {
         _t[_t.info.type].stop.call(_t, event)
@@ -262,14 +262,14 @@ export default {
       }
     },
     onCanvasMousemove (event) {
-      // console.log('onCanvasMousemove')
+      console.log('onCanvasMousemove')
       const _t = this
-      utils.common.throttle(function () {
+      // utils.common.throttle(function () {
         if (_t.info && _t.info.type && _t[_t.info.type].move) {
-          // console.log('onCanvasMousemove', _t.info.type)
+          console.log('onCanvasMousemove', _t.info.type)
           _t[_t.info.type].move.call(_t, event)
         }
-      }, TIME_FRAME)()
+      // }, TIME_FRAME)()
     },
     onCanvasMouseup (event) {
       const _t = this
@@ -280,16 +280,16 @@ export default {
     },
     onMousemove (event) {
       const _t = this
-      // console.log('onMousemove', _t.info)
-      utils.common.throttle(function () {
+      console.log('onMousemove', _t.info)
+      // utils.common.throttle(function () {
         if (_t.info && _t.info.type && _t[_t.info.type].move) {
           _t[_t.info.type].move.call(_t, event)
         }
-      }, TIME_FRAME)()
+      // }, TIME_FRAME)()
     },
     onMouseup (event) {
       const _t = this
-      // console.log('onMouseup')
+      console.log('onMouseup')
       if (_t.info) {
         if (_t.info.type) {
           if (_t.info.type === 'dragNode' && _t.dragNode.status === 'dragNodeToEditor') {
