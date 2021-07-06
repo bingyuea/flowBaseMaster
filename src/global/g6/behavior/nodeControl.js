@@ -363,16 +363,16 @@ export default {
           endArrow: handleArrowStyle(_t.graph.$D.endArrow, _t.graph.$D.lineColor)
         })
         if (_t.config.tooltip.dragEdge) {
-          _t.toolTip.create.call(_t, {
-            left: event.canvasX,
-            top: event.canvasY + 10
-          }, `X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}`)
+          // _t.toolTip.create.call(_t, {
+          //   left: event.canvasX,
+          //   top: event.canvasY + 10
+          // }, `X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}`)
         }
         _t.drawLine.isMoving = true
       },
       move (event) {
         const _t = this
-        if (_t.drawLine.isMoving && _t.drawLine.currentLine) {
+        if (_t.drawLine.isMoving && _t.drawLine.currentLine && _t.drawLine.currentLine._cfg) {
           _t.graph.updateItem(_t.drawLine.currentLine, {
             target: {
               x: event.x,
@@ -396,18 +396,20 @@ export default {
           } else {
             const endNode = event.item
             const startModel = _t.info.node.getModel()
+            if (!endNode) return;
             const endModel = endNode.getModel()
             // type 一样不能连线
             if (endModel && startModel) {
+              // 起始点相同不能划线
+              if (startModel.id === endModel.id) {
+                _t.graph.removeItem(_t.drawLine.currentLine)
+                return
+              }
+
               const endData = JSON.parse(endModel.data)
               const startData = JSON.parse(startModel.data)
               if (startData.type === endData.type && startData.id !== endData.id) {
                 Message.error(startData.type + '类型相同不能连线！')
-                _t.graph.removeItem(_t.drawLine.currentLine)
-                return
-              }
-              // 起始点相同不能划线
-              if (startModel.id === endModel.id) {
                 _t.graph.removeItem(_t.drawLine.currentLine)
                 return
               }
