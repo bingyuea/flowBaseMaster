@@ -164,12 +164,12 @@
         }
         if (localStorage.getItem('devices')) {
           res.data = JSON.parse(localStorage.getItem('devices'))
+          console.log(res.data)
           this.devices = _.groupBy(res.data, 'typeId')
         } else {
           getDevice().then(res => {
             // 加载自定义icon
             localStorage.setItem('devices', JSON.stringify(res.data.concat(icon)))
-            this.devices = _.groupBy(res.data, 'typeId')
             window.location.reload()
           })
         }
