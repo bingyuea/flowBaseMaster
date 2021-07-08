@@ -262,7 +262,7 @@ export default {
       }
     },
     onCanvasMousemove (event) {
-      console.log('onCanvasMousemove')
+      // console.log('onCanvasMousemove')
       const _t = this
       // utils.common.throttle(function () {
         if (_t.info && _t.info.type && _t[_t.info.type].move) {
@@ -280,7 +280,7 @@ export default {
     },
     onMousemove (event) {
       const _t = this
-      console.log('onMousemove', _t.info)
+      // console.log('onMousemove', _t.info)
       // utils.common.throttle(function () {
         if (_t.info && _t.info.type && _t[_t.info.type].move) {
           _t[_t.info.type].move.call(_t, event)

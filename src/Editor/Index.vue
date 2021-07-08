@@ -365,6 +365,11 @@
         _t.editor.on('editor:getItem', function (data) {
           _t.currentItem = data
         })
+        _t.editor.on('wheelzoom', function (e) {
+          const zoom = _t.editor.getZoom();
+          _t.updateZoomToolbar(zoom.toFixed(1))
+        })
+
         _t.editor.on('editor:setItem', function (data) {
           data.forEach((item, index) => {
             const model = item.model
@@ -484,29 +489,34 @@
           // 缩放视窗窗口到一个固定比例
           _t.editor.zoomTo(ratio, center)
           // 处理选中，更新toolList
-          const toolList = []
-          const toolListData = _t.$X.utils.storage.get('toolList', _t.$X.config.storage.prefix)
-          if (Array.isArray(toolListData)) {
-            toolListData.forEach(target => {
-              if (target.enableTool) {
-                if (target.name === 'zoom') {
-                  target.selected = null
-                  target.custom = {
-                    ...target.custom,
-                    enable: true,
-                    label: (ratio * 1000 / 10) + '%',
-                    data: ratio
-                  }
-                }
-                toolList.push(target)
-              }
-            })
-            _t.toolList = toolList
-            _t.$X.utils.storage.set('toolList', toolList, _t.$X.config.storage.prefix)
-          }
+          this.updateZoomToolbar(ratio)
         } else if (info.name === 'actualSize') {
           ratio = 1
           _t.editor.zoomTo(ratio, center)
+        }
+      },
+
+      updateZoomToolbar(ratio){
+        const _t = this
+        const toolList = []
+        const toolListData = _t.$X.utils.storage.get('toolList', _t.$X.config.storage.prefix)
+        if (Array.isArray(toolListData)) {
+          toolListData.forEach(target => {
+            if (target.enableTool) {
+              if (target.name === 'zoom') {
+                target.selected = null
+                target.custom = {
+                  ...target.custom,
+                  enable: true,
+                  label: (ratio * 1000 / 10) + '%',
+                  data: ratio
+                }
+              }
+              toolList.push(target)
+            }
+          })
+          _t.toolList = toolList
+          _t.$X.utils.storage.set('toolList', toolList, _t.$X.config.storage.prefix)
         }
       },
       doAddNode (info) {

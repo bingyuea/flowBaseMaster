@@ -27,7 +27,6 @@
         overflow: hidden;
         object-fit:contain;
         &.mum{
-          height: 57px;
         }
       }
     }
