@@ -50,6 +50,7 @@ export default {
     getEvents () {
       return {
         'editor:addNode': 'onEditorAddNode',
+        'node:click': 'onNodeClick',
         'node:mousedown': 'onNodeMousedown',
         'node:dragstart': 'onNodeDragStart',
         'node:drag': 'onNodeDrag',
@@ -82,8 +83,11 @@ export default {
       }
       _t.dragNode.status = 'dragNodeToEditor'
     },
+
+    onNodeClick (event) {
+    },
     onNodeMousedown (event) {
-      // console.log('onNodeMousedown')
+      console.log('onNodeMousedown')
       // 非左键忽略
       if (!utils.common.isLeftKey(event)) {
         return
@@ -103,6 +107,7 @@ export default {
         node: event.item,
         target: event.target
       }
+
       if (_t.info.target && _t.info.target.attr('name')) {
         switch (_t.info.target.attr('name')) {
           case 'anchorPoint':
@@ -116,6 +121,13 @@ export default {
             break
         }
       }
+      // 判断当前点 是否在 母线包围盒子里面,是的话不用划线
+      // if (event.item){
+      //   const {maxX,minX,maxY,minY} = event.item.getBBox()
+      //   if (event.x >= minX && event.x <= maxX && event.y >= minY && event.y <= maxY) {
+      //     _t.info.type = 'shapeControlPoint'
+      //   }
+      // }
       if (_t.info && _t.info.type && _t[_t.info.type].start) {
         _t[_t.info.type].start.call(_t, event)
       }
@@ -129,23 +141,23 @@ export default {
       }
     },
     onNodeDrag (event) {
-      // console.log('onNodeDrag', new Date().getTime())
+      console.log('onNodeDrag', new Date().getTime())
       const _t = this
-      utils.common.throttle(function () {
+      // utils.common.throttle(function () {
         if (_t.info && _t.info.type && _t[_t.info.type].move) {
           _t[_t.info.type].move.call(_t, event)
         }
-      }, TIME_FRAME)()
+      // }, TIME_FRAME)()
     },
     onNodeDragEnd (event) {
-      // console.log('onNodeDragEnd')
+      console.log('onNodeDragEnd')
       const _t = this
       if (_t.info && _t.info.type && _t[_t.info.type].stop) {
         _t[_t.info.type].stop.call(_t, event)
       }
     },
     onNodeMouseup (event) {
-      // console.log('onNodeMouseup')
+      console.log('onNodeMouseup',_t)
       const _t = this
       if (_t.info && _t.info.type && _t[_t.info.type].stop) {
         _t[_t.info.type].stop.call(_t, event)
@@ -252,12 +264,12 @@ export default {
     onCanvasMousemove (event) {
       // console.log('onCanvasMousemove')
       const _t = this
-      utils.common.throttle(function () {
+      // utils.common.throttle(function () {
         if (_t.info && _t.info.type && _t[_t.info.type].move) {
-          // console.log('onCanvasMousemove', _t.info.type)
+          console.log('onCanvasMousemove', _t.info.type)
           _t[_t.info.type].move.call(_t, event)
         }
-      }, TIME_FRAME)()
+      // }, TIME_FRAME)()
     },
     onCanvasMouseup (event) {
       const _t = this
@@ -269,15 +281,15 @@ export default {
     onMousemove (event) {
       const _t = this
       // console.log('onMousemove', _t.info)
-      utils.common.throttle(function () {
+      // utils.common.throttle(function () {
         if (_t.info && _t.info.type && _t[_t.info.type].move) {
           _t[_t.info.type].move.call(_t, event)
         }
-      }, TIME_FRAME)()
+      // }, TIME_FRAME)()
     },
     onMouseup (event) {
       const _t = this
-      // console.log('onMouseup')
+      console.log('onMouseup')
       if (_t.info) {
         if (_t.info.type) {
           if (_t.info.type === 'dragNode' && _t.dragNode.status === 'dragNodeToEditor') {
@@ -351,16 +363,16 @@ export default {
           endArrow: handleArrowStyle(_t.graph.$D.endArrow, _t.graph.$D.lineColor)
         })
         if (_t.config.tooltip.dragEdge) {
-          _t.toolTip.create.call(_t, {
-            left: event.canvasX,
-            top: event.canvasY + 10
-          }, `X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}`)
+          // _t.toolTip.create.call(_t, {
+          //   left: event.canvasX,
+          //   top: event.canvasY + 10
+          // }, `X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}`)
         }
         _t.drawLine.isMoving = true
       },
       move (event) {
         const _t = this
-        if (_t.drawLine.isMoving && _t.drawLine.currentLine) {
+        if (_t.drawLine.isMoving && _t.drawLine.currentLine && _t.drawLine.currentLine._cfg) {
           _t.graph.updateItem(_t.drawLine.currentLine, {
             target: {
               x: event.x,
@@ -384,19 +396,22 @@ export default {
           } else {
             const endNode = event.item
             const startModel = _t.info.node.getModel()
+            if (!endNode) return;
             const endModel = endNode.getModel()
             // type 一样不能连线
             if (endModel && startModel) {
+              // 起始点相同不能划线
+              if (startModel.id === endModel.id) {
+                _t.graph.removeItem(_t.drawLine.currentLine)
+                return
+              }
+
               const endData = JSON.parse(endModel.data)
               const startData = JSON.parse(startModel.data)
               if (startData.type === endData.type && startData.id !== endData.id) {
                 Message.error(startData.type + '类型相同不能连线！')
                 _t.graph.removeItem(_t.drawLine.currentLine)
                 return
-              }
-              // 起始点相同不能划线
-              if (startModel.id === endModel.id) {
-                return false
               }
             }
             let targetAnchor

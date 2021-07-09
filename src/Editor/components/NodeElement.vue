@@ -26,6 +26,8 @@
         position: relative;
         overflow: hidden;
         object-fit:contain;
+        &.mum{
+        }
       }
     }
   }
@@ -38,7 +40,7 @@
     @mousedown="handleMouseDown"
   >
     <div class="content" :title="title">
-      <img class="icon" :src="info.img" />
+      <img :class="['icon',title === '交流母线' ? 'mum' : '' ]" :src="info.img" />
     </div>
   </div>
 </template>

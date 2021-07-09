@@ -34,7 +34,7 @@ const points = [[0.02, 0], [0.02, 1], [0.04, 0], [0.04, 1], [0.06, 0], [0.06, 1]
 export const iconStyle = {
   三相接地故障: { width: '196', height: '86', anchorPoints: [[0.5, 0]] },
   交流传输线: { width: '167', height: '27', anchorPoints: [[1, 0.5], [0, 0.5]] },
-  交流母线: { width: '206', height: '12', anchorPoints: points },
+  交流母线: { width: '800', height: '12', anchorPoints: points },
   光伏: { width: '165', height: '311', anchorPoints: [[0.5, 1]] },
   // 光伏: { width: '165', height: '311', anchorPoints: points },
   开关动作: { width: '113', height: '54', anchorPoints: [[1, 0.5], [0, 0.5]] },

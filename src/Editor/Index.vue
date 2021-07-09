@@ -73,7 +73,7 @@
     shapeControl
   } from '../config/icon'
 
-  import { icon } from '@/global/g6/node/devices'
+  import { icon } from '@/global/g6/node/devicesParams'
   import _ from 'lodash'
   export default {
     name: 'MaterialsEditor',
@@ -143,18 +143,18 @@
     methods: {
       getOriginData (id) {
         const originDataObj = JSON.parse(localStorage.getItem('originDataObj' + String(id)))
+        // todo test
         if (originDataObj) {
           this.originDataObj = { ...originDataObj }
         } else {
           getSvgById(id).then(res => {
+            // 返回结果 如果res.data为空 取自定义 并且id 等于自定义
+            const originData = icon.find(item => item.id === id) && icon.find(item => item.id === id).originData
             this.originDataObj = {
-              originData: res.data,
+              originData: originData ? originData : res.data,
               originId: id
             }
-            localStorage.setItem('originDataObj' + String(id), JSON.stringify({
-              originData: res.data,
-              originId: id
-            }))
+            localStorage.setItem('originDataObj' + String(id), JSON.stringify( this.originDataObj))
           })
         }
       },
@@ -164,12 +164,12 @@
         }
         if (localStorage.getItem('devices')) {
           res.data = JSON.parse(localStorage.getItem('devices'))
+          console.log(res.data)
           this.devices = _.groupBy(res.data, 'typeId')
         } else {
           getDevice().then(res => {
             // 加载自定义icon
             localStorage.setItem('devices', JSON.stringify(res.data.concat(icon)))
-            this.devices = _.groupBy(res.data, 'typeId')
             window.location.reload()
           })
         }
@@ -365,6 +365,11 @@
         _t.editor.on('editor:getItem', function (data) {
           _t.currentItem = data
         })
+        _t.editor.on('wheelzoom', function (e) {
+          const zoom = _t.editor.getZoom();
+          _t.updateZoomToolbar(zoom.toFixed(1))
+        })
+
         _t.editor.on('editor:setItem', function (data) {
           data.forEach((item, index) => {
             const model = item.model
@@ -484,29 +489,34 @@
           // 缩放视窗窗口到一个固定比例
           _t.editor.zoomTo(ratio, center)
           // 处理选中，更新toolList
-          const toolList = []
-          const toolListData = _t.$X.utils.storage.get('toolList', _t.$X.config.storage.prefix)
-          if (Array.isArray(toolListData)) {
-            toolListData.forEach(target => {
-              if (target.enableTool) {
-                if (target.name === 'zoom') {
-                  target.selected = null
-                  target.custom = {
-                    ...target.custom,
-                    enable: true,
-                    label: (ratio * 1000 / 10) + '%',
-                    data: ratio
-                  }
-                }
-                toolList.push(target)
-              }
-            })
-            _t.toolList = toolList
-            _t.$X.utils.storage.set('toolList', toolList, _t.$X.config.storage.prefix)
-          }
+          this.updateZoomToolbar(ratio)
         } else if (info.name === 'actualSize') {
           ratio = 1
           _t.editor.zoomTo(ratio, center)
+        }
+      },
+
+      updateZoomToolbar(ratio){
+        const _t = this
+        const toolList = []
+        const toolListData = _t.$X.utils.storage.get('toolList', _t.$X.config.storage.prefix)
+        if (Array.isArray(toolListData)) {
+          toolListData.forEach(target => {
+            if (target.enableTool) {
+              if (target.name === 'zoom') {
+                target.selected = null
+                target.custom = {
+                  ...target.custom,
+                  enable: true,
+                  label: (ratio * 1000 / 10) + '%',
+                  data: ratio
+                }
+              }
+              toolList.push(target)
+            }
+          })
+          _t.toolList = toolList
+          _t.$X.utils.storage.set('toolList', toolList, _t.$X.config.storage.prefix)
         }
       },
       doAddNode (info) {
