@@ -9,32 +9,25 @@
   box-sizing: content-box;
   padding: 0 10px;
   padding-top: 10px;
-  height: 200px;
+  height: 500px;
   overflow-y: auto;
 
   .el-form-item {
     margin-bottom: 5px;
-  }
-
-  .el-form-details-list{
-    .el-form-item__label{
-      position: absolute;
-      left: 30px;
-    }
-    ::v-deep .el-form-item__content{
-      margin-left: 0 !important;
-      padding-left: 100px;
-    }
   }
 }
 </style>
 
 <template>
   <div class="nodeDetails">
-    <el-form :model="form" label-width="100px">
+    <el-form :model="form" label-width="100px" label-position="top">
 
       <el-form-item label="设备名称" prop="name" class='el-form-details'>
         <el-input disabled v-model="currentShape"></el-input>
+      </el-form-item>
+
+      <el-form-item label="idx" prop="idx" class='el-form-details'>
+        <el-input disabled v-model="idx"></el-input>
       </el-form-item>
 
       <el-form-item label="设备类型" prop="tagName" class='el-form-details'>
@@ -69,14 +62,6 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item label="视在功率" prop="name" class='el-form-details'>
-        <el-input disabled placeholder='请输入视在功率' v-model="test1"></el-input>
-      </el-form-item>
-
-      <el-form-item label="额定功率" prop="name" class='el-form-details'>
-        <el-input disabled placeholder='请输入额定功率' v-model="test2"></el-input>
-      </el-form-item>
-
       <el-form-item v-for='(item,key) in paramList' :key='key' :prop="item.name" class='el-form-details el-form-details-list'>
         <div :label="item.name" :prop="item.name" class='el-form-item__label'>
           {{ item.name }}
@@ -104,11 +89,10 @@
     data () {
       return {
         form: {
+          idx: '',
           tagName: '',
           modelName: ''
         },
-        test1: '',
-        test2: '',
         paramList: [],
         firstItem: null,
         watchFlag: false,
@@ -189,7 +173,18 @@
       }
     },
     computed: {
+      idx () {
+        const idx = JSON.parse(this.originDataObj.model).idx
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        this.form.idx = idx
+        return idx
+      },
       originData () {
+        console.log(this.originDataObj.originData)
+        // 如果第0项的tagName 为 请选择
+        if (this.originDataObj.originData[0].tagName === '请选择' && !this.watchFlag) {
+          this.paramList = this.originDataObj.originData[0].tagModel[0].paramList
+        }
         return this.originDataObj.originData || []
       },
       tagNameList () {

@@ -13,6 +13,7 @@ export default {
           const name = cell.name
           obj = {
             'uid': rowIndex,
+            'idx': cell.idx,
             ...obj,
             [name]: cell.defaultValue
           }

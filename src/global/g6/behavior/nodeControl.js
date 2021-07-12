@@ -157,7 +157,7 @@ export default {
       }
     },
     onNodeMouseup (event) {
-      console.log('onNodeMouseup',_t)
+      console.log('onNodeMouseup', _t)
       const _t = this
       if (_t.info && _t.info.type && _t[_t.info.type].stop) {
         _t[_t.info.type].stop.call(_t, event)
@@ -396,7 +396,7 @@ export default {
           } else {
             const endNode = event.item
             const startModel = _t.info.node.getModel()
-            if (!endNode) return;
+            if (!endNode) return
             const endModel = endNode.getModel()
             // type 一样不能连线
             if (endModel && startModel) {
@@ -423,6 +423,7 @@ export default {
               targetAnchor = endNode.getLinkPoint({ x: event.x, y: event.y })
             }
             _t.graph.updateItem(_t.drawLine.currentLine, {
+              idx: _t.graph.$C.idx.idx,
               target: endModel.id,
               targetAnchor: targetAnchor ? targetAnchor.anchorIndex : '',
               // 存储起始点ID，用于拖拽节点时更新线条 todo
@@ -432,6 +433,7 @@ export default {
                 label: `X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}`
               }
             })
+            _t.graph.$C.idx.setIdx()
             // 记录操作日志
             _t.graph.emit('editor:record', 'drawLine stop')
           }

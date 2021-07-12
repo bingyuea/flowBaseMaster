@@ -5,22 +5,24 @@
 */
 /* eslint-disable */
 <style scoped lang="less" rel="stylesheet/less">
-.materials-editor {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  user-select: none;
-  overflow: hidden;
-  background: #f8f9fa;
-}
+  .materials-editor {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    overflow: hidden;
+    background: #f8f9fa;
+  }
 </style>
 
 <template>
   <div class="materials-editor" @click="handleEditorClick" @contextmenu.stop.prevent>
-    <ToolBar :editorData="editorData" :sysList="sysList" :toolList="toolList" :functionlist="functionlist" :currentItem="currentItem"></ToolBar>
+    <ToolBar :editorData="editorData" :sysList="sysList" :toolList="toolList" :functionlist="functionlist"
+             :currentItem="currentItem"></ToolBar>
     <Sketchpad></Sketchpad>
     <PanelRight :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"
-                :originDataObj='originDataObj' :eventItem='eventItem' :toolbarInfo = 'toolbarInfo' :materialList="materialList"></PanelRight>
+                :originDataObj='originDataObj' :eventItem='eventItem' :toolbarInfo='toolbarInfo'
+                :materialList="materialList"></PanelRight>
     <PreviewModel></PreviewModel>
     <ContextMenu :editorData="editorData" :toolList="toolList"></ContextMenu>
     <ShortcutList ref="shortcutList" :toolList="toolList" :shortcutMap="shortcutMap"></ShortcutList>
@@ -31,10 +33,10 @@
     <el-dialog
       :title="currentShape ? currentShape + '属性设置' : '属性设置'"
       :visible.sync="dialogVisible"
-      :destroy-on-close = 'true'
+      :destroy-on-close='true'
       width="398px"
     >
-      <Details ref = 'details' :originDataObj='originDataObj' :eventItem='eventItem' :currentItem="currentItem"></Details>
+      <Details ref='details' :originDataObj='originDataObj' :eventItem='eventItem' :currentItem="currentItem"></Details>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="onSubmit">确 定</el-button>
@@ -75,6 +77,7 @@
 
   import { icon } from '@/global/g6/node/devicesParams'
   import _ from 'lodash'
+
   export default {
     name: 'MaterialsEditor',
     components: {
@@ -141,20 +144,21 @@
       }
     },
     methods: {
-      getOriginData (id) {
+      getOriginData (id, model) {
         const originDataObj = JSON.parse(localStorage.getItem('originDataObj' + String(id)))
         // todo test
         if (originDataObj) {
-          this.originDataObj = { ...originDataObj }
+          this.originDataObj = { ...originDataObj, model }
         } else {
           getSvgById(id).then(res => {
             // 返回结果 如果res.data为空 取自定义 并且id 等于自定义
             const originData = icon.find(item => item.id === id) && icon.find(item => item.id === id).originData
             this.originDataObj = {
-              originData: originData ? originData : res.data,
-              originId: id
+              originData: originData || res.data,
+              originId: id,
+              model
             }
-            localStorage.setItem('originDataObj' + String(id), JSON.stringify( this.originDataObj))
+            localStorage.setItem('originDataObj' + String(id), JSON.stringify(this.originDataObj))
           })
         }
       },
@@ -366,7 +370,7 @@
           _t.currentItem = data
         })
         _t.editor.on('wheelzoom', function (e) {
-          const zoom = _t.editor.getZoom();
+          const zoom = _t.editor.getZoom()
           _t.updateZoomToolbar(zoom.toFixed(1))
         })
 
@@ -422,9 +426,11 @@
       _nodeMousedown (event) {
         const _t = this
         _t.doClearAllStates()
-        const id = event.item._cfg.model && event.item._cfg.model.originId
+        const model = event.item._cfg.model
+        const id = model && model.originId
         this.eventItem = event.item
-        if (id) this.getOriginData(id)
+        // 需要存 model数据
+        if (id) this.getOriginData(id, JSON.stringify(model))
         _t.editor.setItemState(event.item, 'active', true)
         // this.dialogVisible = true
       },
@@ -496,7 +502,7 @@
         }
       },
 
-      updateZoomToolbar(ratio){
+      updateZoomToolbar (ratio) {
         const _t = this
         const toolList = []
         const toolListData = _t.$X.utils.storage.get('toolList', _t.$X.config.storage.prefix)
@@ -525,6 +531,7 @@
         const node = {
           ...info,
           id: G6Util.uniqueId(),
+          idx: _t.editor.$C.idx.idx,
           draggable: true,
           label: info.defaultLabel,
           labelCfg: {
@@ -535,6 +542,8 @@
             }
           }
         }
+        _t.editor.$C.idx.setIdx()
+        console.log(node, 'doAddNode')
         // 广播事件，通过自定义交互 node-control 添加节点
         _t.editor.emit('editor:addNode', node)
       },
@@ -960,6 +969,7 @@
               _t.editor.downloadImage(fileName)
             } else if (info.data === 'json') {
               let content = _t.editor.save()
+              console.log(content, 'json')
               content = JSON.stringify(content)
               const blob = new Blob([content], {
                 type: 'application/json;charset=UTF-8'
@@ -981,8 +991,12 @@
                 if (model.params) {
                   dataList.push(model.params)
                 }
+                // 处理图的连接点
+                // 添加图和边的节点信息 获取该图的所有的边 1条边，节点等于 图的 idx 多遍的话 获取不等于 该图的另外的起止点，其实统统可以按多遍
+                // const edge = node.getEdge()
               })
-              console.log(dataList)
+              console.log(_t.editor.getEdges(), 'getEdges')
+              // console.log(dataList)
               if (!dataList.length) {
                 this.$message.error('元件数据不存在，请先录入数据在导出！')
                 return

@@ -86,7 +86,7 @@
             :active="item.active"
             :disabled="item.disabled"
             :style="item.toolbar.style"
-            @click.native="handleToolClick(item)"
+            @click.native.prevent="handleToolClick(item)"
           >
             <template v-slot:label>
               <XIcon :iconfont="item.icon" :label="handleLabel(item)"></XIcon>
@@ -212,7 +212,7 @@
             :active="item.active"
             :disabled="item.disabled"
             :style="item.toolbar.style"
-            @click.native="handleToolClick(item)"
+            @click.native.prevent="handleToolClick(item)"
           >
             <template v-slot:label>
               <a class="link" :href="item.link" target="_blank" style="color: #333333;">
@@ -227,7 +227,7 @@
             :active="item.active"
             :disabled="item.disabled"
             :style="item.toolbar.style"
-            @click.native="handleToolClick(item)"
+            @click.native.prevent="handleToolClick(item)"
           >
             <template v-slot:label>
               <XIcon :label="item.label"></XIcon>
@@ -252,7 +252,7 @@
             :active="item.active"
             :disabled="item.disabled"
             :style="item.toolbar.style"
-            @click.native="handleToolClick(item)"
+            @click.native.prevent="handleToolClick(item)"
           >
             <template v-slot:label>
               <XIcon :iconfont="item.icon" :label="handleLabel(item)"></XIcon>
@@ -378,7 +378,7 @@
             :active="item.active"
             :disabled="item.disabled"
             :style="item.toolbar.style"
-            @click.native="handleToolClick(item)"
+            @click.native.prevent="handleToolClick(item)"
           >
             <template v-slot:label>
               <a class="link" :href="item.link" target="_blank" style="color: #333333;">
@@ -393,7 +393,7 @@
             :active="item.active"
             :disabled="item.disabled"
             :style="item.toolbar.style"
-            @click.native="handleToolClick(item)"
+            @click.native.prevent="handleToolClick(item)"
           >
             <template v-slot:label>
               <XIcon :iconfont="item.icon" :label="handleLabel(item)"></XIcon>
@@ -418,7 +418,7 @@
             :active="item.active"
             :disabled="item.disabled"
             :style="item.toolbar.style"
-            @click.native="handleToolClick(item)"
+            @click.native.prevent="handleToolClick(item)"
           >
             <template v-slot:label>
               <XIcon :iconfont="item.icon" :label="handleLabel(item)"></XIcon>
@@ -544,7 +544,7 @@
             :active="item.active"
             :disabled="item.disabled"
             :style="item.toolbar.style"
-            @click.native="handleToolClick(item)"
+            @click.native.prevent="handleToolClick(item)"
           >
             <template v-slot:label>
               <a class="link" :href="item.link" target="_blank" style="color: #333333;">
@@ -559,7 +559,7 @@
             :active="item.active"
             :disabled="item.disabled"
             :style="item.toolbar.style"
-            @click.native="handleToolClick(item)"
+            @click.native.prevent="handleToolClick(item)"
           >
             <template v-slot:label>
               <XIcon :img="item.icon" :label="handleLabel(item)"></XIcon>
