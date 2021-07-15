@@ -150,16 +150,13 @@
         if (originDataObj) {
           this.originDataObj = { ...originDataObj, model }
         } else {
-          getSvgById(id).then(res => {
-            // 返回结果 如果res.data为空 取自定义 并且id 等于自定义
-            const originData = icon.find(item => item.id === id) && icon.find(item => item.id === id).originData
-            this.originDataObj = {
-              originData: originData || res.data,
-              originId: id,
-              model
-            }
-            localStorage.setItem('originDataObj' + String(id), JSON.stringify(this.originDataObj))
-          })
+          const originData = icon.find(item => item.id === id) && icon.find(item => item.id === id).originData
+          this.originDataObj = {
+            originData: originData,
+            originId: id,
+            model
+          }
+          localStorage.setItem('originDataObj' + String(id), JSON.stringify(this.originDataObj))
         }
       },
       getDevices () {
@@ -171,11 +168,8 @@
           console.log(res.data)
           this.devices = _.groupBy(res.data, 'typeId')
         } else {
-          getDevice().then(res => {
-            // 加载自定义icon
-            localStorage.setItem('devices', JSON.stringify(res.data.concat(icon)))
-            window.location.reload()
-          })
+          localStorage.setItem('devices', JSON.stringify(icon))
+          window.location.reload()
         }
         this.devices = _.groupBy(res.data, 'typeId')
         const materials = []

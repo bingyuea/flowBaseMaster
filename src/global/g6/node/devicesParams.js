@@ -1,16 +1,1212 @@
-export const icon = [{
-  id: 54,
-  imgUrl: require('@/assets/images/icon/busb.png'),
-  name: '交流母线',
-  type: '电网',
-  typeId: '2'
-}, {
-  id: 0,
-  imgUrl: require('@/assets/images/icon/1.png'),
-  name: '1',
-  type: 'icon',
-  typeId: 'icon'
-},
+export const icon = [
+  {
+    id: 10,
+    imgUrl: require('@/assets/images/icon/CEN1.png'),
+    name: '发电机',
+    type: 'icon',
+    typeId: 'icon',
+    originData: {
+      CCS: [
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机额定视在功率(Srg)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机额定线电压(Ur)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机额定线电流(Irg)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机额定频率(f)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴电抗(xd)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴瞬态电抗(xd_d)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴超瞬态电抗(xd_dd)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机电枢电阻(Ra)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴时间常数(Tdc)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴超瞬态时间常数(Td_dd)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）发电机出口电缆-单位电阻(r1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）发电机出口电缆-单位电抗(x1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）发电机出口电缆-电缆长度(l1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）发电机出口电缆-并联根数(a1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴瞬态时间常数(Td_d)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机稳态短路电流(Ikd)',
+          unit: ''
+        }],
+      GJB: [
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机额定视在功率(Srg)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机额定线电压(Ur)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机额定线电流(Irg)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机额定频率(f)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴电抗(xd)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴瞬态电抗(xd_d)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴超瞬态电抗(xd_dd)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机电枢电阻(Ra)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴时间常数(Tdc)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴超瞬态时间常数(Td_dd)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）发电机出口电缆-单位电阻(r1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）发电机出口电缆-单位电抗(x1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）发电机出口电缆-电缆长度(l1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）发电机出口电缆-并联根数(a1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机额定有功功率(Png)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '空载励磁电流(Iof)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '短路励磁电流(Ikf)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '短路比(SCR)',
+          unit: ''
+        }
+      ],
+      GB: [
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机额定视在功率(Srg)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机额定线电压(Ur)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机额定线电流(Irg)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机额定频率(f)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴电抗(xd)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴瞬态电抗(xd_d)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴超瞬态电抗(xd_dd)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机电枢电阻(Ra)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴时间常数(Tdc)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴超瞬态时间常数(Td_dd)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）发电机出口电缆-单位电阻(r1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）发电机出口电缆-单位电抗(x1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）发电机出口电缆-电缆长度(l1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）发电机出口电缆-并联根数(a1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机直轴瞬态时间常数(Td_d)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '发电机稳态短路电流(Ikd)',
+          unit: ''
+        }
+      ]
+    }
+  },
+  {
+    id: 31,
+    imgUrl: require('@/assets/images/icon/T1.png'),
+    name: '变压器',
+    type: 'icon',
+    typeId: 'icon',
+    originData: {
+      CCS: [
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器绕组接线方式(winding)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器额定容量(Srt)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器初级侧电压(Ur)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器次级侧电压(Urt2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器短路电压(Uk)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器短路损耗(Pk)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器初级侧电缆-单位电阻(r1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器初级侧电缆-单位电抗(x1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器初级侧电缆-电缆长度(l1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器初级侧电缆-并联根数(a1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器次级侧电缆-单位电阻(r2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器次级侧电缆-单位电抗(x2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器次级侧电缆-电缆长度(l2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器次级侧电缆-并联根数(a2)',
+          unit: ''
+        }
+      ],
+      GJB: [{
+        defaultValue: '0',
+        description: '',
+        name: '变压器绕组接线方式(winding)',
+        unit: ''
+      },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器额定容量(Srt)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器初级侧电压(Ur)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器次级侧电压(Urt2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器短路电压(Uk)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器短路损耗(Pk)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器初级侧电缆-单位电阻(r1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器初级侧电缆-单位电抗(x1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器初级侧电缆-电缆长度(l1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器初级侧电缆-并联根数(a1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器次级侧电缆-单位电阻(r2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器次级侧电缆-单位电抗(x2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器次级侧电缆-电缆长度(l2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器次级侧电缆-并联根数(a2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器空载损耗(P0)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）折算到初级侧的变压器电阻(rt)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）折算到初级侧的变压器电阻(xt)',
+          unit: ''
+        }],
+      GB: [
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器绕组接线方式(winding)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器额定容量(Srt)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器初级侧电压(Ur)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器次级侧电压(Urt2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器短路电压(Uk)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器短路损耗(Pk)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器初级侧电缆-单位电阻(r1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器初级侧电缆-单位电抗(x1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器初级侧电缆-电缆长度(l1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器初级侧电缆-并联根数(a1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器次级侧电缆-单位电阻(r2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器次级侧电缆-单位电抗(x2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器次级侧电缆-电缆长度(l2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）变压器次级侧电缆-并联根数(a2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器额定电流(Irt)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '变压器额定电压的电阻分量(Urr)',
+          unit: ''
+        }
+      ]
+    }
+  },
+  {
+    id: 23,
+    imgUrl: require('@/assets/images/icon/MTR1.png'),
+    name: '电动机',
+    type: 'icon',
+    typeId: 'icon',
+    originData: {
+      CCS: [{
+        defaultValue: '0',
+        description: '',
+        name: '电动机额定功率(Prm)',
+        unit: ''
+      },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机额定线电压(Urm)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）电动机出口电缆-单位电阻(r1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）电动机出口电缆-单位电抗(x1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）电动机出口电缆-电缆长度(l1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）电动机出口电缆-并联根数(a1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机转子电阻(rr)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机定子电阻(rs)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机超瞬态电抗(xm_dd)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机超瞬态时间常数(Tm_dd)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机直流时间常数(Tdcm)',
+          unit: ''
+        }],
+      GJB: [
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机额定功率(Prm)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机额定线电压(Urm)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）电动机出口电缆-单位电阻(r1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）电动机出口电缆-单位电抗(x1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）电动机出口电缆-电缆长度(l1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）电动机出口电缆-并联根数(a1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机额定相电压(Vnm)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机额定线电流(Inm)',
+          unit: ''
+        }
+      ],
+      GB: [
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机额定功率(Prm)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机额定线电压(Urm)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）电动机出口电缆-单位电阻(r1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）电动机出口电缆-单位电抗(x1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）电动机出口电缆-电缆长度(l1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '（预留）电动机出口电缆-并联根数(a1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机额定线电流(Irm)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机功率因数(cosφm)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机转子电阻(rr)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机定子电阻(rs)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机转子电抗(xr)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机定子电抗(xs)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机额定角速度(wr)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机超瞬态时间常数(Tm_dd)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电动机直流时间常数(Tdcm)',
+          unit: ''
+        }
+      ]
+    }
+
+  },
+  {
+    id: 54,
+    imgUrl: require('@/assets/images/icon/busb.png'),
+    name: '交流母线',
+    type: 'icon',
+    typeId: 'icon',
+    originData: {
+      CCS: [
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）首端电压(Ur1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）末端电压(Ur2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电阻(r1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电抗(x1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-电缆长度(l1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-并联根数(a1)',
+          unit: ''
+        }
+      ],
+      GJB: [
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）首端电压(Ur1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）末端电压(Ur2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电阻(r1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电抗(x1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-电缆长度(l1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-并联根数(a1)',
+          unit: ''
+        }
+
+      ],
+      GB: [
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）首端电压(Ur1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）末端电压(Ur2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电阻(r1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电抗(x1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-电缆长度(l1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-并联根数(a1)',
+          unit: ''
+        }
+      ]
+    }
+  },
+  {
+    id: 5,
+    imgUrl: require('@/assets/images/icon/BC2.png'),
+    name: '断路器',
+    type: 'icon',
+    typeId: 'icon',
+    originData: {
+      CCS: [ {
+        defaultValue: '0',
+        description: '',
+        name: '断路器额定电压(Ur)',
+        unit: ''
+      },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '断路器接通能力(Ion)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '断路器分断能力(Ioff)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '短路功率因数(cosφk)',
+          unit: ''
+        }],
+      GJB: [{
+        defaultValue: '0',
+        description: '',
+        name: '断路器额定电压(Ur)',
+        unit: ''
+      },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '断路器接通能力(Ion)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '断路器分断能力(Ioff)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '短路功率因数(cosφk)',
+          unit: ''
+        }],
+      GB: [
+        {
+          defaultValue: '0',
+          description: '',
+          name: '断路器额定电压(Ur)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '断路器接通能力(Ion)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '断路器分断能力(Ioff)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '短路功率因数(cosφk)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '断路器触点分离时间（1kV以下系统）(tp)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '继电器动作时间(td)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '直流分量最大可接受值(Idcv)',
+          unit: ''
+        }
+      ]
+    }
+  },
+  {
+    id: 0,
+    imgUrl: require('@/assets/images/icon/1.png'),
+    name: '1',
+    type: 'icon',
+    typeId: 'icon'
+  },
   {
     id: 1,
     imgUrl: require('@/assets/images/icon/2.png'),
@@ -41,53 +1237,6 @@ export const icon = [{
     name: 'BC1',
     type: 'icon',
     typeId: 'icon'
-  },
-
-  {
-    id: 5,
-    imgUrl: require('@/assets/images/icon/BC2.png'),
-    name: 'BC2',
-    type: 'icon',
-    typeId: 'icon',
-    originData: [
-      {
-        tagName: '请选择',
-        tagModel: [
-          {
-            modelName: '请选择',
-            paramList: [
-              {
-                defaultValue: '',
-                description: '',
-                name: '断路器额定电压(Ur)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '断路器接通能力(Ion)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '断路器分断能力(Ioff)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '短路功率因数(cosφk)',
-                unit: ''
-              }
-            ]
-          }
-        ]
-      }
-    ]
   },
 
   {
@@ -203,108 +1352,6 @@ export const icon = [{
   },
 
   {
-    id: 23,
-    imgUrl: require('@/assets/images/icon/MTR1.png'),
-    name: 'MTR1',
-    type: 'icon',
-    typeId: 'icon',
-    originData: [
-      {
-        tagName: '请选择',
-        tagModel: [
-          {
-            modelName: '请选择',
-            paramList: [
-              {
-                defaultValue: '',
-                description: '',
-                name: '电动机额定功率(Prm)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）变压器次级侧电缆-并联根数(a2)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '电动机额定线电压(Urm)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）变压器次级侧电缆-单位电抗(x2)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）电动机出口电缆-并联根数(a1)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）电动机出口电缆-单位电抗(x1)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）电动机出口电缆-单位电阻(r1)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '电动机超瞬态电抗(xm_dd)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）电动机出口电缆-电缆长度(l1)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '电动机定子电阻(rs)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '电动机转子电阻(rr)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '电动机超瞬态时间常数(Tm_dd)',
-                unit: ''
-              }
-            ]
-          }
-        ]
-      }
-    ]
-  },
-  {
     id: 24,
     imgUrl: require('@/assets/images/icon/NET-WORK.png'),
     name: 'NET-WORK',
@@ -361,110 +1408,6 @@ export const icon = [{
   },
 
   {
-    id: 31,
-    imgUrl: require('@/assets/images/icon/T1.png'),
-    name: 'T1',
-    type: 'icon',
-    typeId: 'icon',
-    originData: [
-      {
-        tagName: '请选择',
-        tagModel: [
-          {
-            modelName: '请选择',
-            paramList: [
-              {
-                defaultValue: '',
-                description: '',
-                name: '变压器绕组接线方式(winding)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '变压器额定容量(Srt)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '变压器初级侧电压(Ur)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '变压器短路损耗(Pk)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '变压器次级侧电压(Urt2)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）变压器初级侧电缆-单位电阻(r1)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）变压器初级侧电缆-并联根数(a1)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）变压器初级侧电缆-单位电抗(x1)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '变压器短路电压(Uk)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）变压器次级侧电缆-单位电阻(r2)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）变压器初级侧电缆-电缆长度(l1)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）变压器次级侧电缆-电缆长度(l2)',
-                unit: ''
-              }
-            ]
-          }
-        ]
-      }
-    ]
-
-  },
-
-  {
     id: 32,
     imgUrl: require('@/assets/images/icon/T2.png'),
     name: 'T2',
@@ -517,137 +1460,6 @@ export const icon = [{
     name: 'CAP2',
     type: 'icon',
     typeId: 'icon'
-  },
-
-  {
-    id: 10,
-    imgUrl: require('@/assets/images/icon/CEN1.png'),
-    name: 'CEN1',
-    type: 'icon',
-    typeId: 'icon',
-    originData: [
-      {
-        tagName: '请选择',
-        tagModel: [
-          {
-            modelName: '请选择',
-            paramList: [
-              {
-                defaultValue: '',
-                description: '',
-                name: '发电机额定视在功率(Srg)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '发电机额定线电压(Ur)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '发电机直轴电抗(xd)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '发电机额定线电流(Irg)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '发电机直轴超瞬态电抗(xd_dd)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '发电机直轴瞬态电抗(xd_d)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '发电机额定频率(f)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '发电机电枢电阻(Ra)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '发电机直轴时间常数(Tdc)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '发电机直轴超瞬态时间常数(Td_dd)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）发电机出口电缆-单位电阻(r1)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）发电机出口电缆-单位电抗(x1)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）发电机出口电缆-电缆长度(l1)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '（预留）发电机出口电缆-并联根数(a1)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '发电机直轴瞬态时间常数(Td_d)',
-                unit: ''
-              },
-
-              {
-                defaultValue: '',
-                description: '',
-                name: '发电机稳态短路电流(Ikd)',
-                unit: ''
-              }
-            ]
-          }
-        ]
-      }
-    ]
   },
 
   {

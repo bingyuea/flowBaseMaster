@@ -1,30 +1,52 @@
-const {
-  appendFile,
-  readdirSync,
-  readFileSync
-} = require('fs')
-const { resolve } = require('path')
-// const dir = '/Users/flavio/folder'
-
-const files = readFileSync(resolve('./params.txt'))
-const paramsList = files.toString().split('\r')
-console.log(paramsList, '---------')
-for (let file of paramsList) {
-  if (!file) return
-  if (file && file.includes('//')) continue
-  file = file.replace(/[\r\n]/g, '')
-  console.log(file, '============')
-  const str = `
-  {
-    defaultValue: '',
-    description: '',
-    name: "${file.split('\t')[0]}(${file.split('\t')[1]})",
-    unit: ''
-  },
-  `
-  console.log(str)
-  appendFile('params.js', str, error => {
-    if (error) return console.log('写入文件失败,原因是' + error.message)
-    console.log('写入成功')
-  })
+/*var config = {
+  lang: ['CCS'],
+  path: './paramsCCS.txt'
+}*/
+/*var config = {
+  lang: ['GJB'],
+  path: './paramsGJB.txt'
+}*/
+var config = {
+  lang: ['GB'],
+  path: './paramsGB.txt'
 }
+const fs = require('fs')
+const readline = require('readline')
+var fWrites = []
+config.lang.map(item => {
+  fWrites.push({
+    writeStream: fs.createWriteStream(item),
+    lang: item
+  })
+})
+var fRead = fs.createReadStream(config.path)
+fRead.on('end', () => {
+  console.log('end')
+})
+fWrites.forEach(write => {
+  var objReadline = readline.createInterface({
+    input: fRead,
+    output: write.writeStream,
+    terminal: false
+  })
+  objReadline.on('line', async strLine => {
+    // 读取文件内容
+    console.log(strLine)
+    if (!strLine) return
+    const str = strLine.replace(/[\r\n]/g, '')
+    const res = `
+          {
+            defaultValue: '',
+            description: '',
+            name: "${str.split('\t')[0]}(${str.split('\t')[1]})",
+            unit: ''
+          },
+          `
+    write.writeStream.write(res)
+  })
+
+  objReadline.on('close', () => {
+    console.log('readline close...')
+  })
+})
+

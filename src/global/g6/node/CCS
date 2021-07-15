@@ -1,0 +1,39 @@
+
+
+          
+          {
+            defaultValue: '',
+            description: '',
+            name: "// 变压器 T1(undefined)",
+            unit: ''
+          },
+          
+
+          
+          {
+            defaultValue: '',
+            description: '',
+            name: "// 电动机 MTR1(undefined)",
+            unit: ''
+          },
+          
+
+          
+          {
+            defaultValue: '',
+            description: '',
+            name: "// 线缆(undefined)",
+            unit: ''
+          },
+          
+
+          
+          {
+            defaultValue: '',
+            description: '',
+            name: "// 断路器 BC2(undefined)",
+            unit: ''
+          },
+          
+
+          

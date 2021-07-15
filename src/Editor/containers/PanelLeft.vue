@@ -16,8 +16,8 @@
 </style>
 
 <template>
-  <div class="panel-left" placement="left" position="right" :width="250" :title="$t('L10300')" @expand="toggleHandler">
-    <CardItem
+  <div class="panel-left"  :width="250"  @expand="toggleHandler">
+    <div
       v-for="(item, index) in materials"
       :key="index"
       :title="$t(item.lang) || item.label"
@@ -31,7 +31,7 @@
         :info="child"
       >
       </NodeElement>
-    </CardItem>
+    </div>
   </div>
 </template>
 

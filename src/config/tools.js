@@ -2027,7 +2027,7 @@ export default function (system = {}, disableTools = [], enableTools = [], short
   const sysList = [
     {
       name: '系统',
-      label: 'File',
+      label: '文件',
       type: 'normal',
       enable: true,
       enableMode: ['edit'],
@@ -2041,7 +2041,7 @@ export default function (system = {}, disableTools = [], enableTools = [], short
       }
     }, {
       name: '系统',
-      label: 'Edit',
+      label: '操作',
       type: 'normal',
       enable: true,
       enableMode: ['edit'],
@@ -2055,7 +2055,7 @@ export default function (system = {}, disableTools = [], enableTools = [], short
       }
     }, {
       name: '系统',
-      label: 'View',
+      label: '视图',
       type: 'normal',
       enable: true,
       enableMode: ['edit'],
@@ -2069,7 +2069,7 @@ export default function (system = {}, disableTools = [], enableTools = [], short
       }
     }, {
       name: '系统',
-      label: 'Help',
+      label: '帮助',
       type: 'normal',
       enable: true,
       enableMode: ['edit'],

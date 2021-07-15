@@ -7,7 +7,7 @@
 export default {
   style: {
     default: {
-      r: 1,
+      r: 5,
       symbol: 'circle',
       fill: '#FFFFFF',
       fillOpacity: 0,
