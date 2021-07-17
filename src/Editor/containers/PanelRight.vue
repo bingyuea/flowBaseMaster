@@ -71,7 +71,7 @@
     <div class="panelRight_content">
 
       <div v-if='toolbarIcon' class="panelRight_content_item">
-        <img v-for='(item,key) in toolbarIcon' :key='key' class='toolbarIcon'
+        <img v-for='(item,key) in toolbarIcon' :key='key' class='toolbarIcon'  :title="item.icon"
              :src='item.icon ? require(`../../assets/images/toolbar/${item.icon}.png`) : ""'
              alt=""/>
       </div>

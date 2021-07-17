@@ -100,7 +100,7 @@
           }
           if (!model.params || JSON.stringify(model.params) !== JSON.stringify(params)) {
             _t.currentItem[0].model.params = {}
-            _t.currentItem[0].model.params = params
+            _t.currentItem[0].model.params = JSON.parse(JSON.stringify(params))
           }
         }
         console.log(this.form, this.originData, '--------------')

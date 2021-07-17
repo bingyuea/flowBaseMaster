@@ -656,10 +656,12 @@
                 const node = {
                   ...model,
                   id: G6Util.uniqueId(),
+                  idx: _t.editor.$C.idx.idx,
                   groupId: '',
                   x,
                   y
                 }
+                _t.editor.$C.idx.setIdx()
                 _t.editor.addItem('node', node)
               })
             }
