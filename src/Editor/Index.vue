@@ -168,7 +168,6 @@
         }
         if (localStorage.getItem('devices')) {
           res.data = JSON.parse(localStorage.getItem('devices'))
-          console.log(res.data)
           this.devices = _.groupBy(res.data, 'typeId')
         } else {
           localStorage.setItem('devices', JSON.stringify(icon))
@@ -436,7 +435,7 @@
       _edgeMousedown (event) {
         const _t = this
         _t.doClearAllStates()
-        console.log('_edgeMousedown', event)
+        // console.log('_edgeMousedown', event)
         // currentShape
         const model = event.item._cfg.model
         const id = model && model.type
@@ -551,13 +550,14 @@
           }
         }
         _t.editor.$C.idx.setIdx()
-        console.log(node, 'doAddNode')
+        // console.log(node, 'doAddNode')
         // 广播事件，通过自定义交互 node-control 添加节点
         _t.editor.emit('editor:addNode', node)
       },
       doSetMode (name) {
         const _t = this
         _t.mode = name
+        console.log(name, '--------------')
         _t.editor.setMode(name)
         // 更新toolList
         const toolList = []
@@ -1103,8 +1103,10 @@
             break
           }
           case '绘图模式': {
-            console.log(info)
             this.$set(this, 'toolbarInfo', info)
+            const mode = info.item.icon
+            if (mode === '绘图模式') this.doSetMode('edit')
+            if (mode !== '绘图模式') this.doSetMode('preview')
             break
           }
         }
