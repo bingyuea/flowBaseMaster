@@ -23,6 +23,7 @@
     <PanelRight :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"
                 :originDataObj='originDataObj' :toolbarInfo='toolbarInfo'
                 :materialList="materialList"></PanelRight>
+    <PanelLeft :materialList='materialList' :toolbarInfo='toolbarInfo'></PanelLeft>
     <PreviewModel></PreviewModel>
     <ContextMenu :editorData="editorData" :toolList="toolList"></ContextMenu>
     <ShortcutList ref="shortcutList" :toolList="toolList" :shortcutMap="shortcutMap"></ShortcutList>
@@ -49,6 +50,7 @@
   import ToolBar from './containers/ToolBar'
   import Sketchpad from './containers/Sketchpad'
   import PanelRight from './containers/PanelRight'
+  import PanelLeft from './containers/PanelLeft'
   import PreviewModel from './containers/PreviewModel'
   import ContextMenu from './containers/ContextMenu'
   import ShortcutList from './containers/ShortcutList'
@@ -67,10 +69,6 @@
   // 热键
   import Mousetrap from 'mousetrap'
   import {
-    getDevice,
-    getSvgById
-  } from '../api/svg'
-  import {
     iconStyle,
     shapeControl
   } from '../config/icon'
@@ -84,6 +82,7 @@
       ToolBar,
       Sketchpad,
       PanelRight,
+      PanelLeft,
       PreviewModel,
       ContextMenu,
       ShortcutList,
@@ -1102,7 +1101,8 @@
             break
           }
           case '绘图模式': {
-            this.toolbarInfo = info
+            console.log(info)
+            this.$set(this, 'toolbarInfo', info)
             break
           }
         }

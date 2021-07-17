@@ -1,6 +1,5 @@
 
 import XLSX from 'xlsx'
-import de from 'element-ui/src/locale/lang/de'
 
 export default {
   createExcel (excelData) {

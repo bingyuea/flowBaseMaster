@@ -13,8 +13,8 @@
     box-sizing: border-box;
     display: inline-block;
     position: absolute;
-    top: 84px;
-    height: 500px;
+    bottom: 0;
+    top: 68px;
     -webkit-box-shadow: 0 0 2px 2px rgb(0 0 0 / 10%);
     z-index: 200;
     -webkit-transition: all 0.5s ease-in-out;
@@ -66,7 +66,7 @@
 </style>
 
 <template>
-  <div class='panelRight'>
+  <div class='panelRight' v-show="title">
     <div class='panelRight_title'>{{title}}</div>
     <div class="panelRight_content">
 
@@ -75,20 +75,14 @@
              :src='item.icon ? require(`../../assets/images/toolbar/${item.icon}.png`) : ""'
              alt=""/>
       </div>
-      <PanelLeft v-else :materialList='materialList'></PanelLeft>
     </div>
 
   </div>
 </template>
 
 <script>
-  import PanelLeft from './PanelLeft'
-
   export default {
     name: 'PanelRight',
-    components: {
-      PanelLeft
-    },
     props: {
       editorConfig: Object,
       toolList: Array,
@@ -106,9 +100,9 @@
       },
       title () {
         if (this.toolbarInfo && this.toolbarInfo.item && this.toolbarInfo.item.icon) {
-          return this.toolbarInfo.item.icon === '绘图模式' ? '元件库' : this.toolbarInfo.item.icon
+          return this.toolbarInfo.item.icon === '绘图模式' ? '' : this.toolbarInfo.item.icon
         }
-        return '元件库'
+        return ''
       }
     },
     methods: {

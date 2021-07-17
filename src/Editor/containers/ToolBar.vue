@@ -414,20 +414,20 @@
           <ToolItem
             v-if="item.type === 'text'"
             :key="'tool_' + type + '_item_' + index"
-            :title="handleLabel(item)"
+            :title="functionalLabel(item)"
             :active="item.active"
             :disabled="item.disabled"
             :style="item.toolbar.style"
             @click.native.prevent="handleToolClick(item)"
           >
             <template v-slot:label>
-              <XIcon :iconfont="item.icon" :label="handleLabel(item)"></XIcon>
+              <XIcon :iconfont="item.icon" :label="functionalLabel(item)"></XIcon>
             </template>
           </ToolItem>
           <ToolItem
             v-if="item.type === 'dropdown-color-picker'"
             :key="'tool_' + type + '_item_' + index"
-            :title="handleLabel(item)"
+            :title="functionalLabel(item)"
             :active="item.active"
             :disabled="item.disabled"
             :style="item.toolbar.style"
@@ -435,14 +435,14 @@
             <template v-slot:label>
               <template v-if="item.disabled">
                 <div style="margin: 0 3px;">
-                  <XIcon :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;"></XIcon>
+                  <XIcon :iconfont="item.icon" :label="functionalLabel(item)" style="vertical-align: middle;"></XIcon>
                   <Icon type="ios-arrow-down"></Icon>
                 </div>
               </template>
               <template v-else>
                 <XColorPicker v-model="formData[item.name]" @on-change="(val) => handleToolClick(item, val, null)">
                   <div style="margin: 0 3px;" slot="preview">
-                    <XIcon :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;"></XIcon>
+                    <XIcon :iconfont="item.icon" :label="functionalLabel(item)" style="vertical-align: middle;"></XIcon>
                     <Icon type="ios-arrow-down"></Icon>
                   </div>
                 </XColorPicker>
@@ -452,7 +452,7 @@
           <ToolItem
             v-if="item.type === 'dropdown-list'"
             :key="'tool_' + type + '_item_' + index"
-            :title="handleLabel(item)"
+            :title="functionalLabel(item)"
             :active="item.active"
             :disabled="item.disabled"
             :style="item.toolbar.style"
@@ -461,7 +461,7 @@
               <template v-if="item.disabled">
                 <div style="margin: 0 3px;">
                   <template v-if="item.lockLabel">
-                    <XIcon :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;"></XIcon>
+                    <XIcon :iconfont="item.icon" :label="functionalLabel(item)" style="vertical-align: middle;"></XIcon>
                   </template>
                   <template v-else-if="item.custom && item.custom.enable">
                     <XIcon
@@ -487,7 +487,7 @@
                 <Dropdown trigger="click" @on-click="(val) => handleDropdownClick(item, type, index, val)">
                   <div style="margin: 0 3px;">
                     <template v-if="item.lockLabel">
-                      <XIcon :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;"></XIcon>
+                      <XIcon :iconfont="item.icon" :label="functionalLabel(item)" style="vertical-align: middle;"></XIcon>
                     </template>
                     <template v-else-if="item.custom && item.custom.enable">
                       <XIcon
@@ -540,7 +540,7 @@
           <ToolItem
             v-if="item.type === 'link'"
             :key="'tool_' + type + '_item_' + index"
-            :title="handleLabel(item)"
+            :title="functionalLabel(item)"
             :active="item.active"
             :disabled="item.disabled"
             :style="item.toolbar.style"
@@ -548,21 +548,21 @@
           >
             <template v-slot:label>
               <a class="link" :href="item.link" target="_blank" style="color: #333333;">
-                <XIcon :iconfont="item.icon" :img="item.img" :label="handleLabel(item)"></XIcon>
+                <XIcon :iconfont="item.icon" :img="item.img" :label="functionalLabel(item)"></XIcon>
               </a>
             </template>
           </ToolItem>
           <ToolItem
             v-if="item.type === 'normal'"
             :key="'tool_' + type + '_item_' + index"
-            :title="handleLabel(item)"
+            :title="functionalLabel(item)"
             :active="item.active"
             :disabled="item.disabled"
             :style="item.toolbar.style"
             @click.native.prevent="handleToolClick(item)"
           >
             <template v-slot:label>
-              <XIcon :img="item.icon" :label="handleLabel(item)"></XIcon>
+              <XIcon :img="item.icon" :label="functionalLabel(item)"></XIcon>
             </template>
           </ToolItem>
           <XDivider
@@ -719,6 +719,9 @@
           label += ` (${item.shortcuts.label})`
         }
         return label
+      },
+      functionalLabel (item) {
+        return item.icon ? item.icon : ''
       }
     },
     created () {
