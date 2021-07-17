@@ -11,18 +11,22 @@ export default {
       const s = sheetData.map((row, rowIndex) => {
         const obj = {}
         // bus
+        debugger
         if (row.busList) {
+          const bus = []
           row.busList.map((cell, index) => {
             debugger
-            console.log(cell)
             const model = cell.getModel()
             const busIndex = model.idx
-            const name = `bus${busIndex}`
-            const value = busIndex
-            Object.assign(obj, {
-              [name]: value
-            })
+            // busIndex 这里需要取母线的busIndex
+            bus.push(busIndex)
           })
+          if (bus && bus.length) {
+            const value = bus.join(',')
+            Object.assign(obj, {
+              'bus': value
+            })
+          }
         }
 
         row.originData.CCS.map(cell => {

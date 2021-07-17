@@ -1000,12 +1000,7 @@
                 if (model.name !== '交流母线') {
                   const edges = node.getEdges()
                   edges.forEach((edge, edgeIndex) => {
-                    const sourceNode = edge.getSource()
-                    const targetNode = edge.getTarget()
-                    let noMe = null
-                    if (sourceNode.getID() === node.getID()) noMe = targetNode
-                    if (targetNode.getID() === node.getID()) noMe = sourceNode
-                    busList.push(noMe)
+                    busList.push(edge)
                   })
                 }
                 if (model.params) {
