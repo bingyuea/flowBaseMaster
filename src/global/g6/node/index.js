@@ -20,6 +20,7 @@ export default function (G6, devices) {
       let width = iconStyle[device.name].width
       return {
         name: device.name,
+        sheetName: device.sheetName ? device.sheetName : '',
         data: JSON.stringify(device),
         extendName: 'base-node',
         options: {

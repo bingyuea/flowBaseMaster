@@ -7,7 +7,8 @@ export default {
     const wb = XLSX.utils.book_new()
     Object.entries(excelData).forEach(sheet => {
       const sheetData = sheet[1]
-      const sheetName = sheet[1][0].form.name
+      const form = sheet[1][0].form
+      const sheetName = form.sheetName ? form.sheetName : form.name
       const s = sheetData.map((row, rowIndex) => {
         const obj = {}
         // bus
@@ -30,7 +31,7 @@ export default {
         }
 
         row.originData.CCS.map(cell => {
-          const name = cell.name
+          const name = cell.sign
           Object.assign(obj, {
             'uid': rowIndex,
             'idx': row.form.idx,
@@ -38,6 +39,7 @@ export default {
             [name]: cell.defaultValue
           })
         })
+        console.log(obj)
         return obj
       })
       console.log(s)

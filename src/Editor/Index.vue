@@ -188,6 +188,7 @@
                 const height = iconStyle[item.name].height
                 const width = iconStyle[item.name].width
                 return {
+                  sheetName: item.sheetName ? item.sheetName : '',
                   shape: item.name,
                   type: item.name,
                   originId: item.id,

@@ -361,6 +361,7 @@ export default {
           type: _t.graph.$D.lineType || 'line',
           // 添加和 node 相同的currentShape
           name: '线路',
+          sheetName: 'Line',
           startArrow: handleArrowStyle(_t.graph.$D.startArrow, _t.graph.$D.lineColor),
           endArrow: handleArrowStyle(_t.graph.$D.endArrow, _t.graph.$D.lineColor)
         })

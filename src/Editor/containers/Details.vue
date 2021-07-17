@@ -32,38 +32,27 @@
       <el-tab-pane :label="objKey" :name="objKey" v-for="(list,objKey) in originData" :key='objKey'>
         <el-form :model="form" label-width="100px" label-position="top">
 
-          <el-form-item label="设备名称" prop="name" class='el-form-details'>
-            <el-input disabled v-model="currentShape"></el-input>
-          </el-form-item>
-
           <el-form-item label="idx" prop="idx" class='el-form-details'>
             <el-input disabled v-model="idx"></el-input>
           </el-form-item>
 
-          <el-form-item label="设备类型" prop="tagName" class='el-form-details'>
-            <el-input disabled v-model="form.tagName"></el-input>
-          </el-form-item>
-
-          <el-form-item label="模型类型" prop="modelName" class='el-form-details'>
-            <el-input disabled v-model="form.modelName"></el-input>
-          </el-form-item>
-
           <el-form-item v-for='(item,key) in list' :key='key' :prop="item.name"
                         class='el-form-details el-form-details-list'>
-            <div :label="item.name" :prop="item.name" class='el-form-item__label'>
-              {{ item.name }}
-              <el-tooltip slot="label" v-show='item.description' effect="dark" :content="item.description"
-                          placement="top">
-                <i
-                  class="el-icon-question el-input__icon"
-                >
-                </i>
-              </el-tooltip>
-            </div>
+              <div :label="item.name" :prop="item.name" class='el-form-item__label'>
+                {{ item.name }}
+                <el-tooltip slot="label" v-show='item.description' effect="dark" :content="item.description"
+                            placement="top">
+                  <i
+                    class="el-icon-question el-input__icon"
+                  >
+                  </i>
+                </el-tooltip>
+              </div>
 
-            <el-input :disabled="preview" v-model="item.defaultValue" :placehold='item.description'>
-              <template slot="append">{{ item.unit }}</template>
-            </el-input>
+              <el-input :disabled="preview" v-model="item.defaultValue" :placehold='item.description'>
+                <template slot="append">{{ item.unit }}</template>
+              </el-input>
+
           </el-form-item>
         </el-form>
       </el-tab-pane>
@@ -78,9 +67,7 @@
       return {
         activeName: 'CCS',
         form: {
-          idx: '',
-          tagName: '空',
-          modelName: '空'
+          idx: ''
         },
         originData: {},
         firstItem: null,
@@ -107,7 +94,7 @@
         if (_t.currentItem.length) {
           const model = _t.currentItem[0]
           const params = {
-            form: { ...this.form, name: this.currentShape },
+            form: { ...this.form, name: this.currentShape, sheetName: this.sheetName },
             originData: this.originData,
             originId: this.originDataObj.originId || ''
           }
@@ -163,6 +150,11 @@
       currentShape () {
         const model = JSON.parse(this.originDataObj.model)
         if (model.name) return model.name
+        return '--'
+      },
+      sheetName () {
+        const model = JSON.parse(this.originDataObj.model)
+        if (model.sheetName) return model.sheetName
         return '--'
       }
     }

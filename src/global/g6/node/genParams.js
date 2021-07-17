@@ -34,11 +34,14 @@ fWrites.forEach(write => {
     console.log(strLine)
     if (!strLine) return
     const str = strLine.replace(/[\r\n]/g, '')
+    const name = str.split('\t')[0]
+    const sign = str.split('\t')[1]
     const res = `
           {
             defaultValue: '',
             description: '',
-            name: "${str.split('\t')[0]}(${str.split('\t')[1]})",
+            name: "${name}(${sign})",
+            sign: "${sign}",
             unit: ''
           },
           `
