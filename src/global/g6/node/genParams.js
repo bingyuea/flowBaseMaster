@@ -1,15 +1,15 @@
-/*var config = {
+var config = {
   lang: ['CCS'],
   path: './paramsCCS.txt'
-}*/
+}
 /*var config = {
   lang: ['GJB'],
   path: './paramsGJB.txt'
 }*/
-var config = {
+/*var config = {
   lang: ['GB'],
   path: './paramsGB.txt'
-}
+}*/
 const fs = require('fs')
 const readline = require('readline')
 var fWrites = []

@@ -21,7 +21,7 @@
              :currentItem="currentItem"></ToolBar>
     <Sketchpad></Sketchpad>
     <PanelRight :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"
-                :originDataObj='originDataObj' :eventItem='eventItem' :toolbarInfo='toolbarInfo'
+                :originDataObj='originDataObj' :toolbarInfo='toolbarInfo'
                 :materialList="materialList"></PanelRight>
     <PreviewModel></PreviewModel>
     <ContextMenu :editorData="editorData" :toolList="toolList"></ContextMenu>
@@ -75,7 +75,7 @@
     shapeControl
   } from '../config/icon'
 
-  import { icon } from '@/global/g6/node/devicesParams'
+  import { icon, line } from '@/global/g6/node/devicesParams'
   import _ from 'lodash'
 
   export default {
@@ -137,6 +137,7 @@
       },
       currentShape () {
         if (this.eventItem._cfg && this.eventItem._cfg.currentShape) {
+          if (this.eventItem._cfg.currentShape === 'x-broken') return '线路'
           return this.eventItem._cfg.currentShape
         } else {
           return '--'
@@ -150,7 +151,10 @@
         if (originDataObj) {
           this.originDataObj = { ...originDataObj, model }
         } else {
-          const originData = icon.find(item => item.id === id) && icon.find(item => item.id === id).originData
+          let originData
+          originData = icon.find(item => item.id === id) && icon.find(item => item.id === id).originData
+          // line 特殊处理
+          if (id === 'x-broken') originData = line[0].originData
           this.originDataObj = {
             originData: originData,
             originId: id,
@@ -360,6 +364,7 @@
         _t.editor.on('node:mouseover', _t._nodeHover)
         _t.editor.on('node:mouseout', _t._nodeOut)
         _t.editor.on('edge:mousedown', _t._edgeMousedown)
+        _t.editor.on('edge:dblclick', _t._edgeDblclick)
         _t.editor.on('editor:getItem', function (data) {
           _t.currentItem = data
         })
@@ -428,6 +433,23 @@
         _t.editor.setItemState(event.item, 'active', true)
         // this.dialogVisible = true
       },
+      _edgeMousedown (event) {
+        const _t = this
+        _t.doClearAllStates()
+        console.log('_edgeMousedown', event)
+        // currentShape
+        const model = event.item._cfg.model
+        const id = model && model.type
+        this.eventItem = event.item
+        // 需要存 model数据
+        if (id) this.getOriginData(id, JSON.stringify(model))
+        if (event.item && !event.item.destroyed) {
+          _t.editor.setItemState(event.item, 'active', !event.item.hasState('active'))
+        }
+      },
+      _edgeDblclick () {
+        this.dialogVisible = true
+      },
       _nodeHover (event) {
         const _t = this
         // FIXME 当节点未激活时才可设置hover true状态
@@ -438,14 +460,6 @@
       _nodeOut (event) {
         const _t = this
         _t.editor.setItemState(event.item, 'hover', false)
-      },
-      _edgeMousedown (event) {
-        const _t = this
-        _t.doClearAllStates()
-        // console.log('_edgeMousedown', event)
-        if (event.item && !event.item.destroyed) {
-          _t.editor.setItemState(event.item, 'active', !event.item.hasState('active'))
-        }
       },
       // 清除所有状态
       doClearAllStates () {
@@ -977,19 +991,38 @@
               // no longer need to read the blob so it's revoked
               URL.revokeObjectURL(url)
             } else if (info.data === 'excel') {
-              debugger
               const dataList = []
-              console.log(_t.editor.getNodes())
+              // 图
               _t.editor.getNodes().forEach((node, index) => {
+                // 处理图的bus，母线没有bus，line的bus是起始连接点，元件的连接点是与之的line非自己的点
                 const model = node.getModel()
+                const busList = []
+                if (model.name !== '交流母线') {
+                  const edges = node.getEdges()
+                  edges.forEach((edge, edgeIndex) => {
+                    const sourceNode = edge.getSource()
+                    const targetNode = edge.getTarget()
+                    let noMe = null
+                    if (sourceNode.getID() === node.getID()) noMe = targetNode
+                    if (targetNode.getID() === node.getID()) noMe = sourceNode
+                    busList.push(noMe)
+                  })
+                }
                 if (model.params) {
+                  model.params.busList = busList
                   dataList.push(model.params)
                 }
-                // 处理图的连接点
-                // 添加图和边的节点信息 获取该图的所有的边 1条边，节点等于 图的 idx 多遍的话 获取不等于 该图的另外的起止点，其实统统可以按多遍
-                // const edge = node.getEdge()
               })
-              console.log(_t.editor.getEdges(), 'getEdges')
+              // 线路
+              _t.editor.getEdges().forEach((edge, index) => {
+                const model = edge.getModel()
+                const busList = []
+                busList.push(edge.getSource(), edge.getTarget())
+                if (model.params) {
+                  model.params.busList = busList
+                  dataList.push(model.params)
+                }
+              })
               // console.log(dataList)
               if (!dataList.length) {
                 this.$message.error('元件数据不存在，请先录入数据在导出！')

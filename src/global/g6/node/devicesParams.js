@@ -957,131 +957,43 @@ export const icon = [
     originData: {
       CCS: [
         {
-          defaultValue: '0',
+          defaultValue: '',
           description: '',
-          name: '线路（电缆）首端电压(Ur1)',
+          name: '节点类型(type)',
           unit: ''
         },
-
         {
-          defaultValue: '0',
+          defaultValue: '',
           description: '',
-          name: '线路（电缆）末端电压(Ur2)',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-单位电阻(r1)',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-单位电抗(x1)',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-电缆长度(l1)',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-并联根数(a1)',
+          name: '节点额定电压(Ur)',
           unit: ''
         }
       ],
       GJB: [
         {
-          defaultValue: '0',
+          defaultValue: '',
           description: '',
-          name: '线路（电缆）首端电压(Ur1)',
+          name: '节点类型(type)',
           unit: ''
         },
-
         {
-          defaultValue: '0',
+          defaultValue: '',
           description: '',
-          name: '线路（电缆）末端电压(Ur2)',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-单位电阻(r1)',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-单位电抗(x1)',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-电缆长度(l1)',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-并联根数(a1)',
+          name: '节点额定电压(Ur)',
           unit: ''
         }
-
       ],
       GB: [
         {
-          defaultValue: '0',
+          defaultValue: '',
           description: '',
-          name: '线路（电缆）首端电压(Ur1)',
+          name: '节点类型(type)',
           unit: ''
         },
-
         {
-          defaultValue: '0',
+          defaultValue: '',
           description: '',
-          name: '线路（电缆）末端电压(Ur2)',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-单位电阻(r1)',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-单位电抗(x1)',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-电缆长度(l1)',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-并联根数(a1)',
+          name: '节点额定电压(Ur)',
           unit: ''
         }
       ]
@@ -1094,7 +1006,7 @@ export const icon = [
     type: 'icon',
     typeId: 'icon',
     originData: {
-      CCS: [ {
+      CCS: [{
         defaultValue: '0',
         description: '',
         name: '断路器额定电压(Ur)',
@@ -1469,3 +1381,144 @@ export const icon = [
     type: 'icon',
     typeId: 'icon'
   }]
+
+export const line = [
+  {
+    id: 99,
+    name: '线路',
+    type: 'icon',
+    typeId: 'icon',
+    originData: {
+      CCS: [
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）首端电压(Ur1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）末端电压(Ur2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电阻(r1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电抗(x1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-电缆长度(l1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-并联根数(a1)',
+          unit: ''
+        }
+      ],
+      GJB: [
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）首端电压(Ur1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）末端电压(Ur2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电阻(r1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电抗(x1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-电缆长度(l1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-并联根数(a1)',
+          unit: ''
+        }
+
+      ],
+      GB: [
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）首端电压(Ur1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）末端电压(Ur2)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电阻(r1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电抗(x1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-电缆长度(l1)',
+          unit: ''
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-并联根数(a1)',
+          unit: ''
+        }
+      ]
+    }
+  }
+]

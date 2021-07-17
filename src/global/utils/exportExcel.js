@@ -1,22 +1,38 @@
 
 import XLSX from 'xlsx'
+import de from 'element-ui/src/locale/lang/de'
 
 export default {
   createExcel (excelData) {
     const wb = XLSX.utils.book_new()
     Object.entries(excelData).forEach(sheet => {
       const sheetData = sheet[1]
-      const sheetName = sheetData[0].form.modelName
+      const sheetName = sheet[1][0].form.name
       const s = sheetData.map((row, rowIndex) => {
-        let obj = {}
-        row.paramList.map(cell => {
+        const obj = {}
+        // bus
+        if (row.busList) {
+          row.busList.map((cell, index) => {
+            debugger
+            console.log(cell)
+            const model = cell.getModel()
+            const busIndex = model.idx
+            const name = `bus${busIndex}`
+            const value = busIndex
+            Object.assign(obj, {
+              [name]: value
+            })
+          })
+        }
+
+        row.originData.CCS.map(cell => {
           const name = cell.name
-          obj = {
+          Object.assign(obj, {
             'uid': rowIndex,
-            'idx': cell.idx,
+            'idx': row.form.idx,
             ...obj,
             [name]: cell.defaultValue
-          }
+          })
         })
         return obj
       })

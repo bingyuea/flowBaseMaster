@@ -94,7 +94,6 @@
       toolList: Array,
       currentItem: Array,
       originDataObj: Object,
-      eventItem: Object,
       toolbarInfo: Object,
       materialList: Array
     },

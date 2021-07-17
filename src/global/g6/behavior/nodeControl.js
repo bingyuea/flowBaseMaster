@@ -87,7 +87,7 @@ export default {
     onNodeClick (event) {
     },
     onNodeMousedown (event) {
-      console.log('onNodeMousedown')
+      // console.log('onNodeMousedown')
       // 非左键忽略
       if (!utils.common.isLeftKey(event)) {
         return
@@ -141,7 +141,7 @@ export default {
       }
     },
     onNodeDrag (event) {
-      console.log('onNodeDrag', new Date().getTime())
+      // console.log('onNodeDrag', new Date().getTime())
       const _t = this
       // utils.common.throttle(function () {
         if (_t.info && _t.info.type && _t[_t.info.type].move) {
@@ -150,14 +150,14 @@ export default {
       // }, TIME_FRAME)()
     },
     onNodeDragEnd (event) {
-      console.log('onNodeDragEnd')
+      // console.log('onNodeDragEnd')
       const _t = this
       if (_t.info && _t.info.type && _t[_t.info.type].stop) {
         _t[_t.info.type].stop.call(_t, event)
       }
     },
     onNodeMouseup (event) {
-      console.log('onNodeMouseup', _t)
+      // console.log('onNodeMouseup', _t)
       const _t = this
       if (_t.info && _t.info.type && _t[_t.info.type].stop) {
         _t[_t.info.type].stop.call(_t, event)
@@ -203,7 +203,7 @@ export default {
       // console.log('onEdgeDblclick')
       const _t = this
       if (_t.config.edgeLabel) {
-        _t.edgeLabel.create.call(_t, event)
+        // _t.edgeLabel.create.call(_t, event)
       }
     },
     onEdgeContextmenu (event) {
@@ -359,6 +359,8 @@ export default {
           },
           // FIXME 边的形式需要与工具栏联动
           type: _t.graph.$D.lineType || 'line',
+          // 添加和 node 相同的currentShape
+          name: '线路',
           startArrow: handleArrowStyle(_t.graph.$D.startArrow, _t.graph.$D.lineColor),
           endArrow: handleArrowStyle(_t.graph.$D.endArrow, _t.graph.$D.lineColor)
         })
@@ -408,11 +410,11 @@ export default {
 
               const endData = JSON.parse(endModel.data)
               const startData = JSON.parse(startModel.data)
-              /*if (startData.type === endData.type && startData.id !== endData.id) {
+              /* if (startData.type === endData.type && startData.id !== endData.id) {
                 Message.error(startData.type + '类型相同不能连线！')
                 _t.graph.removeItem(_t.drawLine.currentLine)
                 return
-              }*/
+              } */
             }
             let targetAnchor
             // 锚点数据

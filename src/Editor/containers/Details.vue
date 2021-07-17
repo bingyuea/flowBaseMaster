@@ -4,32 +4,32 @@
 */
 
 <style scoped lang="less" rel="stylesheet/less">
-.nodeDetails {
-  width: calc(100% - 20px);
-  box-sizing: content-box;
-  padding: 0 10px;
-  padding-top: 10px;
-  height: 500px;
-  overflow-y: auto;
+  .nodeDetails {
+    width: calc(100% - 20px);
+    box-sizing: content-box;
+    padding: 0 10px;
+    padding-top: 10px;
+    height: 500px;
+    overflow-y: auto;
 
-  .el-form-item {
-    margin-bottom: 5px;
-  }
-
-  .el-tabs__content{
-    .el-tab-pane{
-      height: 440px;
-      overflow: auto;
+    .el-form-item {
+      margin-bottom: 5px;
     }
-  }
 
-}
+    .el-tabs__content {
+      .el-tab-pane {
+        height: 440px;
+        overflow: auto;
+      }
+    }
+
+  }
 </style>
 
 <template>
   <div class="nodeDetails">
-    <el-tabs v-model = 'activeName'>
-      <el-tab-pane :label="objKey" :name="objKey" v-for ="(list,objKey) in originData" :key = 'objKey'>
+    <el-tabs v-model='activeName'>
+      <el-tab-pane :label="objKey" :name="objKey" v-for="(list,objKey) in originData" :key='objKey'>
         <el-form :model="form" label-width="100px" label-position="top">
 
           <el-form-item label="设备名称" prop="name" class='el-form-details'>
@@ -48,7 +48,8 @@
             <el-input disabled v-model="form.modelName"></el-input>
           </el-form-item>
 
-          <el-form-item v-for='(item,key) in list' :key='key' :prop="item.name" class='el-form-details el-form-details-list'>
+          <el-form-item v-for='(item,key) in list' :key='key' :prop="item.name"
+                        class='el-form-details el-form-details-list'>
             <div :label="item.name" :prop="item.name" class='el-form-item__label'>
               {{ item.name }}
               <el-tooltip slot="label" v-show='item.description' effect="dark" :content="item.description"
@@ -61,7 +62,7 @@
             </div>
 
             <el-input :disabled="preview" v-model="item.defaultValue" :placehold='item.description'>
-              <template  slot="append">{{ item.unit }}</template>
+              <template slot="append">{{ item.unit }}</template>
             </el-input>
           </el-form-item>
         </el-form>
@@ -98,16 +99,6 @@
         default: () => {
           return {}
         }
-      },
-      eventItem: {
-        type: Object,
-        default: () => {
-          return {
-            _cfg: {
-              currentShape: ''
-            }
-          }
-        }
       }
     },
     methods: {
@@ -115,7 +106,11 @@
         const _t = this
         if (_t.currentItem.length) {
           const model = _t.currentItem[0]
-          const params = { form: this.form, originData: this.originData, originId: this.originDataObj.originId || '' }
+          const params = {
+            form: { ...this.form, name: this.currentShape },
+            originData: this.originData,
+            originId: this.originDataObj.originId || ''
+          }
           if (!model.params || JSON.stringify(model.params) !== JSON.stringify(params)) {
             _t.currentItem[0].model.params = {}
             _t.currentItem[0].model.params = params
@@ -129,7 +124,6 @@
     watch: {
       currentItem: {
         handler (val) {
-          debugger
           const _t = this
           // 取第一个节点
           _t.firstItem = val[0]
@@ -148,7 +142,6 @@
       },
       originDataObj: {
         handler (val) {
-          debugger
           if (val && !this.watchFlag) {
             this.originData = val.originData
           }
@@ -168,11 +161,9 @@
         return idx
       },
       currentShape () {
-        if (this.eventItem._cfg && this.eventItem._cfg.currentShape) {
-          return this.eventItem._cfg.currentShape
-        } else {
-          return '--'
-        }
+        const model = JSON.parse(this.originDataObj.model)
+        if (model.name) return model.name
+        return '--'
       }
     }
   }
