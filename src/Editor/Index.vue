@@ -22,7 +22,7 @@
     <Sketchpad></Sketchpad>
     <PanelRight :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"
                 :originDataObj='originDataObj' :toolbarInfo='toolbarInfo'
-                :materialList="materialList"></PanelRight>
+                :materialList="materialList" @show = 'showFn'></PanelRight>
     <PanelLeft :materialList='materialList' :toolbarInfo='toolbarInfo'></PanelLeft>
     <PreviewModel></PreviewModel>
     <ContextMenu :editorData="editorData" :toolList="toolList"></ContextMenu>
@@ -43,6 +43,10 @@
         <el-button type="primary" @click="onSubmit">确 定</el-button>
       </span>
     </el-dialog>
+
+    <upload :show.sync="uploadShow"></upload>
+    <!--"生成结果报告"-->
+    <result :show.sync="resultShow"></result>
   </div>
 </template>
 
@@ -75,6 +79,8 @@
 
   import { icon, line } from '@/global/g6/node/devicesParams'
   import _ from 'lodash'
+  import upload from './toolbarContent/upload'
+  import result from './toolbarContent/result'
 
   export default {
     name: 'MaterialsEditor',
@@ -87,7 +93,9 @@
       ContextMenu,
       ShortcutList,
       History,
-      Details
+      Details,
+      upload,
+      result
     },
     props: {
       maxLogSize: {
@@ -124,7 +132,9 @@
         materialList: [],
         // 当前激活元素
         currentItem: [],
-        materials: []
+        materials: [],
+        uploadShow: false,
+        resultShow: false
       }
     },
     computed: {
@@ -144,6 +154,9 @@
       }
     },
     methods: {
+      showFn (val) {
+        this[val] = true
+      },
       getOriginData (id, model) {
         const originDataObj = JSON.parse(localStorage.getItem('originDataObj' + String(id)))
         // todo test
@@ -557,7 +570,7 @@
       doSetMode (name) {
         const _t = this
         _t.mode = name
-        console.log(name, '--------------')
+        // console.log(name, '--------------')
         _t.editor.setMode(name)
         // 更新toolList
         const toolList = []

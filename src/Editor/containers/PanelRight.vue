@@ -71,12 +71,11 @@
     <div class="panelRight_content">
 
       <div v-if='toolbarIcon' class="panelRight_content_item">
-        <img v-for='(item,key) in toolbarIcon' :key='key' class='toolbarIcon'  :title="item.icon"
+        <img @click = 'handleCalc(item)' v-for='(item,key) in toolbarIcon' :key='key' class='toolbarIcon'  :title="item.icon"
              :src='item.icon ? require(`../../assets/images/toolbar/${item.icon}.png`) : ""'
              alt=""/>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -109,7 +108,18 @@
       toggleHandler (data) {
         const _t = this
         _t.$X.utils.bus.$emit('editor/panel/toggle', data)
+      },
+      handleCalc (item) {
+        if (item.icon === '三相接地短路') {
+          // 上传
+          this.$emit('show', 'uploadShow')
+        }
+        if (item.icon === '生成结果报告') {
+          this.$emit('show', 'resultShow')
+        }
+        console.log(item)
       }
     }
+
   }
 </script>
