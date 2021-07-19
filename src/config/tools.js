@@ -2270,6 +2270,7 @@ export default function (system = {}, disableTools = [], enableTools = [], short
           name: '绘图模式',
           label: '绘图模式',
           type: 'normal',
+          parent: '短路计算',
           icon: '三相接地短路',
           enable: true,
           enableMode: ['edit'],
@@ -2303,6 +2304,23 @@ export default function (system = {}, disableTools = [], enableTools = [], short
           label: '绘图模式',
           type: 'normal',
           icon: '三相断路',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        },
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '生成结果报告',
+          parent: '短路计算',
           enable: true,
           enableMode: ['edit'],
           disabled: false,

@@ -41,11 +41,11 @@ export default {
         console.log(obj)
         return obj
       })
-      console.log(s)
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(s), sheetName)
     })
     const workbookBlob = this.workbook2blob(wb)
-    this.openDownloadDialog(workbookBlob, `GUI.xlsx`)
+    return workbookBlob
+    // this.openDownloadDialog(workbookBlob, `GUI.xlsx`)
   },
 
   openDownloadDialog (blob, fileName) {

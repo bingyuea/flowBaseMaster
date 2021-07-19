@@ -28,6 +28,7 @@
 </template>
 
 <script>
+  import VAR from '../../global/utils/var'
   export default {
     name: 'upload',
     props: ['show'],
@@ -36,14 +37,18 @@
         loading: false
       }
     },
+    mounted () {
+    },
     computed: {
       action () {
-        return 'file/upload'
+        // return VAR.baseURL + 'pyapi/upload'
+        return VAR.baseURL + 'pyapi/upload'
       }
 
     },
     methods: {
       onFileChange (file) {
+        console.log(file)
         // const type = file.raw.type
 
         /* if (type !== 'image/jpeg' && type !== 'image/png') {

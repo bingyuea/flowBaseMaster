@@ -71,7 +71,8 @@
     <div class="panelRight_content">
 
       <div v-if='toolbarIcon' class="panelRight_content_item">
-        <img @click = 'handleCalc(item)' v-for='(item,key) in toolbarIcon' :key='key' class='toolbarIcon'  :title="item.icon"
+        <img @click='handleCalc(item)' v-for='(item,key) in toolbarIcon' :key='key' class='toolbarIcon'
+             :title="item.icon"
              :src='item.icon ? require(`../../assets/images/toolbar/${item.icon}.png`) : ""'
              alt=""/>
       </div>
@@ -110,12 +111,21 @@
         _t.$X.utils.bus.$emit('editor/panel/toggle', data)
       },
       handleCalc (item) {
-        if (item.icon === '三相接地短路') {
+         /*if (item.icon === '三相接地短路') {
           // 上传
           this.$emit('show', 'uploadShow')
-        }
-        if (item.icon === '生成结果报告') {
+        }*/
+        if (item.parent === '短路计算' && item.icon === '生成结果报告') {
           this.$emit('show', 'resultShow')
+        }
+        if (item.parent === '短路计算' && item.icon === '三相接地短路') {
+          this.$emit('triggerTool', {
+            context: 'ToolBar',
+            data: 'excel',
+            name: 'download',
+            selected: 2,
+            type: 'dropdown-list'
+          })
         }
         console.log(item)
       }

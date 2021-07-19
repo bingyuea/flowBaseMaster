@@ -22,7 +22,7 @@
     <Sketchpad></Sketchpad>
     <PanelRight :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"
                 :originDataObj='originDataObj' :toolbarInfo='toolbarInfo'
-                :materialList="materialList" @show = 'showFn'></PanelRight>
+                :materialList="materialList" @show = 'showFn' @triggerTool = 'triggerTool'></PanelRight>
     <PanelLeft :materialList='materialList' :toolbarInfo='toolbarInfo'></PanelLeft>
     <PreviewModel></PreviewModel>
     <ContextMenu :editorData="editorData" :toolList="toolList"></ContextMenu>
@@ -81,6 +81,9 @@
   import _ from 'lodash'
   import upload from './toolbarContent/upload'
   import result from './toolbarContent/result'
+  import { uploadFn } from '../api/svg'
+  import axios from 'axios'
+  import VAR from '../global/utils/var'
 
   export default {
     name: 'MaterialsEditor',
@@ -156,6 +159,9 @@
     methods: {
       showFn (val) {
         this[val] = true
+      },
+      triggerTool (info) {
+        this.handleToolTrigger(info)
       },
       getOriginData (id, model) {
         const originDataObj = JSON.parse(localStorage.getItem('originDataObj' + String(id)))
@@ -592,6 +598,7 @@
         }
       },
       handleToolTrigger (info) {
+        console.log(info, 'handleToolTrigger')
         const _t = this
         // 是否记录日志标识
         let isRecord = false
@@ -1033,13 +1040,31 @@
                   dataList.push(model.params)
                 }
               })
-              // console.log(dataList)
+              console.log(dataList)
               if (!dataList.length) {
                 this.$message.error('元件数据不存在，请先录入数据在导出！')
                 return
               }
               const excelData = _.groupBy(dataList, 'originId')
-              _t.$X.utils.exportExcel.createExcel(excelData)
+              const file = _t.$X.utils.exportExcel.createExcel(excelData)
+              setTimeout(() => {
+                const newFile = new window.File([file], 'file')
+                const formData = new window.FormData()
+                formData.append('file', newFile, 'fileName.xls')
+                console.log(file, 'newFile')
+                console.log(formData, 'formData')
+                axios.request({
+                  url: VAR.baseURL + 'pyapi/upload',
+                  method: 'post',
+                  headers: { 'Content-Type': 'multipart/form-data' },
+                  data: formData
+                }).then(res => {
+                  console.log(res)
+                })
+                /* uploadFn(formData).then(res1 => {
+                  console.log(res1)
+                }) */
+              }, 0)
             }
             break
           }

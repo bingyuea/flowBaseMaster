@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
-
+import VAR from './var'
 // create an axios instance
 const service = axios.create({
-  baseURL: 'http://testflight.jokco.com/', // url = base url + request url
+  baseURL: VAR.baseURL, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })
@@ -72,6 +72,7 @@ export function get ({ url, params }) {
  */
 export function post ({ url, params }) {
   return new Promise((resolve, reject) => {
+    console.log(url, params)
     service.post(url, params)
       .then(res => {
         resolve(res)

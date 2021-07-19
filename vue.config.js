@@ -14,6 +14,18 @@ module.exports = {
   // 静态资源目录
   assetsDir: '',
   productionSourceMap: false,
+  devServer: {
+    // 代理设置
+    proxy: {
+      '/api': {
+        target: 'http://testflight.jokco.com/',
+        changeOrigin: true,
+        pathRewrite: { // 路径重写，
+          '^/api': '' // 替换target中的请求地址，也就是说/api=/target，请求target这个地址的时候直接写成/api即可。
+        }
+      }
+    }
+  },
   css: {
     loaderOptions: {
       less: {
