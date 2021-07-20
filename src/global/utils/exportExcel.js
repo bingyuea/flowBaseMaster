@@ -2,7 +2,7 @@
 import XLSX from 'xlsx'
 
 export default {
-  createExcel (excelData) {
+  createExcel (excelData, getFile) {
     const wb = XLSX.utils.book_new()
     Object.entries(excelData).forEach(sheet => {
       const sheetData = sheet[1]
@@ -43,9 +43,10 @@ export default {
       })
       XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(s), sheetName)
     })
+
     const workbookBlob = this.workbook2blob(wb)
-    return workbookBlob
-    // this.openDownloadDialog(workbookBlob, `GUI.xlsx`)
+    if (getFile) return workbookBlob
+    this.openDownloadDialog(workbookBlob, `GUI.xlsx`)
   },
 
   openDownloadDialog (blob, fileName) {
@@ -70,7 +71,7 @@ export default {
     // 生成excel的配置项
     var wopts = {
       // 要生成的文件类型
-      bookType: 'xlsx',
+      bookType: 'xls',
       // // 是否生成Shared String Table，官方解释是，如果开启生成速度会下降，但在低版本IOS设备上有更好的兼容性
       bookSST: false,
       type: 'binary'

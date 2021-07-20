@@ -111,17 +111,17 @@
         _t.$X.utils.bus.$emit('editor/panel/toggle', data)
       },
       handleCalc (item) {
-         /*if (item.icon === '三相接地短路') {
+        /* if (item.icon === '三相接地短路') {
           // 上传
           this.$emit('show', 'uploadShow')
-        }*/
+        } */
         if (item.parent === '短路计算' && item.icon === '生成结果报告') {
           this.$emit('show', 'resultShow')
         }
         if (item.parent === '短路计算' && item.icon === '三相接地短路') {
           this.$emit('triggerTool', {
             context: 'ToolBar',
-            data: 'excel',
+            data: 'upload',
             name: 'download',
             selected: 2,
             type: 'dropdown-list'

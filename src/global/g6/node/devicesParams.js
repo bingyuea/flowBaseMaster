@@ -1277,13 +1277,6 @@ export const icon = [
         {
           defaultValue: '',
           description: '',
-          name: '节点类型(type)',
-          sign: 'type',
-          unit: ''
-        },
-        {
-          defaultValue: '',
-          description: '',
           name: '节点额定电压(Ur)',
           sign: 'Ur',
           unit: ''
@@ -1316,13 +1309,6 @@ export const icon = [
         {
           defaultValue: '',
           description: '',
-          name: '节点类型(type)',
-          sign: 'type',
-          unit: ''
-        },
-        {
-          defaultValue: '',
-          description: '',
           name: '节点额定电压(Ur)',
           sign: 'Ur',
           unit: ''
@@ -1345,13 +1331,6 @@ export const icon = [
           unit: ''
         },
 
-        {
-          defaultValue: '',
-          description: '',
-          name: '节点类型(type)',
-          sign: 'type',
-          unit: ''
-        },
         {
           defaultValue: '',
           description: '',

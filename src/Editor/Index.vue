@@ -1046,7 +1046,42 @@
                 return
               }
               const excelData = _.groupBy(dataList, 'originId')
-              const file = _t.$X.utils.exportExcel.createExcel(excelData)
+              _t.$X.utils.exportExcel.createExcel(excelData)
+            } else if (info.data === 'upload') {
+              const dataList = []
+              // 图
+              _t.editor.getNodes().forEach((node, index) => {
+                // 处理图的bus，母线没有bus，line的bus是起始连接点，元件的连接点是与之的line非自己的点
+                const model = node.getModel()
+                const busList = []
+                if (model.name !== '交流母线') {
+                  const edges = node.getEdges()
+                  edges.forEach((edge, edgeIndex) => {
+                    busList.push(edge)
+                  })
+                }
+                if (model.params) {
+                  model.params.busList = busList
+                  dataList.push(model.params)
+                }
+              })
+              // 线路
+              _t.editor.getEdges().forEach((edge, index) => {
+                const model = edge.getModel()
+                const busList = []
+                busList.push(edge.getSource(), edge.getTarget())
+                if (model.params) {
+                  model.params.busList = busList
+                  dataList.push(model.params)
+                }
+              })
+              console.log(dataList)
+              if (!dataList.length) {
+                this.$message.error('元件数据不存在，请先录入数据在导出！')
+                return
+              }
+              const excelData = _.groupBy(dataList, 'originId')
+              const file = _t.$X.utils.exportExcel.createExcel(excelData, true)
               setTimeout(() => {
                 const newFile = new window.File([file], 'file')
                 const formData = new window.FormData()
