@@ -36,10 +36,11 @@
       :visible.sync="dialogVisible"
       :destroy-on-close='true'
       width="398px"
+      :close-on-click-modal = 'false'
+      :close-on-press-escape = 'false'
     >
       <Details ref='details' :originDataObj='originDataObj' :eventItem='eventItem' :currentItem="currentItem"></Details>
       <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="onSubmit">确 定</el-button>
       </span>
     </el-dialog>
@@ -1083,7 +1084,7 @@
               const excelData = _.groupBy(dataList, 'originId')
               const file = _t.$X.utils.exportExcel.createExcel(excelData, true)
               setTimeout(() => {
-                const newFile = new window.File([file], 'file')
+                const newFile = new window.File([file], 'file',{type:'xls'})
                 const formData = new window.FormData()
                 formData.append('file', newFile, 'fileName.xls')
                 console.log(file, 'newFile')
@@ -1091,14 +1092,13 @@
                 axios.request({
                   url: VAR.baseURL + 'pyapi/upload',
                   method: 'post',
-                  headers: { 'Content-Type': 'multipart/form-data' },
                   data: formData
                 }).then(res => {
                   console.log(res)
                 })
-                /* uploadFn(formData).then(res1 => {
+                 /*uploadFn(formData).then(res1 => {
                   console.log(res1)
-                }) */
+                })*/
               }, 0)
             }
             break

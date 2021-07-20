@@ -938,6 +938,13 @@ export const icon = [
           unit: ''
         },
         {
+          defaultValue: '',
+          description: '',
+          name: '设备类型(type)',
+          sign: 'type',
+          unit: ''
+        },
+        {
         defaultValue: '0',
         description: '',
         name: '电动机额定功率(Prm)',
@@ -1041,6 +1048,13 @@ export const icon = [
           unit: ''
         },
         {
+          defaultValue: '',
+          description: '',
+          name: '设备类型(type)',
+          sign: 'type',
+          unit: ''
+        },
+        {
           defaultValue: '0',
           description: '',
           name: '电动机额定功率(Prm)',
@@ -1118,6 +1132,13 @@ export const icon = [
           description: '',
           name: '设备型号(model)',
           sign: 'model',
+          unit: ''
+        },
+        {
+          defaultValue: '',
+          description: '',
+          name: '设备类型(type)',
+          sign: 'type',
           unit: ''
         },
         {
@@ -1408,6 +1429,7 @@ export const icon = [
           defaultValue: '0',
           description: '',
           name: '短路功率因数(cosφk)',
+          sign: 'cosφk',
           unit: ''
         }],
       GJB: [
@@ -1461,6 +1483,7 @@ export const icon = [
           defaultValue: '0',
           description: '',
           name: '短路功率因数(cosφk)',
+          sign: 'cosφk',
           unit: ''
         }],
       GB: [
@@ -1515,6 +1538,7 @@ export const icon = [
           defaultValue: '0',
           description: '',
           name: '短路功率因数(cosφk)',
+          sign: 'cosφk',
           unit: ''
         },
 

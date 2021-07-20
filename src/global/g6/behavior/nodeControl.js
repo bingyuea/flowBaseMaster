@@ -709,12 +709,12 @@ export default {
             }
           })
           // _t.graph.paint()
-          if (_t.config.tooltip.dragNode) {
+          /*if (_t.config.tooltip.dragNode) {
             _t.toolTip.create.call(_t, {
               left: event.canvasX,
               top: event.canvasY + height / 2
             }, `X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}<br>W: ${width.toFixed(2)} H: ${height.toFixed(2)}`)
-          }
+          }*/
         }
       },
       createNode (event) {
