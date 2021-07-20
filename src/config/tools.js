@@ -105,6 +105,31 @@ export default function (system = {}, disableTools = [], enableTools = [], short
       }
     },
     {
+      name: 'history',
+      label: 'history',
+      lang: 'L10041',
+      type: 'normal',
+      icon: 'history',
+      enableTool: true,
+      enable: true,
+      enableMode: ['edit'],
+      disabled: false,
+      disabledMode: ['edit'],
+      shortcuts: shortcutMap.history,
+      toolbar: {
+        enable: true,
+        position: 'center',
+        style: {},
+        divider: false
+      },
+      contextmenu: {
+        enable: true,
+        target: ['canvas'],
+        style: {},
+        divider: false
+      }
+    },
+    {
       name: 'copy',
       label: 'Copy',
       lang: 'L10003',
