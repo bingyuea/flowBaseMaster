@@ -100,7 +100,7 @@
           }
           if (!model.params || JSON.stringify(model.params) !== JSON.stringify(params)) {
             _t.currentItem[0].model.params = {}
-            _t.currentItem[0].model.params = JSON.parse(JSON.stringify(params))
+            _t.currentItem[0].model.params = JSON.stringify(params)
           }
         }
         console.log(this.form, this.originData, '--------------')
@@ -115,7 +115,7 @@
           // 取第一个节点
           _t.firstItem = val[0]
           if (_t.firstItem && _t.firstItem.model.params) {
-            const params = JSON.parse(JSON.stringify(_t.firstItem.model.params))
+            const params = JSON.parse(_t.firstItem.model.params)
             this.watchFlag = true
             this.form = params.form
             this.$set(this, 'originData', params.originData)

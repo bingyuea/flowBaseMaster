@@ -34,12 +34,11 @@
     <el-dialog
       :title="currentShape ? currentShape + '属性设置' : '属性设置'"
       :visible.sync="dialogVisible"
-      :destroy-on-close='true'
       width="398px"
       :close-on-click-modal = 'false'
       :close-on-press-escape = 'false'
     >
-      <Details ref='details' :originDataObj='originDataObj' :eventItem='eventItem' :currentItem="currentItem"></Details>
+      <Details ref='details' :originDataObj='originDataObj' :currentItem="currentItem"></Details>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="onSubmit">确 定</el-button>
       </span>
@@ -111,7 +110,7 @@
       return {
         toolbarInfo: {},
         dialogVisible: false,
-        eventItem: {},
+        currentShape: '--',
         originDataObj: {},
         editorInfo: {},
         defInfo: {
@@ -148,14 +147,6 @@
       editorConfig () {
         return this.editor && this.editor.$C ? this.editor.$C : null
       },
-      currentShape () {
-        if (this.eventItem._cfg && this.eventItem._cfg.currentShape) {
-          if (this.eventItem._cfg.currentShape === 'x-broken') return '线路'
-          return this.eventItem._cfg.currentShape
-        } else {
-          return '--'
-        }
-      }
     },
     methods: {
       showFn (val) {
@@ -444,26 +435,25 @@
         _t.doClearAllStates()
         const model = event.item.getModel()
         const id = model && model.originId
-        this.eventItem = event.item
+        this.currentShape =model.name
         // 需要存 model数据
         if (id) this.getOriginData(id, JSON.stringify(model))
         _t.editor.setItemState(event.item, 'active', true)
-        // this.dialogVisible = true
       },
       _edgeMousedown (event) {
         const _t = this
         _t.doClearAllStates()
-        const model = event.item.getModel()
-        const id = model && model.type
-        this.eventItem = event.item
+        // const model = event.item.getModel()
+        // const id = model && model.type
+        // this.eventItem = event.item
         // 需要存 model数据
-        if (id) this.getOriginData(id, JSON.stringify(model))
+        // if (id) this.getOriginData(id, JSON.stringify(model))
         if (event.item && !event.item.destroyed) {
           _t.editor.setItemState(event.item, 'active', !event.item.hasState('active'))
         }
       },
       _edgeDblclick () {
-        this.dialogVisible = true
+        // this.dialogVisible = true
       },
       _nodeHover (event) {
         const _t = this
