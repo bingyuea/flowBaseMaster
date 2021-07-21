@@ -426,7 +426,6 @@ export default {
               targetAnchor = endNode.getLinkPoint({ x: event.x, y: event.y })
             }
             _t.graph.updateItem(_t.drawLine.currentLine, {
-              idx: _t.graph.$C.idx.idx,
               target: endModel.id,
               targetAnchor: targetAnchor ? targetAnchor.anchorIndex : '',
               // 存储起始点ID，用于拖拽节点时更新线条 todo
@@ -436,7 +435,6 @@ export default {
                 label: `X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}`
               }
             })
-            _t.graph.$C.idx.setIdx()
             // 记录操作日志
             _t.graph.emit('editor:record', 'drawLine stop')
           }

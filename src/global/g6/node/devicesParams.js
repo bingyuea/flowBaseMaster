@@ -1158,6 +1158,234 @@ export const icon = [
       ]
     }
   },
+
+  {
+    id: 99,
+    name: '电缆',
+    imgUrl: require('@/assets/images/icon/line.png'),
+    sheetName: 'Line',
+    type: 'icon',
+    typeId: 'icon',
+    originData: {
+      CCS: [
+        {
+          defaultValue: '',
+          description: '',
+          name: '设备名称(name)',
+          sign: 'name',
+          unit: ''
+        },
+
+        {
+          defaultValue: '',
+          description: '',
+          name: '设备型号(model)',
+          sign: 'model',
+          unit: ''
+        },
+
+        {
+          defaultValue: '',
+          description: '',
+          name: '设备类型(type)',
+          sign: 'type',
+          unit: ''
+        },
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）首端电压(Ur1)',
+          sign: 'Ur1',
+          unit: 'V'
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）末端电压(Ur2)',
+          sign: 'Ur2',
+          unit: 'V'
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电阻(r1)',
+          sign: 'r1',
+          unit: 'mΩ/m'
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电抗(x1)',
+          sign: 'x1',
+          unit: 'mΩ/m'
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-电缆长度(l1)',
+          sign: 'l1',
+          unit: 'm'
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-并联根数(a1)',
+          sign: 'a1',
+          unit: '根'
+        }
+      ],
+      GJB: [
+        {
+          defaultValue: '',
+          description: '',
+          name: '设备名称(name)',
+          sign: 'name',
+          unit: ''
+        },
+
+        {
+          defaultValue: '',
+          description: '',
+          name: '设备型号(model)',
+          sign: 'model',
+          unit: ''
+        },
+
+        {
+          defaultValue: '',
+          description: '',
+          name: '设备类型(type)',
+          sign: 'type',
+          unit: ''
+        },
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）首端电压(Ur1)',
+          sign: 'Ur1',
+          unit: 'V'
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）末端电压(Ur2)',
+          sign: 'Ur2',
+          unit: 'V'
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电阻(r1)',
+          sign: 'r1',
+          unit: 'mΩ/m'
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电抗(x1)',
+          sign: 'x1',
+          unit: 'mΩ/m'
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-电缆长度(l1)',
+          sign: 'l1',
+          unit: 'm'
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-并联根数(a1)',
+          sign: 'a1',
+          unit: '根'
+        }
+      ],
+      GB: [
+        {
+          defaultValue: '',
+          description: '',
+          name: '设备名称(name)',
+          sign: 'name',
+          unit: ''
+        },
+
+        {
+          defaultValue: '',
+          description: '',
+          name: '设备型号(model)',
+          sign: 'model',
+          unit: ''
+        },
+
+        {
+          defaultValue: '',
+          description: '',
+          name: '设备类型(type)',
+          sign: 'type',
+          unit: ''
+        },
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）首端电压(Ur1)',
+          sign: 'Ur1',
+          unit: 'V'
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '线路（电缆）末端电压(Ur2)',
+          sign: 'Ur2',
+          unit: 'V'
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电阻(r1)',
+          sign: 'r1',
+          unit: 'mΩ/m'
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-单位电抗(x1)',
+          sign: 'x1',
+          unit: 'mΩ/m'
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-电缆长度(l1)',
+          sign: 'l1',
+          unit: 'm'
+        },
+
+        {
+          defaultValue: '0',
+          description: '',
+          name: '电缆-并联根数(a1)',
+          sign: 'a1',
+          unit: '根'
+        }
+      ]
+    }
+  },
+
   {
     id: 0,
     imgUrl: require('@/assets/images/icon/1.png'),
@@ -1428,230 +1656,3 @@ export const icon = [
     typeId: 'icon'
   }]
 
-export const line = [
-  {
-    id: 99,
-    name: '线路',
-    sheetName: 'Line',
-    type: 'icon',
-    typeId: 'icon',
-    originData: {
-      CCS: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
-
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备型号(model)',
-          sign: 'model',
-          unit: ''
-        },
-
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备类型(type)',
-          sign: 'type',
-          unit: ''
-        },
-        {
-          defaultValue: '0',
-          description: '',
-          name: '线路（电缆）首端电压(Ur1)',
-          sign: 'Ur1',
-          unit: 'V'
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '线路（电缆）末端电压(Ur2)',
-          sign: 'Ur2',
-          unit: 'V'
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-单位电阻(r1)',
-          sign: 'r1',
-          unit: 'mΩ/m'
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-单位电抗(x1)',
-          sign: 'x1',
-          unit: 'mΩ/m'
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-电缆长度(l1)',
-          sign: 'l1',
-          unit: 'm'
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-并联根数(a1)',
-          sign: 'a1',
-          unit: '根'
-        }
-      ],
-      GJB: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
-
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备型号(model)',
-          sign: 'model',
-          unit: ''
-        },
-
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备类型(type)',
-          sign: 'type',
-          unit: ''
-        },
-        {
-          defaultValue: '0',
-          description: '',
-          name: '线路（电缆）首端电压(Ur1)',
-          sign: 'Ur1',
-          unit: 'V'
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '线路（电缆）末端电压(Ur2)',
-          sign: 'Ur2',
-          unit: 'V'
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-单位电阻(r1)',
-          sign: 'r1',
-          unit: 'mΩ/m'
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-单位电抗(x1)',
-          sign: 'x1',
-          unit: 'mΩ/m'
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-电缆长度(l1)',
-          sign: 'l1',
-          unit: 'm'
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-并联根数(a1)',
-          sign: 'a1',
-          unit: '根'
-        }
-      ],
-      GB: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
-
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备型号(model)',
-          sign: 'model',
-          unit: ''
-        },
-
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备类型(type)',
-          sign: 'type',
-          unit: ''
-        },
-        {
-          defaultValue: '0',
-          description: '',
-          name: '线路（电缆）首端电压(Ur1)',
-          sign: 'Ur1',
-          unit: 'V'
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '线路（电缆）末端电压(Ur2)',
-          sign: 'Ur2',
-          unit: 'V'
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-单位电阻(r1)',
-          sign: 'r1',
-          unit: 'mΩ/m'
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-单位电抗(x1)',
-          sign: 'x1',
-          unit: 'mΩ/m'
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-电缆长度(l1)',
-          sign: 'l1',
-          unit: 'm'
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '电缆-并联根数(a1)',
-          sign: 'a1',
-          unit: '根'
-        }
-      ]
-    }
-  }
-]

@@ -172,8 +172,6 @@
         } else {
           let originData
           originData = icon.find(item => item.id === id) && icon.find(item => item.id === id).originData
-          // line 特殊处理
-          if (id === 'x-broken') originData = line[0].originData
           this.originDataObj = {
             originData: originData,
             originId: id,
@@ -1020,19 +1018,15 @@
                 let busList = []
                 if (model.name !== '交流母线') {
                   const edges = node.getEdges()
-                  busList = _.cloneDeep(edges)
+                  edges.forEach((edge, edgeIndex) => {
+                    const sourceNode = edge.getSource()
+                    const targetNode = edge.getTarget()
+                    let noMe = null
+                    if (sourceNode.getID() === node.getID()) noMe = targetNode
+                    if (targetNode.getID() === node.getID()) noMe = sourceNode
+                    busList.push(noMe)
+                  })
                 }
-                if (model.params) {
-                  model.params.busList = []
-                  model.params.busList = _.cloneDeep(busList)
-                  dataList.push(_.cloneDeep(model.params))
-                }
-              })
-              // 线路
-              _t.editor.getEdges().forEach((edge, index) => {
-                const model = edge.getModel()
-                const busList = []
-                busList.push(edge.getSource(), edge.getTarget())
                 if (model.params) {
                   model.params.busList = []
                   model.params.busList = _.cloneDeep(busList)
@@ -1055,19 +1049,15 @@
                 let busList = []
                 if (model.name !== '交流母线') {
                   const edges = node.getEdges()
-                  busList = _.cloneDeep(edges)
+                  edges.forEach((edge, edgeIndex) => {
+                    const sourceNode = edge.getSource()
+                    const targetNode = edge.getTarget()
+                    let noMe = null
+                    if (sourceNode.getID() === node.getID()) noMe = targetNode
+                    if (targetNode.getID() === node.getID()) noMe = sourceNode
+                    busList.push(noMe)
+                  })
                 }
-                if (model.params) {
-                  model.params.busList = []
-                  model.params.busList = _.cloneDeep(busList)
-                  dataList.push(_.cloneDeep(model.params))
-                }
-              })
-              // 线路
-              _t.editor.getEdges().forEach((edge, index) => {
-                const model = edge.getModel()
-                const busList = []
-                busList.push(edge.getSource(), edge.getTarget())
                 if (model.params) {
                   model.params.busList = []
                   model.params.busList = _.cloneDeep(busList)
