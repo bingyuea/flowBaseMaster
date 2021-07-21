@@ -2106,9 +2106,130 @@ export default function (system = {}, disableTools = [], enableTools = [], short
         style: {},
         divider: false
       }
+    },
+    {
+      name: '绘图模式',
+      label: '工具包',
+      type: 'dropdown-list',
+      enable: true,
+      enableMode: ['edit'],
+      disabled: false,
+      disabledMode: ['edit'],
+      selected: 0,
+      lockLabel: true,
+      toolbar: {
+        enable: true,
+        position: 'left',
+        style: {},
+        divider: false
+      },
+      children: [
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          data: '潮流计算模式',
+          icon: '潮流计算模式',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        },
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '谐波分析模式',
+          data: '谐波分析模式',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        },
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '短路计算',
+          data: '短路计算',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        },
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '继电保护',
+          data: '继电保护',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        },
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '可靠性计算模式',
+          data: '可靠性计算模式',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        },
+        {
+          name: '绘图模式',
+          label: '绘图模式',
+          type: 'normal',
+          icon: '时域仿真模式',
+          data: '时域仿真模式',
+          enable: true,
+          enableMode: ['edit'],
+          disabled: false,
+          disabledMode: ['edit'],
+          toolbar: {
+            enable: true,
+            position: 'left',
+            style: {},
+            divider: false
+          }
+        }
+      ]
     }
   ]
-   const functionlist = [
+  const functionlist = [
     {
       name: '绘图模式',
       label: '绘图模式',

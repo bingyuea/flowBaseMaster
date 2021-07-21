@@ -394,7 +394,7 @@
 
         _t.editor.on('editor:setItem', function (data) {
           data.forEach((item, index) => {
-            let model = item.model
+            const model = item.model
             // if (item.type === 'edge') {
             //   TODO 处理箭头
             // }
@@ -444,7 +444,7 @@
       _nodeMousedown (event) {
         const _t = this
         _t.doClearAllStates()
-        let model = event.item.getModel()
+        const model = event.item.getModel()
         const id = model && model.originId
         this.eventItem = event.item
         // 需要存 model数据
@@ -455,7 +455,7 @@
       _edgeMousedown (event) {
         const _t = this
         _t.doClearAllStates()
-        let model = event.item.getModel()
+        const model = event.item.getModel()
         const id = model && model.type
         this.eventItem = event.item
         // 需要存 model数据
@@ -659,7 +659,7 @@
             _t.clipboard.count++
             if (data.length) {
               data.forEach((item, index) => {
-                let model = item.model
+                const model = item.model
                 // 计算坐标，添加一定偏移量，防止重叠
                 let x = model.x + 10 * _t.clipboard.count
                 let y = model.y + 10 * _t.clipboard.count
@@ -955,7 +955,7 @@
                       // 渲染
                       _t.editor.render()
                       _t.editor.getNodes().forEach(node => {
-                        let model = node.getModel()
+                        const model = node.getModel()
                         const radian = model.radian
                         const keyShape = node.getKeyShape()
                         keyShape.resetMatrix()
@@ -1012,11 +1012,11 @@
               // no longer need to read the blob so it's revoked
               URL.revokeObjectURL(url)
             } else if (info.data === 'excel') {
-              let dataList = []
+              const dataList = []
               // 图
               _t.editor.getNodes().forEach((node, index) => {
                 // 处理图的bus，母线没有bus，line的bus是起始连接点，元件的连接点是与之的line非自己的点
-                let model = node.getModel()
+                const model = node.getModel()
                 let busList = []
                 if (model.name !== '交流母线') {
                   const edges = node.getEdges()
@@ -1030,8 +1030,8 @@
               })
               // 线路
               _t.editor.getEdges().forEach((edge, index) => {
-                let model = edge.getModel()
-                let busList = []
+                const model = edge.getModel()
+                const busList = []
                 busList.push(edge.getSource(), edge.getTarget())
                 if (model.params) {
                   model.params.busList = []
@@ -1047,11 +1047,11 @@
               const excelData = _.groupBy(dataList, 'originId')
               _t.$X.utils.exportExcel.createExcel(_.cloneDeep(excelData))
             } else if (info.data === 'upload') {
-              let dataList = []
+              const dataList = []
               // 图
               _t.editor.getNodes().forEach((node, index) => {
                 // 处理图的bus，母线没有bus，line的bus是起始连接点，元件的连接点是与之的line非自己的点
-                let model = node.getModel()
+                const model = node.getModel()
                 let busList = []
                 if (model.name !== '交流母线') {
                   const edges = node.getEdges()
@@ -1065,12 +1065,12 @@
               })
               // 线路
               _t.editor.getEdges().forEach((edge, index) => {
-                let model = edge.getModel()
-                let busList = []
+                const model = edge.getModel()
+                const busList = []
                 busList.push(edge.getSource(), edge.getTarget())
                 if (model.params) {
                   model.params.busList = []
-                  model.params.busList =_.cloneDeep(busList)
+                  model.params.busList = _.cloneDeep(busList)
                   dataList.push(_.cloneDeep(model.params))
                 }
               })
@@ -1082,7 +1082,7 @@
               const excelData = _.groupBy(dataList, 'originId')
               const file = _t.$X.utils.exportExcel.createExcel(excelData, true)
               setTimeout(() => {
-                const newFile = new window.File([file], 'file',{type:'xls'})
+                const newFile = new window.File([file], 'file', { type: 'xls' })
                 const formData = new window.FormData()
                 formData.append('file', newFile, 'fileName.xls')
                 console.log(file, 'newFile')
@@ -1094,9 +1094,9 @@
                 }).then(res => {
                   console.log(res)
                 })
-                 /*uploadFn(formData).then(res1 => {
+                /* uploadFn(formData).then(res1 => {
                   console.log(res1)
-                })*/
+                }) */
               }, 0)
             }
             break
@@ -1124,7 +1124,7 @@
             _t.editor.getNodes().forEach(node => {
               if (node.hasState('active')) {
                 isRecord = true
-                let model = node.getModel()
+                const model = node.getModel()
                 const position = {
                   x: model.x,
                   y: model.y
@@ -1271,7 +1271,7 @@
         // 渲染
         _t.editor.render()
         _t.editor.getNodes().forEach(node => {
-          let model = node.getModel()
+          const model = node.getModel()
           const radian = model.radian
           const keyShape = node.getKeyShape()
           keyShape.resetMatrix()
@@ -1294,7 +1294,7 @@
       },
       // 更新log
       doUpdateLog (data) {
-        /*const _t = this
+        /* const _t = this
         if (!data.hasOwnProperty('action') || !data.action) {
           return
         }
@@ -1369,7 +1369,7 @@
             }
             break
         }
-        _t.$X.utils.storage.set('log', _.cloneDeep(log), _t.$X.config.storage.prefix)*/
+        _t.$X.utils.storage.set('log', _.cloneDeep(log), _t.$X.config.storage.prefix) */
       }
     },
     created () {

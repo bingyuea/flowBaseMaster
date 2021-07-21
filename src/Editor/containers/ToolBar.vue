@@ -77,7 +77,7 @@
     >
     </Handler>
     <template v-for="(type, typeIndex) in Object.keys(sysMap)" >
-      <ToolBox mode="horizontal" :key="typeIndex" :class="type">
+      <ToolBox mode="horizontal" :key="typeIndex" style="z-index: 9999" :class="type">
         <div v-for="(item, index) in sysMap[type]" :key="index">
           <ToolItem
             v-if="item.type === 'text'"
@@ -126,56 +126,11 @@
             :style="item.toolbar.style"
           >
             <template v-slot:label>
-              <template v-if="item.disabled">
-                <div style="margin: 0 3px;">
-                  <template v-if="item.lockLabel">
-                    <XIcon :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;"></XIcon>
-                  </template>
-                  <template v-else-if="item.custom && item.custom.enable">
-                    <XIcon
-                      :iconfont="item.custom.icon"
-                      :label="item.custom.label"
-                      style="vertical-align: middle;"
-                      :style="item.custom.style"
-                    ></XIcon>
-                  </template>
-                  <template v-else>
-                    <XIcon
-                      :iconfont="item.children[item.selected].icon"
-                      :label="item.children[item.selected].label"
-                      style="vertical-align: middle;"
-                      :style="item.children[item.selected].style"
-                    >
-                    </XIcon>
-                  </template>
-                  <Icon type="ios-arrow-down"></Icon>
-                </div>
-              </template>
-              <template v-else>
-                <Dropdown trigger="click" @on-click="(val) => handleDropdownClick(item, type, index, val)">
+                <Dropdown trigger="click" @on-click="(val) => handleToolClick(item, val,null,null )">
                   <div style="margin: 0 3px;">
                     <template v-if="item.lockLabel">
-                      <XIcon :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;"></XIcon>
+                      <div :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;">{{item.label}}</div>
                     </template>
-                    <template v-else-if="item.custom && item.custom.enable">
-                      <XIcon
-                        :iconfont="item.custom.icon"
-                        :label="item.custom.label"
-                        style="vertical-align: middle;"
-                        :style="item.custom.style"
-                      >
-                      </XIcon>
-                    </template>
-                    <template v-else>
-                      <XIcon
-                        :iconfont="item.children[item.selected].icon"
-                        :label="item.children[item.selected].label"
-                        style="vertical-align: middle;"
-                        :style="item.children[item.selected].style"
-                      >
-                      </XIcon>
-                    </template>
-                    <Icon type="ios-arrow-down"></Icon>
                   </div>
                   <DropdownMenu slot="list">
                     <DropdownItem
@@ -186,23 +141,10 @@
                       :divided="child.divider"
                       :selected="item.selected === childIndex"
                     >
-                      <template v-if="child.type === 'normal'">
-                        <XIcon
-                          :iconfont="child.icon"
-                          :title="$t(child.lang)"
-                          :label="child.lang ? $t(child.lang) : child.label"
-                          :style="child.style"
-                        ></XIcon>
-                      </template>
-                      <template v-else-if="child.type === 'link'">
-                        <a class="link" :href="child.link" target="_blank" style="color: #333333;">
-                          <XIcon :iconfont="child.icon" :img="child.img" :label="$t(child.lang)"></XIcon>
-                        </a>
-                      </template>
+                      {{child.icon}}
                     </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
-              </template>
             </template>
           </ToolItem>
           <ToolItem
@@ -665,10 +607,11 @@
       },
       handleDropdownClick (item, type, index, val) {
         const _t = this
-        // console.log('handleDropdownClick', item.name)
+        console.log('handleDropdownClick', item, type, index, val)
         if (item.disabled) {
           return
         }
+        debugger
         const child = item.children[val]
         _t.formData[item.name] = child.name
         const payload = {

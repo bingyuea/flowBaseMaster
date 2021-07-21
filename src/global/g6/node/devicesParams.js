@@ -27,7 +27,7 @@ export const icon = [
         {
           defaultValue: '',
           description: '',
-          name: '设备类型（备注：如柴油发电机、汽轮机等）(type)',
+          name: '设备类型(type)',
           sign: 'type',
           unit: ''
         },
@@ -36,7 +36,7 @@ export const icon = [
           description: '',
           name: '发电机额定视在功率(Srg)',
           sign: 'Srg',
-          unit: ''
+          unit: 'kVA'
         },
 
         {
@@ -44,7 +44,7 @@ export const icon = [
           description: '',
           name: '发电机额定线电压(Ur)',
           sign: 'Ur',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -52,7 +52,7 @@ export const icon = [
           description: '',
           name: '发电机额定线电流(Irg)',
           sign: 'Irg',
-          unit: ''
+          unit: 'kA'
         },
 
         {
@@ -60,7 +60,7 @@ export const icon = [
           description: '',
           name: '发电机额定频率(f)',
           sign: 'f',
-          unit: ''
+          unit: 'Hz'
         },
 
         {
@@ -68,7 +68,7 @@ export const icon = [
           description: '',
           name: '发电机直轴电抗(xd)',
           sign: 'xd',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -76,7 +76,7 @@ export const icon = [
           description: '',
           name: '发电机直轴瞬态电抗(xd_d)',
           sign: 'xd_d',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -84,7 +84,7 @@ export const icon = [
           description: '',
           name: '发电机直轴超瞬态电抗(xd_dd)',
           sign: 'xd_dd',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -92,7 +92,7 @@ export const icon = [
           description: '',
           name: '发电机电枢电阻(Ra)',
           sign: 'Ra',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -100,7 +100,7 @@ export const icon = [
           description: '',
           name: '发电机直轴时间常数(Tdc)',
           sign: 'Tdc',
-          unit: ''
+          unit: 'ms'
         },
 
         {
@@ -108,39 +108,7 @@ export const icon = [
           description: '',
           name: '发电机直轴超瞬态时间常数(Td_dd)',
           sign: 'Td_dd',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）发电机出口电缆-单位电阻(r1)',
-          sign: 'r1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）发电机出口电缆-单位电抗(x1)',
-          sign: 'x1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）发电机出口电缆-电缆长度(l1)',
-          sign: 'l1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）发电机出口电缆-并联根数(a1)',
-          sign: 'a1',
-          unit: ''
+          unit: 'ms'
         },
 
         {
@@ -148,7 +116,7 @@ export const icon = [
           description: '',
           name: '发电机直轴瞬态时间常数(Td_d)',
           sign: 'Td_d',
-          unit: ''
+          unit: 'ms'
         },
 
         {
@@ -157,7 +125,8 @@ export const icon = [
           name: '发电机稳态短路电流(Ikd)',
           sign: 'Ikd',
           unit: ''
-        }],
+        }
+        ],
       GJB: [
         {
           defaultValue: '',
@@ -178,16 +147,17 @@ export const icon = [
         {
           defaultValue: '',
           description: '',
-          name: '设备类型（备注：如柴油发电机、汽轮机等）(type)',
+          name: '设备类型(type)',
           sign: 'type',
           unit: ''
         },
+
         {
           defaultValue: '0',
           description: '',
           name: '发电机额定视在功率(Srg)',
           sign: 'Srg',
-          unit: ''
+          unit: 'kVA'
         },
 
         {
@@ -195,7 +165,7 @@ export const icon = [
           description: '',
           name: '发电机额定线电压(Ur)',
           sign: 'Ur',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -203,7 +173,7 @@ export const icon = [
           description: '',
           name: '发电机额定线电流(Irg)',
           sign: 'Irg',
-          unit: ''
+          unit: 'kA'
         },
 
         {
@@ -211,7 +181,7 @@ export const icon = [
           description: '',
           name: '发电机额定频率(f)',
           sign: 'f',
-          unit: ''
+          unit: 'Hz'
         },
 
         {
@@ -219,7 +189,7 @@ export const icon = [
           description: '',
           name: '发电机直轴电抗(xd)',
           sign: 'xd',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -227,7 +197,7 @@ export const icon = [
           description: '',
           name: '发电机直轴瞬态电抗(xd_d)',
           sign: 'xd_d',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -235,7 +205,7 @@ export const icon = [
           description: '',
           name: '发电机直轴超瞬态电抗(xd_dd)',
           sign: 'xd_dd',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -243,7 +213,7 @@ export const icon = [
           description: '',
           name: '发电机电枢电阻(Ra)',
           sign: 'Ra',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -251,7 +221,7 @@ export const icon = [
           description: '',
           name: '发电机直轴时间常数(Tdc)',
           sign: 'Tdc',
-          unit: ''
+          unit: 'ms'
         },
 
         {
@@ -259,70 +229,22 @@ export const icon = [
           description: '',
           name: '发电机直轴超瞬态时间常数(Td_dd)',
           sign: 'Td_dd',
-          unit: ''
+          unit: 'ms'
         },
 
         {
           defaultValue: '0',
           description: '',
-          name: '（预留）发电机出口电缆-单位电阻(r1)',
-          sign: 'r1',
-          unit: ''
+          name: '发电机直轴瞬态时间常数(Td_d)',
+          sign: 'Td_d',
+          unit: 'ms'
         },
 
         {
           defaultValue: '0',
           description: '',
-          name: '（预留）发电机出口电缆-单位电抗(x1)',
-          sign: 'x1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）发电机出口电缆-电缆长度(l1)',
-          sign: 'l1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）发电机出口电缆-并联根数(a1)',
-          sign: 'a1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '发电机额定有功功率(Png)',
-          sign: 'Png',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '空载励磁电流(Iof)',
-          sign: 'Iof',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '短路励磁电流(Ikf)',
-          sign: 'Ikf',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '短路比(SCR)',
-          sign: 'SCR',
+          name: '发电机稳态短路电流(Ikd)',
+          sign: 'Ikd',
           unit: ''
         }
       ],
@@ -346,7 +268,7 @@ export const icon = [
         {
           defaultValue: '',
           description: '',
-          name: '设备类型（备注：如柴油发电机、汽轮机等）(type)',
+          name: '设备类型(type)',
           sign: 'type',
           unit: ''
         },
@@ -355,7 +277,7 @@ export const icon = [
           description: '',
           name: '发电机额定视在功率(Srg)',
           sign: 'Srg',
-          unit: ''
+          unit: 'kVA'
         },
 
         {
@@ -363,7 +285,7 @@ export const icon = [
           description: '',
           name: '发电机额定线电压(Ur)',
           sign: 'Ur',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -371,7 +293,7 @@ export const icon = [
           description: '',
           name: '发电机额定线电流(Irg)',
           sign: 'Irg',
-          unit: ''
+          unit: 'kA'
         },
 
         {
@@ -379,7 +301,7 @@ export const icon = [
           description: '',
           name: '发电机额定频率(f)',
           sign: 'f',
-          unit: ''
+          unit: 'Hz'
         },
 
         {
@@ -387,7 +309,7 @@ export const icon = [
           description: '',
           name: '发电机直轴电抗(xd)',
           sign: 'xd',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -395,7 +317,7 @@ export const icon = [
           description: '',
           name: '发电机直轴瞬态电抗(xd_d)',
           sign: 'xd_d',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -403,7 +325,7 @@ export const icon = [
           description: '',
           name: '发电机直轴超瞬态电抗(xd_dd)',
           sign: 'xd_dd',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -411,7 +333,7 @@ export const icon = [
           description: '',
           name: '发电机电枢电阻(Ra)',
           sign: 'Ra',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -419,7 +341,7 @@ export const icon = [
           description: '',
           name: '发电机直轴时间常数(Tdc)',
           sign: 'Tdc',
-          unit: ''
+          unit: 'ms'
         },
 
         {
@@ -427,39 +349,7 @@ export const icon = [
           description: '',
           name: '发电机直轴超瞬态时间常数(Td_dd)',
           sign: 'Td_dd',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）发电机出口电缆-单位电阻(r1)',
-          sign: 'r1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）发电机出口电缆-单位电抗(x1)',
-          sign: 'x1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）发电机出口电缆-电缆长度(l1)',
-          sign: 'l1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）发电机出口电缆-并联根数(a1)',
-          sign: 'a1',
-          unit: ''
+          unit: 'ms'
         },
 
         {
@@ -467,7 +357,7 @@ export const icon = [
           description: '',
           name: '发电机直轴瞬态时间常数(Td_d)',
           sign: 'Td_d',
-          unit: ''
+          unit: 'ms'
         },
 
         {
@@ -517,7 +407,7 @@ export const icon = [
           description: '',
           name: '变压器额定容量(Srt)',
           sign: 'Srt',
-          unit: ''
+          unit: 'kVA'
         },
 
         {
@@ -525,7 +415,7 @@ export const icon = [
           description: '',
           name: '变压器初级侧电压(Ur)',
           sign: 'Ur',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -533,7 +423,7 @@ export const icon = [
           description: '',
           name: '变压器次级侧电压(Urt2)',
           sign: 'Urt2',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -541,7 +431,7 @@ export const icon = [
           description: '',
           name: '变压器短路电压(Uk)',
           sign: 'Uk',
-          unit: ''
+          unit: '%'
         },
 
         {
@@ -549,72 +439,9 @@ export const icon = [
           description: '',
           name: '变压器短路损耗(Pk)',
           sign: 'Pk',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器初级侧电缆-单位电阻(r1)',
-          sign: 'r1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器初级侧电缆-单位电抗(x1)',
-          sign: 'x1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器初级侧电缆-电缆长度(l1)',
-          sign: 'l1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器初级侧电缆-并联根数(a1)',
-          sign: 'a1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器次级侧电缆-单位电阻(r2)',
-          sign: 'r2',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器次级侧电缆-单位电抗(x2)',
-          sign: 'x2',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器次级侧电缆-电缆长度(l2)',
-          sign: 'l2',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器次级侧电缆-并联根数(a2)',
-          sign: 'a2',
-          unit: ''
+          unit: 'kW'
         }
+
       ],
       GJB: [
         {
@@ -633,19 +460,19 @@ export const icon = [
           unit: ''
         },
         {
-        defaultValue: '0',
-        description: '',
-        name: '变压器绕组接线方式(winding)',
-        sign: 'winding',
-        unit: ''
-      },
+          defaultValue: '0',
+          description: '',
+          name: '变压器绕组接线方式(winding)',
+          sign: 'winding',
+          unit: ''
+        },
 
         {
           defaultValue: '0',
           description: '',
           name: '变压器额定容量(Srt)',
           sign: 'Srt',
-          unit: ''
+          unit: 'kVA'
         },
 
         {
@@ -653,7 +480,7 @@ export const icon = [
           description: '',
           name: '变压器初级侧电压(Ur)',
           sign: 'Ur',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -661,7 +488,7 @@ export const icon = [
           description: '',
           name: '变压器次级侧电压(Urt2)',
           sign: 'Urt2',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -669,7 +496,7 @@ export const icon = [
           description: '',
           name: '变压器短路电压(Uk)',
           sign: 'Uk',
-          unit: ''
+          unit: '%'
         },
 
         {
@@ -677,71 +504,7 @@ export const icon = [
           description: '',
           name: '变压器短路损耗(Pk)',
           sign: 'Pk',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器初级侧电缆-单位电阻(r1)',
-          sign: 'r1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器初级侧电缆-单位电抗(x1)',
-          sign: 'x1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器初级侧电缆-电缆长度(l1)',
-          sign: 'l1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器初级侧电缆-并联根数(a1)',
-          sign: 'a1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器次级侧电缆-单位电阻(r2)',
-          sign: 'r2',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器次级侧电缆-单位电抗(x2)',
-          sign: 'x2',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器次级侧电缆-电缆长度(l2)',
-          sign: 'l2',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器次级侧电缆-并联根数(a2)',
-          sign: 'a2',
-          unit: ''
+          unit: 'kW'
         },
 
         {
@@ -749,24 +512,10 @@ export const icon = [
           description: '',
           name: '变压器空载损耗(P0)',
           sign: 'P0',
-          unit: ''
-        },
+          unit: 'kW'
+        }
 
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）折算到初级侧的变压器电阻(rt)',
-          sign: 'rt',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）折算到初级侧的变压器电阻(xt)',
-          sign: 'xt',
-          unit: ''
-        }],
+        ],
       GB: [
         {
           defaultValue: '',
@@ -796,7 +545,7 @@ export const icon = [
           description: '',
           name: '变压器额定容量(Srt)',
           sign: 'Srt',
-          unit: ''
+          unit: 'kVA'
         },
 
         {
@@ -804,7 +553,7 @@ export const icon = [
           description: '',
           name: '变压器初级侧电压(Ur)',
           sign: 'Ur',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -812,7 +561,7 @@ export const icon = [
           description: '',
           name: '变压器次级侧电压(Urt2)',
           sign: 'Urt2',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -820,7 +569,7 @@ export const icon = [
           description: '',
           name: '变压器短路电压(Uk)',
           sign: 'Uk',
-          unit: ''
+          unit: '%'
         },
 
         {
@@ -828,71 +577,7 @@ export const icon = [
           description: '',
           name: '变压器短路损耗(Pk)',
           sign: 'Pk',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器初级侧电缆-单位电阻(r1)',
-          sign: 'r1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器初级侧电缆-单位电抗(x1)',
-          sign: 'x1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器初级侧电缆-电缆长度(l1)',
-          sign: 'l1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器初级侧电缆-并联根数(a1)',
-          sign: 'a1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器次级侧电缆-单位电阻(r2)',
-          sign: 'r2',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器次级侧电缆-单位电抗(x2)',
-          sign: 'x2',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器次级侧电缆-电缆长度(l2)',
-          sign: 'l2',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）变压器次级侧电缆-并联根数(a2)',
-          sign: 'a2',
-          unit: ''
+          unit: 'kW'
         },
 
         {
@@ -900,7 +585,7 @@ export const icon = [
           description: '',
           name: '变压器额定电流(Irt)',
           sign: 'Irt',
-          unit: ''
+          unit: 'kA'
         },
 
         {
@@ -908,11 +593,12 @@ export const icon = [
           description: '',
           name: '变压器额定电压的电阻分量(Urr)',
           sign: 'Urr',
-          unit: ''
+          unit: 'V'
         }
       ]
     }
   },
+
   {
     id: 23,
     imgUrl: require('@/assets/images/icon/MTR1.png'),
@@ -949,7 +635,7 @@ export const icon = [
         description: '',
         name: '电动机额定功率(Prm)',
         sign: 'Prm',
-        unit: ''
+        unit: 'kW'
       },
 
         {
@@ -957,39 +643,7 @@ export const icon = [
           description: '',
           name: '电动机额定线电压(Urm)',
           sign: 'Urm',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）电动机出口电缆-单位电阻(r1)',
-          sign: 'r1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）电动机出口电缆-单位电抗(x1)',
-          sign: 'x1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）电动机出口电缆-电缆长度(l1)',
-          sign: 'l1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）电动机出口电缆-并联根数(a1)',
-          sign: 'a1',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -997,7 +651,7 @@ export const icon = [
           description: '',
           name: '电动机转子电阻(rr)',
           sign: 'rr',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -1005,7 +659,7 @@ export const icon = [
           description: '',
           name: '电动机定子电阻(rs)',
           sign: 'rs',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -1013,7 +667,7 @@ export const icon = [
           description: '',
           name: '电动机超瞬态电抗(xm_dd)',
           sign: 'xm_dd',
-          unit: ''
+          unit: 'ms'
         },
 
         {
@@ -1021,7 +675,7 @@ export const icon = [
           description: '',
           name: '电动机超瞬态时间常数(Tm_dd)',
           sign: 'Tm_dd',
-          unit: ''
+          unit: 'ms'
         },
 
         {
@@ -1029,7 +683,7 @@ export const icon = [
           description: '',
           name: '电动机直流时间常数(Tdcm)',
           sign: 'Tdcm',
-          unit: ''
+          unit: 'ms'
         }],
       GJB: [
         {
@@ -1059,7 +713,7 @@ export const icon = [
           description: '',
           name: '电动机额定功率(Prm)',
           sign: 'Prm',
-          unit: ''
+          unit: 'kW'
         },
 
         {
@@ -1067,39 +721,7 @@ export const icon = [
           description: '',
           name: '电动机额定线电压(Urm)',
           sign: 'Urm',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）电动机出口电缆-单位电阻(r1)',
-          sign: 'r1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）电动机出口电缆-单位电抗(x1)',
-          sign: 'x1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）电动机出口电缆-电缆长度(l1)',
-          sign: 'l1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）电动机出口电缆-并联根数(a1)',
-          sign: 'a1',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -1107,7 +729,7 @@ export const icon = [
           description: '',
           name: '电动机额定相电压(Vnm)',
           sign: 'Vnm',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -1115,7 +737,7 @@ export const icon = [
           description: '',
           name: '电动机额定线电流(Inm)',
           sign: 'Inm',
-          unit: ''
+          unit: 'kA'
         }
       ],
       GB: [
@@ -1146,7 +768,7 @@ export const icon = [
           description: '',
           name: '电动机额定功率(Prm)',
           sign: 'Prm',
-          unit: ''
+          unit: 'kW'
         },
 
         {
@@ -1154,39 +776,7 @@ export const icon = [
           description: '',
           name: '电动机额定线电压(Urm)',
           sign: 'Urm',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）电动机出口电缆-单位电阻(r1)',
-          sign: 'r1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）电动机出口电缆-单位电抗(x1)',
-          sign: 'x1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）电动机出口电缆-电缆长度(l1)',
-          sign: 'l1',
-          unit: ''
-        },
-
-        {
-          defaultValue: '0',
-          description: '',
-          name: '（预留）电动机出口电缆-并联根数(a1)',
-          sign: 'a1',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -1194,7 +784,7 @@ export const icon = [
           description: '',
           name: '电动机额定线电流(Irm)',
           sign: 'Irm',
-          unit: ''
+          unit: 'kA'
         },
 
         {
@@ -1209,7 +799,7 @@ export const icon = [
           description: '',
           name: '电动机转子电阻(rr)',
           sign: 'rr',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -1217,7 +807,7 @@ export const icon = [
           description: '',
           name: '电动机定子电阻(rs)',
           sign: 'rs',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -1225,7 +815,7 @@ export const icon = [
           description: '',
           name: '电动机转子电抗(xr)',
           sign: 'xr',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -1233,7 +823,7 @@ export const icon = [
           description: '',
           name: '电动机定子电抗(xs)',
           sign: 'xs',
-          unit: ''
+          unit: 'mΩ'
         },
 
         {
@@ -1241,7 +831,7 @@ export const icon = [
           description: '',
           name: '电动机额定角速度(wr)',
           sign: 'wr',
-          unit: ''
+          unit: 'rad/s'
         },
 
         {
@@ -1249,7 +839,7 @@ export const icon = [
           description: '',
           name: '电动机超瞬态时间常数(Tm_dd)',
           sign: 'Tm_dd',
-          unit: ''
+          unit: 'ms'
         },
 
         {
@@ -1257,7 +847,7 @@ export const icon = [
           description: '',
           name: '电动机直流时间常数(Tdcm)',
           sign: 'Tdcm',
-          unit: ''
+          unit: 'ms'
         }
       ]
     }
@@ -1300,7 +890,7 @@ export const icon = [
           description: '',
           name: '节点额定电压(Ur)',
           sign: 'Ur',
-          unit: ''
+          unit: 'V'
         }
       ],
       GJB: [
@@ -1332,7 +922,7 @@ export const icon = [
           description: '',
           name: '节点额定电压(Ur)',
           sign: 'Ur',
-          unit: ''
+          unit: 'V'
         }
       ],
       GB: [
@@ -1364,7 +954,7 @@ export const icon = [
           description: '',
           name: '节点额定电压(Ur)',
           sign: 'Ur',
-          unit: ''
+          unit: 'V'
         }
       ]
     }
@@ -1398,7 +988,7 @@ export const icon = [
         {
           defaultValue: '',
           description: '',
-          name: '设备类型（备注：真空断路器等）(type)',
+          name: '设备类型(type)',
           sign: 'type',
           unit: ''
         }, {
@@ -1406,7 +996,7 @@ export const icon = [
         description: '',
         name: '断路器额定电压(Ur)',
         sign: 'Ur',
-        unit: ''
+        unit: 'V'
       },
 
         {
@@ -1414,7 +1004,7 @@ export const icon = [
           description: '',
           name: '断路器接通能力(Ion)',
           sign: 'Ion',
-          unit: ''
+          unit: 'kA'
         },
 
         {
@@ -1422,7 +1012,7 @@ export const icon = [
           description: '',
           name: '断路器分断能力(Ioff)',
           sign: 'Ioff',
-          unit: ''
+          unit: 'kA'
         },
 
         {
@@ -1452,7 +1042,7 @@ export const icon = [
         {
           defaultValue: '',
           description: '',
-          name: '设备类型（备注：真空断路器等）(type)',
+          name: '设备类型(type)',
           sign: 'type',
           unit: ''
         }, {
@@ -1460,7 +1050,7 @@ export const icon = [
         description: '',
         name: '断路器额定电压(Ur)',
         sign: 'Ur',
-        unit: ''
+        unit: 'V'
       },
 
         {
@@ -1468,7 +1058,7 @@ export const icon = [
           description: '',
           name: '断路器接通能力(Ion)',
           sign: 'Ion',
-          unit: ''
+          unit: 'kA'
         },
 
         {
@@ -1476,7 +1066,7 @@ export const icon = [
           description: '',
           name: '断路器分断能力(Ioff)',
           sign: 'Ioff',
-          unit: ''
+          unit: 'kA'
         },
 
         {
@@ -1506,7 +1096,7 @@ export const icon = [
         {
           defaultValue: '',
           description: '',
-          name: '设备类型（备注：真空断路器等）(type)',
+          name: '设备类型(type)',
           sign: 'type',
           unit: ''
         },
@@ -1515,7 +1105,7 @@ export const icon = [
           description: '',
           name: '断路器额定电压(Ur)',
           sign: 'Ur',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -1523,7 +1113,7 @@ export const icon = [
           description: '',
           name: '断路器接通能力(Ion)',
           sign: 'Ion',
-          unit: ''
+          unit: 'kA'
         },
 
         {
@@ -1531,7 +1121,7 @@ export const icon = [
           description: '',
           name: '断路器分断能力(Ioff)',
           sign: 'Ioff',
-          unit: ''
+          unit: 'kA'
         },
 
         {
@@ -1547,7 +1137,7 @@ export const icon = [
           description: '',
           name: '断路器触点分离时间（1kV以下系统）(tp)',
           sign: 'tp',
-          unit: ''
+          unit: 'ms'
         },
 
         {
@@ -1555,7 +1145,7 @@ export const icon = [
           description: '',
           name: '继电器动作时间(td)',
           sign: 'td',
-          unit: ''
+          unit: 'ms'
         },
 
         {
@@ -1563,7 +1153,7 @@ export const icon = [
           description: '',
           name: '直流分量最大可接受值(Idcv)',
           sign: 'Idcv',
-          unit: ''
+          unit: 'kA'
         }
       ]
     }
@@ -1875,7 +1465,7 @@ export const line = [
           description: '',
           name: '线路（电缆）首端电压(Ur1)',
           sign: 'Ur1',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -1883,7 +1473,7 @@ export const line = [
           description: '',
           name: '线路（电缆）末端电压(Ur2)',
           sign: 'Ur2',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -1891,7 +1481,7 @@ export const line = [
           description: '',
           name: '电缆-单位电阻(r1)',
           sign: 'r1',
-          unit: ''
+          unit: 'mΩ/m'
         },
 
         {
@@ -1899,7 +1489,7 @@ export const line = [
           description: '',
           name: '电缆-单位电抗(x1)',
           sign: 'x1',
-          unit: ''
+          unit: 'mΩ/m'
         },
 
         {
@@ -1907,7 +1497,7 @@ export const line = [
           description: '',
           name: '电缆-电缆长度(l1)',
           sign: 'l1',
-          unit: ''
+          unit: 'm'
         },
 
         {
@@ -1915,7 +1505,7 @@ export const line = [
           description: '',
           name: '电缆-并联根数(a1)',
           sign: 'a1',
-          unit: ''
+          unit: '根'
         }
       ],
       GJB: [
@@ -1947,7 +1537,7 @@ export const line = [
           description: '',
           name: '线路（电缆）首端电压(Ur1)',
           sign: 'Ur1',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -1955,7 +1545,7 @@ export const line = [
           description: '',
           name: '线路（电缆）末端电压(Ur2)',
           sign: 'Ur2',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -1963,7 +1553,7 @@ export const line = [
           description: '',
           name: '电缆-单位电阻(r1)',
           sign: 'r1',
-          unit: ''
+          unit: 'mΩ/m'
         },
 
         {
@@ -1971,7 +1561,7 @@ export const line = [
           description: '',
           name: '电缆-单位电抗(x1)',
           sign: 'x1',
-          unit: ''
+          unit: 'mΩ/m'
         },
 
         {
@@ -1979,7 +1569,7 @@ export const line = [
           description: '',
           name: '电缆-电缆长度(l1)',
           sign: 'l1',
-          unit: ''
+          unit: 'm'
         },
 
         {
@@ -1987,9 +1577,8 @@ export const line = [
           description: '',
           name: '电缆-并联根数(a1)',
           sign: 'a1',
-          unit: ''
+          unit: '根'
         }
-
       ],
       GB: [
         {
@@ -2020,7 +1609,7 @@ export const line = [
           description: '',
           name: '线路（电缆）首端电压(Ur1)',
           sign: 'Ur1',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -2028,7 +1617,7 @@ export const line = [
           description: '',
           name: '线路（电缆）末端电压(Ur2)',
           sign: 'Ur2',
-          unit: ''
+          unit: 'V'
         },
 
         {
@@ -2036,7 +1625,7 @@ export const line = [
           description: '',
           name: '电缆-单位电阻(r1)',
           sign: 'r1',
-          unit: ''
+          unit: 'mΩ/m'
         },
 
         {
@@ -2044,7 +1633,7 @@ export const line = [
           description: '',
           name: '电缆-单位电抗(x1)',
           sign: 'x1',
-          unit: ''
+          unit: 'mΩ/m'
         },
 
         {
@@ -2052,7 +1641,7 @@ export const line = [
           description: '',
           name: '电缆-电缆长度(l1)',
           sign: 'l1',
-          unit: ''
+          unit: 'm'
         },
 
         {
@@ -2060,7 +1649,7 @@ export const line = [
           description: '',
           name: '电缆-并联根数(a1)',
           sign: 'a1',
-          unit: ''
+          unit: '根'
         }
       ]
     }
