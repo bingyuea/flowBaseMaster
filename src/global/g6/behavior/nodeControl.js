@@ -520,7 +520,9 @@ export default {
             } else if (position.x > 0 && position.x < 1 && (position.y === 0 || position.y === 1)) {
               attrs.x = originNodeModel.x
               attrs.size[ 0 ] = originNodeModel.size[ 0 ]
-              attrs.size[ 1 ] = Math.abs(referencePoint.y - event.y)
+              if (model.name !== "交流母线"){
+                attrs.size[ 1 ] = Math.abs(referencePoint.y - event.y)
+              }
             } else if (position.y > 0 && position.y < 1 && (position.x === 0 || position.x === 1)) {
               // 横向
               attrs.y = originNodeModel.y
@@ -529,7 +531,9 @@ export default {
             } else {
               // 对角线
               attrs.size[ 0 ] = Math.abs(referencePoint.x - event.x)
-              attrs.size[ 1 ] = Math.abs(referencePoint.y - event.y)
+              if (model.name !== "交流母线") {
+                attrs.size[ 1 ] = Math.abs(referencePoint.y - event.y)
+              }
             }
             // 处理宽高最小值
             if (attrs.size[ 0 ] < originNodeModel.minWidth || attrs.size[ 1 ] < originNodeModel.minHeight) {
