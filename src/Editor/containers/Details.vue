@@ -46,9 +46,8 @@
           <el-form-item label="idx" prop="idx">
             <el-input disabled v-model="form.idx"></el-input>
           </el-form-item>
-
-          <el-form-item :disabled='mode === "preview"' label="设备名称（name）" prop="idx">
-            <el-input v-model="form.name"></el-input>
+          <el-form-item label="设备名称（name）" prop="idx">
+            <el-input :disabled='preview' v-model="form.name"></el-input>
           </el-form-item>
 
           <el-form-item v-for='(item,key) in list' :key='key' :prop="item.name"
@@ -159,6 +158,9 @@
       },
     },
     computed: {
+      preview () {
+        return this.mode === 'preview'
+      },
       idx () {
         const idx = JSON.parse(this.originDataObj.model).idx
         this.form.idx = idx
