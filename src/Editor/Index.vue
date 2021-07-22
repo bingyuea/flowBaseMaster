@@ -1088,7 +1088,7 @@
                 method: 'post',
                 data: formData
               }).then(res => {
-                console.log(res)
+                _t.$message.success('计算成功！')
               })
             }
             break

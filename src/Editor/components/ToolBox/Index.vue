@@ -76,8 +76,7 @@
       mode: {
         type: String,
         // 水平还是垂直类型，可选值为 horizontal 或 vertical
-        default: 'horizontal'
-      },
+        default: 'horizontal' },
       tools: {
         type: Array
       }

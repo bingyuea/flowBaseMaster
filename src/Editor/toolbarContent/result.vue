@@ -4,7 +4,7 @@
     :visible="show"
     :destroy-on-close='true'
     width="798px"
-    @close = 'close'
+    @close='close'
   >
     <template>
       <el-table
@@ -13,20 +13,21 @@
         border
         style="width: 750px">
         <el-table-column
-          v-for = '(item,key) in tableHead'
+          v-for='(item,key) in tableHead'
           :key="key"
           show-overflow-tooltip
           :prop="item.prop"
           :label="item.label"
-          >
+        >
         </el-table-column>
 
         <el-table-column
           label="操作"
-          width = '100px'
+          width='100px'
         >
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small">查看电流曲线</el-button>
+            <el-button v-show='scope.row[5] === 1' @click="handleClick(scope.row)" type="text" size="small">查看电流曲线
+            </el-button>
           </template>
         </el-table-column>
 
@@ -41,19 +42,25 @@
     <el-dialog
       width="550px"
       title="电流曲线"
+      :destroy-on-close="true"
       :visible.sync="innerVisible"
       append-to-body>
-        <div id = 'ShortCircuit' style="height: 400px"></div>
+      <div v-loading='loading' id='ShortCircuit' style="height: 400px"></div>
     </el-dialog>
   </el-dialog>
 </template>
 
 <script>
-  import { startCalc, getCalcRes } from '../../../src/api/svg'
+  import {
+    startCalc,
+    getCalcRes
+  } from '../../../src/api/svg'
   import * as echarts from 'echarts/core'
   import {
     BarChart
-    , LineChart } from 'echarts/charts'
+    ,
+    LineChart
+  } from 'echarts/charts'
   // 引入提示框，标题，直角坐标系组件，组件后缀都为 Component
   import {
     TitleComponent,
@@ -71,11 +78,11 @@
     watch: {
       async show (val) {
         if (val) {
-          const data = await startCalc()
-          this.tableData = (data.data || []).map((item,index) => {
-            item[2] = item[2].toFixed(4)
-            item[3] = item[3].toFixed(4)
-            item[4] = item[4].toFixed(4)
+          let data = await startCalc()
+          this.tableData = (data.data || []).map((item, index) => {
+            item[ 2 ] = item[ 2 ].toFixed(4)
+            item[ 3 ] = item[ 3 ].toFixed(4)
+            item[ 4 ] = item[ 4 ].toFixed(4)
             return item
           })
         }
@@ -86,17 +93,31 @@
         innerVisible: false,
         loading: false,
         tableHead: [
-          { prop: '0', label: '设备idx' },
-          { prop: '1', label: '设备名' },
-          { prop: '2', label: '对称短路电流' },
-          { prop: '3', label: '短路电流上包线' },
-          { prop: '4', label: '功率因数' }
+          {
+            prop: '0',
+            label: '设备idx'
+          },
+          {
+            prop: '1',
+            label: '设备名'
+          },
+          {
+            prop: '2',
+            label: '对称短路电流'
+          },
+          {
+            prop: '3',
+            label: '短路电流上包线'
+          },
+          {
+            prop: '4',
+            label: '功率因数'
+          }
         ],
         tableData: [{}]
       }
     },
-    computed: {
-    },
+    computed: {},
     methods: {
 
       generateData (data) {
@@ -157,25 +178,25 @@
               type: 'line',
               showSymbol: false,
               clip: true,
-              data: this.generateData(data[0])
+              data: this.generateData(data[ 0 ])
             },
             {
               type: 'line',
               showSymbol: false,
               clip: true,
-              data: this.generateData(data[1])
+              data: this.generateData(data[ 1 ])
             },
             {
               type: 'line',
               showSymbol: false,
               clip: true,
-              data: this.generateData(data[2])
+              data: this.generateData(data[ 2 ])
             },
             {
               type: 'line',
               showSymbol: false,
               clip: true,
-              data: this.generateData(data[3])
+              data: this.generateData(data[ 3 ])
             }
           ]
         }
@@ -183,12 +204,18 @@
         myChart.setOption(option)
       },
       async handleClick (row) {
-        if (!String(row[0])) this.$Message.error('该设备的idx不存在，请检查！')
+        if (!String(row[ 0 ])) this.$Message.error('该设备的idx不存在，请检查！')
         this.innerVisible = true
-        const data = await getCalcRes(row[0])
-        console.log(data)
-        await this.$nextTick()
-        await this.drawChart(data.data)
+        this.loading = true
+        try {
+          const data = await getCalcRes(row[ 0 ])
+          await this.$nextTick()
+          await this.drawChart(data.data)
+          this.loading = false
+        } catch (e) {
+          console.log(e)
+          this.loading = false
+        }
       },
       close () {
         this.$emit('update:show', false)
