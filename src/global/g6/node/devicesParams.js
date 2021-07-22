@@ -841,7 +841,7 @@ export const icon = [
           unit: ''
         },
         {
-          defaultValue: '0',
+          defaultValue: '400',
           description: '',
           name: '节点额定电压(Ur)',
           sign: 'Ur',
@@ -867,7 +867,7 @@ export const icon = [
           unit: ''
         },
         {
-          defaultValue: '0',
+          defaultValue: '400',
           description: '',
           name: '节点额定电压(Ur)',
           sign: 'Ur',
@@ -893,7 +893,7 @@ export const icon = [
           unit: ''
         },
         {
-          defaultValue: '0',
+          defaultValue: '400',
           description: '',
           name: '节点额定电压(Ur)',
           sign: 'Ur',
