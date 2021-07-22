@@ -68,7 +68,7 @@ export const iconStyle = {
   '3': { width: '80', height: '80', anchorPoints: [[0.5, 1], [0.5, 0]] },
   'BC1': { width: '80', height: '80', anchorPoints: [[0.5, 1], [0.5, 0]] },
   '断路器': { width: '80', height: '80', anchorPoints: [[0.38, 1], [0.38, 0]] },
-  '电缆': { width: '80', height: '80', anchorPoints: [[0,0.5], [1,0.5]] },
+  '电缆': { width: '80', height: '80', anchorPoints: [[0.5,0], [0.5,1]] },
   'BUS2': { width: '80', height: '80', anchorPoints: [[0.5, 1], [0.5, 0]] },
   'CABLE': { width: '80', height: '80', anchorPoints: [[0.5, 1], [0.5, 0]] },
   'CANE11': { width: '80', height: '80', anchorPoints: [[0.5, 0]] },

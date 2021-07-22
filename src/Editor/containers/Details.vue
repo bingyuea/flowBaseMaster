@@ -13,7 +13,7 @@
   box-sizing: content-box;
   padding: 0 10px;
   padding-top: 10px;
-  height: 500px;
+  height: 600px;
   overflow-y: auto;
 
   .el-form-item {
@@ -28,7 +28,7 @@
 
   .el-tabs__content {
     .el-tab-pane {
-      height: 440px;
+      height: 540px;
       overflow: auto;
     }
   }
