@@ -6,7 +6,7 @@
 
 <style scoped lang="less" rel="stylesheet/less">
   .panel-left {
-    width: 100px;
+    width: 112px;
     left: 0px;
     background: #fff;
     overflow: hidden;

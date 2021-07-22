@@ -6,7 +6,7 @@
 
 <style scoped lang="less" rel="stylesheet/less">
   .node-element {
-    display: block;
+    display: inline-block;
     text-align: center;
     margin: 2px;
     border: 1px solid transparent;
@@ -21,7 +21,7 @@
         top: 1px;
         text-align: center;
         height: 30px;
-        max-width: 50px;
+        max-width: 30px;
         display: inline-block;
         position: relative;
         overflow: hidden;
