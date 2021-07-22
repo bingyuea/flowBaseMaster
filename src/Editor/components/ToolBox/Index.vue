@@ -31,7 +31,7 @@
         text-align: center;
         margin: 0 2px;
         color: #000000;
-
+        font-size: 17px;
         &:hover {
           opacity: 1;
         }

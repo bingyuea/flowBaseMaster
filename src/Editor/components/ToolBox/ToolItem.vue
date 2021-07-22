@@ -8,6 +8,9 @@
     display: inline-block;
     position: relative;
   }
+  .label{
+    font-size: 16px;
+  }
 </style>
 
 <template>

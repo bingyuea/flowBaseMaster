@@ -129,7 +129,7 @@
                 <Dropdown trigger="click" @on-click="(val) => handleToolClick(item, val,null,null )">
                   <div style="margin: 0 3px;">
                     <template v-if="item.lockLabel">
-                      <div :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;">{{item.label}}</div>
+                      <div :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;margin-left: -2px">{{item.label}}</div>
                     </template>
                   </div>
                   <DropdownMenu slot="list">
@@ -140,6 +140,7 @@
                       :disabled="child.disabled"
                       :divided="child.divider"
                       :selected="item.selected === childIndex"
+                      style="font-size: 15px !important;"
                     >
                       {{child.icon}}
                     </DropdownItem>
