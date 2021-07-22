@@ -38,7 +38,7 @@
       :close-on-click-modal = 'false'
       :close-on-press-escape = 'false'
     >
-      <Details ref='details' :originDataObj='originDataObj' :currentItem="currentItem"></Details>
+      <Details ref='details' :originDataObj='originDataObj' :currentItem="currentItem" :mode = 'mode'></Details>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="onSubmit">确 定</el-button>
       </span>
