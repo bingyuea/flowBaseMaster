@@ -8,16 +8,10 @@ export const icon = [
     typeId: 'icon',
     originData: {
       CCS: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
@@ -25,7 +19,7 @@ export const icon = [
         },
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备类型(type)',
           sign: 'type',
@@ -128,16 +122,10 @@ export const icon = [
         }
         ],
       GJB: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
@@ -145,7 +133,7 @@ export const icon = [
         },
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备类型(type)',
           sign: 'type',
@@ -249,16 +237,10 @@ export const icon = [
         }
       ],
       GB: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
@@ -266,7 +248,7 @@ export const icon = [
         },
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备类型(type)',
           sign: 'type',
@@ -379,16 +361,10 @@ export const icon = [
     typeId: 'icon',
     originData: {
       CCS: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
@@ -444,16 +420,10 @@ export const icon = [
 
       ],
       GJB: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
@@ -517,16 +487,10 @@ export const icon = [
 
         ],
       GB: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
@@ -608,23 +572,17 @@ export const icon = [
     typeId: 'icon',
     originData: {
       CCS: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
           unit: ''
         },
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备类型(type)',
           sign: 'type',
@@ -686,23 +644,17 @@ export const icon = [
           unit: 'ms'
         }],
       GJB: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
           unit: ''
         },
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备类型(type)',
           sign: 'type',
@@ -741,23 +693,17 @@ export const icon = [
         }
       ],
       GB: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
           unit: ''
         },
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备类型(type)',
           sign: 'type',
@@ -862,16 +808,10 @@ export const icon = [
     typeId: 'icon',
     originData: {
       CCS: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
@@ -879,14 +819,14 @@ export const icon = [
         },
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '节点类型(type)',
           sign: 'type',
           unit: ''
         },
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '节点额定电压(Ur)',
           sign: 'Ur',
@@ -894,16 +834,10 @@ export const icon = [
         }
       ],
       GJB: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
@@ -911,14 +845,14 @@ export const icon = [
         },
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '节点类型(type)',
           sign: 'type',
           unit: ''
         },
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '节点额定电压(Ur)',
           sign: 'Ur',
@@ -926,16 +860,10 @@ export const icon = [
         }
       ],
       GB: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
@@ -943,14 +871,14 @@ export const icon = [
         },
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '节点类型(type)',
           sign: 'type',
           unit: ''
         },
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '节点额定电压(Ur)',
           sign: 'Ur',
@@ -969,16 +897,10 @@ export const icon = [
     originData: {
       CCS: [
 
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
@@ -986,7 +908,7 @@ export const icon = [
         },
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备类型(type)',
           sign: 'type',
@@ -1023,16 +945,10 @@ export const icon = [
           unit: ''
         }],
       GJB: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
@@ -1040,7 +956,7 @@ export const icon = [
         },
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备类型(type)',
           sign: 'type',
@@ -1077,16 +993,10 @@ export const icon = [
           unit: ''
         }],
       GB: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
@@ -1094,7 +1004,7 @@ export const icon = [
         },
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备类型(type)',
           sign: 'type',
@@ -1163,21 +1073,15 @@ export const icon = [
     id: 99,
     name: '电缆',
     imgUrl: require('@/assets/images/icon/line.png'),
-    sheetName: 'Line',
+    sheetName: 'Cable',
     type: 'icon',
     typeId: 'icon',
     originData: {
       CCS: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
@@ -1185,7 +1089,7 @@ export const icon = [
         },
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备类型(type)',
           sign: 'type',
@@ -1240,16 +1144,10 @@ export const icon = [
         }
       ],
       GJB: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
@@ -1257,7 +1155,7 @@ export const icon = [
         },
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备类型(type)',
           sign: 'type',
@@ -1312,16 +1210,10 @@ export const icon = [
         }
       ],
       GB: [
-        {
-          defaultValue: '',
-          description: '',
-          name: '设备名称(name)',
-          sign: 'name',
-          unit: ''
-        },
+
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备型号(model)',
           sign: 'model',
@@ -1329,7 +1221,7 @@ export const icon = [
         },
 
         {
-          defaultValue: '',
+          defaultValue: '0',
           description: '',
           name: '设备类型(type)',
           sign: 'type',
@@ -1655,4 +1547,43 @@ export const icon = [
     type: 'icon',
     typeId: 'icon'
   }]
+
+export const line = [
+  {
+    id: 99,
+    name: '线路',
+    sheetName: 'Line',
+    type: 'icon',
+    typeId: 'icon',
+    originData: {
+      CCS: [
+        {
+          defaultValue: '',
+          description: '',
+          name: '空',
+          sign: '',
+          unit: ''
+        },
+      ],
+      GJB: [
+        {
+          defaultValue: '',
+          description: '',
+          name: '空',
+          sign: '',
+          unit: ''
+        },
+      ],
+      GB: [
+        {
+          defaultValue: '',
+          description: '',
+          name: '空',
+          sign: '',
+          unit: ''
+        },
+      ]
+    }
+  }
+]
 

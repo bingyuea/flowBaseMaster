@@ -163,6 +163,8 @@
         } else {
           let originData
           originData = icon.find(item => item.id === id) && icon.find(item => item.id === id).originData
+          // line 特殊处理
+          if (id === 'x-broken') originData = line[0].originData
           this.originDataObj = {
             originData: originData,
             originId: id,
@@ -443,17 +445,18 @@
       _edgeMousedown (event) {
         const _t = this
         _t.doClearAllStates()
-        // const model = event.item.getModel()
-        // const id = model && model.type
-        // this.eventItem = event.item
+        const model = event.item.getModel()
+        const id = model && model.type
+        this.currentShape =model.name
+        debugger
         // 需要存 model数据
-        // if (id) this.getOriginData(id, JSON.stringify(model))
+        if (id) this.getOriginData(id, JSON.stringify(model))
         if (event.item && !event.item.destroyed) {
           _t.editor.setItemState(event.item, 'active', !event.item.hasState('active'))
         }
       },
       _edgeDblclick () {
-        // this.dialogVisible = true
+        this.dialogVisible = true
       },
       _nodeHover (event) {
         const _t = this
@@ -1002,6 +1005,7 @@
             } else if (info.data === 'excel') {
               const dataList = []
               // 图
+              console.log('开始导出')
               _t.editor.getNodes().forEach((node, index) => {
                 // 处理图的bus，母线没有bus，line的bus是起始连接点，元件的连接点是与之的line非自己的点
                 const model = node.getModel()
@@ -1018,18 +1022,31 @@
                   })
                 }
                 if (model.params) {
-                  model.params.busList = []
-                  model.params.busList = _.cloneDeep(busList)
-                  dataList.push(_.cloneDeep(model.params))
+                  const paramsCopy = JSON.parse(model.params)
+                  paramsCopy.busList = []
+                  paramsCopy.busList = busList
+                  dataList.push(paramsCopy)
                 }
               })
-              console.log(dataList)
+              // 线路
+              _t.editor.getEdges().forEach((edge, index) => {
+                const model = edge.getModel()
+                const busList = []
+                busList.push(edge.getSource(), edge.getTarget())
+                if (model.params) {
+                  const paramsCopy = JSON.parse(model.params)
+                  paramsCopy.busList = []
+                  paramsCopy.busList = busList
+                  dataList.push(paramsCopy)
+                }
+              })
+              console.log('得到参数',dataList)
               if (!dataList.length) {
                 this.$message.error('元件数据不存在，请先录入数据在导出！')
                 return
               }
               const excelData = _.groupBy(dataList, 'originId')
-              _t.$X.utils.exportExcel.createExcel(_.cloneDeep(excelData))
+              _t.$X.utils.exportExcel.createExcel(excelData)
             } else if (info.data === 'upload') {
               const dataList = []
               // 图
@@ -1049,9 +1066,22 @@
                   })
                 }
                 if (model.params) {
-                  model.params.busList = []
-                  model.params.busList = _.cloneDeep(busList)
-                  dataList.push(_.cloneDeep(model.params))
+                  const paramsCopy = JSON.parse(model.params)
+                  paramsCopy.busList = []
+                  paramsCopy.busList = busList
+                  dataList.push(paramsCopy)
+                }
+              })
+              // 线路
+              _t.editor.getEdges().forEach((edge, index) => {
+                const model = edge.getModel()
+                const busList = []
+                busList.push(edge.getSource(), edge.getTarget())
+                if (model.params) {
+                  const paramsCopy = JSON.parse(model.params)
+                  paramsCopy.busList = []
+                  paramsCopy.busList = busList
+                  dataList.push(paramsCopy)
                 }
               })
               console.log(dataList)

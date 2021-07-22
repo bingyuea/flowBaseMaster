@@ -29,15 +29,20 @@ export default {
           }
         }
 
-        row.originData.CCS.map(cell => {
-          const name = cell.sign
-          Object.assign(obj, {
-            'uid': rowIndex,
-            'idx': row.form.idx,
-            ...obj,
-            [name]: cell.defaultValue
-          })
+        // line无originData css
+        Object.assign(obj, {
+          'uid': rowIndex,
+          'idx': row.form.idx,
         })
+        if ( row.originData && row.originData.CCS){
+          row.originData.CCS.map(cell => {
+            const name = cell.sign
+            Object.assign(obj, {
+              ...obj,
+              [name]: cell.defaultValue
+            })
+          })
+        }
         console.log(obj)
         return obj
       })

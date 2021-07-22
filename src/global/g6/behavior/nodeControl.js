@@ -15,7 +15,7 @@ const TIME_FRAME = 200
 export default {
   name: 'node-control',
   options: {
-    getDefaultCfg () {
+    getDefaultCfg() {
       return {
         config: {
           shapeControlPoint: {
@@ -47,7 +47,7 @@ export default {
         }
       }
     },
-    getEvents () {
+    getEvents() {
       return {
         'editor:addNode': 'onEditorAddNode',
         'node:click': 'onNodeClick',
@@ -72,7 +72,7 @@ export default {
         'mouseup': 'onMouseup'
       }
     },
-    onEditorAddNode (node) {
+    onEditorAddNode(node) {
       const _t = this
       // console.log('onEditorAddNode', node)
       // 初始化数据
@@ -84,9 +84,9 @@ export default {
       _t.dragNode.status = 'dragNodeToEditor'
     },
 
-    onNodeClick (event) {
+    onNodeClick(event) {
     },
-    onNodeMousedown (event) {
+    onNodeMousedown(event) {
       // console.log('onNodeMousedown')
       // 非左键忽略
       if (!utils.common.isLeftKey(event)) {
@@ -94,7 +94,7 @@ export default {
       }
       const _t = this
       const model = event.item.getModel()
-      _t.graph.emit('editor:getItem', [
+      _t.graph.emit('editor:getItem',[
         {
           type: 'node',
           id: model.id,
@@ -128,51 +128,51 @@ export default {
       //     _t.info.type = 'shapeControlPoint'
       //   }
       // }
-      if (_t.info && _t.info.type && _t[_t.info.type].start) {
-        _t[_t.info.type].start.call(_t, event)
+      if (_t.info && _t.info.type && _t[ _t.info.type ].start) {
+        _t[ _t.info.type ].start.call(_t,event)
       }
     },
-    onNodeDragStart (event) {
+    onNodeDragStart(event) {
       const _t = this
       // console.log('onNodeDragStart')
       _t.info.type = 'dragNode'
-      if (_t.info && _t.info.type && _t[_t.info.type].start) {
-        _t[_t.info.type].start.call(_t, event)
+      if (_t.info && _t.info.type && _t[ _t.info.type ].start) {
+        _t[ _t.info.type ].start.call(_t,event)
       }
     },
-    onNodeDrag (event) {
+    onNodeDrag(event) {
       // console.log('onNodeDrag', new Date().getTime())
       const _t = this
       // utils.common.throttle(function () {
-        if (_t.info && _t.info.type && _t[_t.info.type].move) {
-          _t[_t.info.type].move.call(_t, event)
-        }
+      if (_t.info && _t.info.type && _t[ _t.info.type ].move) {
+        _t[ _t.info.type ].move.call(_t,event)
+      }
       // }, TIME_FRAME)()
     },
-    onNodeDragEnd (event) {
+    onNodeDragEnd(event) {
       // console.log('onNodeDragEnd')
       const _t = this
-      if (_t.info && _t.info.type && _t[_t.info.type].stop) {
-        _t[_t.info.type].stop.call(_t, event)
+      if (_t.info && _t.info.type && _t[ _t.info.type ].stop) {
+        _t[ _t.info.type ].stop.call(_t,event)
       }
     },
-    onNodeMouseup (event) {
+    onNodeMouseup(event) {
       // console.log('onNodeMouseup', _t)
       const _t = this
-      if (_t.info && _t.info.type && _t[_t.info.type].stop) {
-        _t[_t.info.type].stop.call(_t, event)
+      if (_t.info && _t.info.type && _t[ _t.info.type ].stop) {
+        _t[ _t.info.type ].stop.call(_t,event)
       }
     },
-    onNodeDblclick (event) {
+    onNodeDblclick(event) {
       const _t = this
       if (_t.config.nodeLabel) {
         // _t.nodeLabel.create.call(_t, event)
       }
     },
-    onNodeContextmenu (event) {
+    onNodeContextmenu(event) {
       // console.log('onNodeContextmenu')
       const _t = this
-      _t.graph.emit('editor:contextmenu', {
+      _t.graph.emit('editor:contextmenu',{
         type: 'node',
         x: event.clientX,
         y: event.clientY,
@@ -180,11 +180,11 @@ export default {
         canvasY: event.canvasY
       })
     },
-    onEdgeMousedown (event) {
+    onEdgeMousedown(event) {
       // console.log('onEdgeMousedown')
       const _t = this
       const model = event.item.getModel()
-      _t.graph.emit('editor:getItem', [
+      _t.graph.emit('editor:getItem',[
         {
           type: 'edge',
           id: model.id,
@@ -192,24 +192,24 @@ export default {
         }
       ])
     },
-    onEdgeMouseup (event) {
+    onEdgeMouseup(event) {
       // console.log('onEdgeMouseup')
       const _t = this
       if (_t.info && _t.info.type === 'drawLine') {
-        _t[_t.info.type].stop.call(_t, event)
+        _t[ _t.info.type ].stop.call(_t,event)
       }
     },
-    onEdgeDblclick (event) {
+    onEdgeDblclick(event) {
       // console.log('onEdgeDblclick')
       const _t = this
       if (_t.config.edgeLabel) {
         // _t.edgeLabel.create.call(_t, event)
       }
     },
-    onEdgeContextmenu (event) {
+    onEdgeContextmenu(event) {
       // console.log('onEdgeContextmenu')
       const _t = this
-      _t.graph.emit('editor:contextmenu', {
+      _t.graph.emit('editor:contextmenu',{
         type: 'edge',
         x: event.clientX,
         y: event.clientY,
@@ -217,24 +217,24 @@ export default {
         canvasY: event.canvasY
       })
     },
-    onCanvasMouseenter (event) {
+    onCanvasMouseenter(event) {
       // console.log('onCanvasMouseenter')
       const _t = this
       if (_t.info && _t.info.type === 'dragNode') {
-        _t[_t.info.type].createDottedNode.call(_t, event)
+        _t[ _t.info.type ].createDottedNode.call(_t,event)
       }
     },
-    onCanvasMouseleave (event) {
+    onCanvasMouseleave(event) {
       // console.log('onCanvasMouseleave')
       const _t = this
       if (_t.info && _t.info.type === 'dragNode') {
-        _t[_t.info.type].stop.call(_t, event)
+        _t[ _t.info.type ].stop.call(_t,event)
       }
     },
-    onCanvasContextmenu (event) {
+    onCanvasContextmenu(event) {
       // console.log('onCanvasContextmenu')
       const _t = this
-      _t.graph.emit('editor:contextmenu', {
+      _t.graph.emit('editor:contextmenu',{
         type: 'canvas',
         x: event.clientX,
         y: event.clientY,
@@ -242,7 +242,7 @@ export default {
         canvasY: event.canvasY
       })
     },
-    onCanvasMousedown (event) {
+    onCanvasMousedown(event) {
       // console.log('onCanvasMousedown')
       // 非左键忽略
       if (!utils.common.isLeftKey(event)) {
@@ -257,46 +257,46 @@ export default {
           y: event.y
         }
       }
-      if (_t.info && _t.info.type && _t[_t.info.type].start) {
-        _t[_t.info.type].start.call(_t, event)
+      if (_t.info && _t.info.type && _t[ _t.info.type ].start) {
+        _t[ _t.info.type ].start.call(_t,event)
       }
     },
-    onCanvasMousemove (event) {
+    onCanvasMousemove(event) {
       // console.log('onCanvasMousemove')
       const _t = this
       // utils.common.throttle(function () {
-        if (_t.info && _t.info.type && _t[_t.info.type].move) {
-          console.log('onCanvasMousemove', _t.info.type)
-          _t[_t.info.type].move.call(_t, event)
-        }
+      if (_t.info && _t.info.type && _t[ _t.info.type ].move) {
+        console.log('onCanvasMousemove',_t.info.type)
+        _t[ _t.info.type ].move.call(_t,event)
+      }
       // }, TIME_FRAME)()
     },
-    onCanvasMouseup (event) {
+    onCanvasMouseup(event) {
       const _t = this
-      console.log('onCanvasMouseup', _t.info)
-      if (_t.info && _t.info.type && _t[_t.info.type].stop) {
-        _t[_t.info.type].stop.call(_t, event)
+      console.log('onCanvasMouseup',_t.info)
+      if (_t.info && _t.info.type && _t[ _t.info.type ].stop) {
+        _t[ _t.info.type ].stop.call(_t,event)
       }
     },
-    onMousemove (event) {
+    onMousemove(event) {
       const _t = this
       // console.log('onMousemove', _t.info)
       // utils.common.throttle(function () {
-        if (_t.info && _t.info.type && _t[_t.info.type].move) {
-          _t[_t.info.type].move.call(_t, event)
-        }
+      if (_t.info && _t.info.type && _t[ _t.info.type ].move) {
+        _t[ _t.info.type ].move.call(_t,event)
+      }
       // }, TIME_FRAME)()
     },
-    onMouseup (event) {
+    onMouseup(event) {
       const _t = this
       console.log('onMouseup')
       if (_t.info) {
         if (_t.info.type) {
           if (_t.info.type === 'dragNode' && _t.dragNode.status === 'dragNodeToEditor') {
-            _t[_t.info.type].createNode.call(_t, event)
+            _t[ _t.info.type ].createNode.call(_t,event)
           }
-          if (_t[_t.info.type].stop) {
-            _t[_t.info.type].stop.call(_t, event)
+          if (_t[ _t.info.type ].stop) {
+            _t[ _t.info.type ].stop.call(_t,event)
           }
         }
       }
@@ -305,7 +305,7 @@ export default {
     drawLine: {
       isMoving: false,
       currentLine: null,
-      start (event) {
+      start(event) {
         const _t = this
         let sourceAnchor
         const startModel = _t.info.node.getModel()
@@ -314,9 +314,12 @@ export default {
         // 处理线条目标点
         if (anchorPoints && anchorPoints.length) {
           // 获取距离指定坐标最近的一个锚点
-          sourceAnchor = _t.info.node.getLinkPoint({ x: event.x, y: event.y })
+          sourceAnchor = _t.info.node.getLinkPoint({
+            x: event.x,
+            y: event.y
+          })
         }
-        const handleArrowStyle = function (data, lineColor) {
+        const handleArrowStyle = function(data,lineColor) {
           if (!data) {
             return false
           }
@@ -329,7 +332,7 @@ export default {
           // console.log('arrowStyle', arrowStyle, data, lineColor)
           return arrowStyle
         }
-        _t.drawLine.currentLine = _t.graph.addItem('edge', {
+        _t.drawLine.currentLine = _t.graph.addItem('edge',{
           id: G6Util.uniqueId(),
           // 起始节点
           source: startModel.id,
@@ -355,15 +358,15 @@ export default {
             stroke: _t.graph.$D.lineColor,
             lineWidth: _t.graph.$D.lineWidth,
             ...config.edge.style.default,
-            ...config.edge.type[_t.graph.$D.lineDash]
+            ...config.edge.type[ _t.graph.$D.lineDash ]
           },
           // FIXME 边的形式需要与工具栏联动
           type: _t.graph.$D.lineType || 'line',
-          // 添加和 node 相同的currentShape
           name: '线路',
           sheetName: 'Line',
-          startArrow: handleArrowStyle(_t.graph.$D.startArrow, _t.graph.$D.lineColor),
-          endArrow: handleArrowStyle(_t.graph.$D.endArrow, _t.graph.$D.lineColor)
+          // 添加和 node 相同的currentShape
+          startArrow: handleArrowStyle(_t.graph.$D.startArrow,_t.graph.$D.lineColor),
+          endArrow: handleArrowStyle(_t.graph.$D.endArrow,_t.graph.$D.lineColor)
         })
         if (_t.config.tooltip.dragEdge) {
           // _t.toolTip.create.call(_t, {
@@ -373,24 +376,24 @@ export default {
         }
         _t.drawLine.isMoving = true
       },
-      move (event) {
+      move(event) {
         const _t = this
         if (_t.drawLine.isMoving && _t.drawLine.currentLine && _t.drawLine.currentLine._cfg) {
-          _t.graph.updateItem(_t.drawLine.currentLine, {
+          _t.graph.updateItem(_t.drawLine.currentLine,{
             target: {
               x: event.x,
               y: event.y
             }
           })
           if (_t.config.tooltip.dragEdge) {
-            _t.toolTip.update.call(_t, {
+            _t.toolTip.update.call(_t,{
               left: event.canvasX,
               top: event.canvasY + 10
-            }, `X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}`)
+            },`X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}`)
           }
         }
       },
-      stop (event) {
+      stop(event) {
         const _t = this
         if (_t.drawLine.isMoving) {
           if (_t.drawLine.currentLine === event.item) {
@@ -412,10 +415,10 @@ export default {
               const endData = JSON.parse(endModel.data)
               const startData = JSON.parse(startModel.data)
               /* if (startData.type === endData.type && startData.id !== endData.id) {
-                Message.error(startData.type + '类型相同不能连线！')
-                _t.graph.removeItem(_t.drawLine.currentLine)
-                return
-              } */
+               Message.error(startData.type + '类型相同不能连线！')
+               _t.graph.removeItem(_t.drawLine.currentLine)
+               return
+               } */
             }
             let targetAnchor
             // 锚点数据
@@ -423,9 +426,13 @@ export default {
             // 处理线条目标点
             if (anchorPoints && anchorPoints.length) {
               // 获取距离指定坐标最近的一个锚点
-              targetAnchor = endNode.getLinkPoint({ x: event.x, y: event.y })
+              targetAnchor = endNode.getLinkPoint({
+                x: event.x,
+                y: event.y
+              })
             }
-            _t.graph.updateItem(_t.drawLine.currentLine, {
+            _t.graph.updateItem(_t.drawLine.currentLine,{
+              idx: _t.graph.$C.idx.idx,
               target: endModel.id,
               targetAnchor: targetAnchor ? targetAnchor.anchorIndex : '',
               // 存储起始点ID，用于拖拽节点时更新线条 todo
@@ -435,8 +442,9 @@ export default {
                 label: `X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}`
               }
             })
+            _t.graph.$C.idx.setIdx()
             // 记录操作日志
-            _t.graph.emit('editor:record', 'drawLine stop')
+            _t.graph.emit('editor:record','drawLine stop')
           }
         }
         if (_t.config.tooltip.dragEdge) {
@@ -454,7 +462,7 @@ export default {
       isProportional: false,
       // 原始节点信息
       originNodeModel: null,
-      start (event) {
+      start(event) {
         const _t = this
         const model = _t.info.node.getModel()
         _t.shapeControlPoint.originNodeModel = {
@@ -467,16 +475,17 @@ export default {
         _t.shapeControlPoint.isMoving = true
         // 是否等比缩放
         // FIXME !!! 此处应该通过物料配置控制
-        // _t.shapeControlPoint.isProportional = ['square', 'circle', 'bidirectional-arrow', 'arrow'].includes(model.shape)
+        // _t.shapeControlPoint.isProportional = ['square', 'circle', 'bidirectional-arrow',
+        // 'arrow'].includes(model.shape)
         _t.shapeControlPoint.isProportional = false
         if (_t.config.tooltip.shapeControl) {
-          _t.toolTip.create.call(_t, {
+          _t.toolTip.create.call(_t,{
             left: model.x,
-            top: model.y + model.height / 2
-          }, `X: ${model.x.toFixed(2)} Y: ${model.y.toFixed(2)}<br>W: ${model.size[0].toFixed(2)} H: ${model.size[1].toFixed(2)}`)
+            top: model.y + model.height/2
+          },`X: ${model.x.toFixed(2)} Y: ${model.y.toFixed(2)}<br>W: ${model.size[ 0 ].toFixed(2)} H: ${model.size[ 1 ].toFixed(2)}`)
         }
       },
-      move (event) {
+      move(event) {
         const _t = this
         const originNodeModel = _t.shapeControlPoint.originNodeModel
         if (_t.info.node && _t.info.target && originNodeModel && _t.shapeControlPoint.isMoving) {
@@ -493,81 +502,81 @@ export default {
           if (position) {
             // 参照点，及当前controller的对角点
             // 参照点位置信息
-            const referencePosition = [1 - position.x, 1 - position.y]
+            const referencePosition = [1 - position.x,1 - position.y]
             // 相对图形坐标原点，(0,0)点位于图形左上角，与position的坐标系相同
-            const originX = originNodeModel.x - width / 2
-            const originY = originNodeModel.y - height / 2
+            const originX = originNodeModel.x - width/2
+            const originY = originNodeModel.y - height/2
             // 参照点坐标
             const referencePoint = {
-              x: referencePosition[0] * width + originX,
-              y: referencePosition[1] * height + originY
+              x: referencePosition[ 0 ]*width + originX,
+              y: referencePosition[ 1 ]*height + originY
             }
             // 计算中心点坐标
-            attrs.x = referencePoint.x + (event.x - referencePoint.x) / 2
-            attrs.y = referencePoint.y + (event.y - referencePoint.y) / 2
+            attrs.x = referencePoint.x + (event.x - referencePoint.x)/2
+            attrs.y = referencePoint.y + (event.y - referencePoint.y)/2
             // 计算图形宽高
             if (_t.shapeControlPoint.isProportional) {
-              attrs.size[0] = attrs.size[1] = Math.abs(referencePoint.x - event.x)
+              attrs.size[ 0 ] = attrs.size[ 1 ] = Math.abs(referencePoint.x - event.x)
             } else if (position.x > 0 && position.x < 1 && (position.y === 0 || position.y === 1)) {
               attrs.x = originNodeModel.x
-              attrs.size[0] = originNodeModel.size[0]
-              attrs.size[1] = Math.abs(referencePoint.y - event.y)
+              attrs.size[ 0 ] = originNodeModel.size[ 0 ]
+              attrs.size[ 1 ] = Math.abs(referencePoint.y - event.y)
             } else if (position.y > 0 && position.y < 1 && (position.x === 0 || position.x === 1)) {
               // 横向
               attrs.y = originNodeModel.y
-              attrs.size[0] = Math.abs(referencePoint.x - event.x)
-              attrs.size[1] = originNodeModel.size[1]
+              attrs.size[ 0 ] = Math.abs(referencePoint.x - event.x)
+              attrs.size[ 1 ] = originNodeModel.size[ 1 ]
             } else {
               // 对角线
-              attrs.size[0] = Math.abs(referencePoint.x - event.x)
-              attrs.size[1] = Math.abs(referencePoint.y - event.y)
+              attrs.size[ 0 ] = Math.abs(referencePoint.x - event.x)
+              attrs.size[ 1 ] = Math.abs(referencePoint.y - event.y)
             }
             // 处理宽高最小值
-            if (attrs.size[0] < originNodeModel.minWidth || attrs.size[1] < originNodeModel.minHeight) {
+            if (attrs.size[ 0 ] < originNodeModel.minWidth || attrs.size[ 1 ] < originNodeModel.minHeight) {
               return
             }
           } else {
             return
           }
           // 格式化size
-          attrs.size[0] = parseInt(attrs.size[0])
-          attrs.size[1] = parseInt(attrs.size[1])
+          attrs.size[ 0 ] = parseInt(attrs.size[ 0 ])
+          attrs.size[ 1 ] = parseInt(attrs.size[ 1 ])
           // 设置宽高
-          attrs.width = attrs.size[0]
-          attrs.height = attrs.size[1]
+          attrs.width = attrs.size[ 0 ]
+          attrs.height = attrs.size[ 1 ]
           // 存储attrs
           _t.info.attrs = attrs
           // 更新toolTip
           if (_t.config.tooltip.shapeControl) {
-            _t.toolTip.update.call(_t, {
+            _t.toolTip.update.call(_t,{
               left: attrs.x,
-              top: attrs.y + attrs.size[1] / 2
-            }, `X: ${attrs.x.toFixed(2)} Y: ${attrs.y.toFixed(2)}<br>W: ${attrs.size[0].toFixed(2)} H: ${attrs.size[1].toFixed(2)}`)
+              top: attrs.y + attrs.size[ 1 ]/2
+            },`X: ${attrs.x.toFixed(2)} Y: ${attrs.y.toFixed(2)}<br>W: ${attrs.size[ 0 ].toFixed(2)} H: ${attrs.size[ 1 ].toFixed(2)}`)
           }
           // 当前节点容器
           const group = _t.info.node.getContainer()
           // 更新锚点
           utils.anchor.update({
             ..._t.info.node.getModel(),
-            width: attrs.size[0],
-            height: attrs.size[1]
-          }, group)
+            width: attrs.size[ 0 ],
+            height: attrs.size[ 1 ]
+          },group)
           // 更新shapeControl
           utils.shapeControl.update({
             ..._t.info.node.getModel(),
-            width: attrs.size[0],
-            height: attrs.size[1]
-          }, group)
+            width: attrs.size[ 0 ],
+            height: attrs.size[ 1 ]
+          },group)
           // 更新节点
-          _t.graph.updateItem(_t.info.node, attrs)
+          _t.graph.updateItem(_t.info.node,attrs)
           _t.graph.refreshItem(_t.info.node)
           if (_t.config.shapeControlPoint.updateEdge) {
             // 更新边
-            utils.edge.update(_t.info.node, _t.graph)
+            utils.edge.update(_t.info.node,_t.graph)
           }
         }
       },
-      stop (event) {
+      stop(event) {
         const _t = this
         if (_t.info.node && _t.info.attrs && _t.shapeControlPoint.originNodeModel && _t.shapeControlPoint.isMoving) {
           const attrs = _t.info.attrs
@@ -576,23 +585,23 @@ export default {
           // 更新锚点
           utils.anchor.update({
             ..._t.info.node.getModel(),
-            width: attrs.size[0],
-            height: attrs.size[1]
-          }, group)
+            width: attrs.size[ 0 ],
+            height: attrs.size[ 1 ]
+          },group)
           // 更新shapeControl
           utils.shapeControl.update({
             ..._t.info.node.getModel(),
-            width: attrs.size[0],
-            height: attrs.size[1]
-          }, group)
+            width: attrs.size[ 0 ],
+            height: attrs.size[ 1 ]
+          },group)
           // 更新节点
-          _t.graph.updateItem(_t.info.node, attrs)
+          _t.graph.updateItem(_t.info.node,attrs)
           if (_t.config.shapeControlPoint.updateEdge) {
             // 更新边
-            utils.edge.update(_t.info.node, _t.graph)
+            utils.edge.update(_t.info.node,_t.graph)
           }
           // 记录操作日志
-          _t.graph.emit('editor:record', 'shapeControlPoint stop')
+          _t.graph.emit('editor:record','shapeControlPoint stop')
         }
         if (_t.config.tooltip.shapeControl) {
           _t.toolTip.destroy.call(_t)
@@ -605,7 +614,7 @@ export default {
     // 图形控制 旋转
     shapeControlRotate: {
       isMoving: false,
-      start (event) {
+      start(event) {
         const _t = this
         _t.shapeControlRotate.isMoving = true
         // 计算旋转度数
@@ -619,14 +628,14 @@ export default {
           y: event.y
         }
         // 弧度，由于旋转把手位于图形正上方，因此需再加 Math.PI / 2
-        const radian = Math.atan2(p2.y - p1.y, p2.x - p1.x) + Math.PI / 2
+        const radian = Math.atan2(p2.y - p1.y,p2.x - p1.x) + Math.PI/2
         // 角度
-        const angle = radian * (180 / Math.PI)
+        const angle = radian*(180/Math.PI)
         if (_t.config.tooltip.shapeControl) {
-          _t.toolTip.create.call(_t, {
+          _t.toolTip.create.call(_t,{
             left: model.x,
-            top: model.y + model.height / 2
-          }, `${angle.toFixed(2)}°`)
+            top: model.y + model.height/2
+          },`${angle.toFixed(2)}°`)
         }
         // 更新节点
         const keyShape = _t.info.node.getKeyShape()
@@ -634,12 +643,12 @@ export default {
         keyShape.rotate(radian)
         const group = _t.graph.get('group')
         // 更新shapeControl
-        utils.shapeControl.rotate(model, group, radian)
+        utils.shapeControl.rotate(model,group,radian)
         // 更新锚点
-        utils.anchor.rotate(model, group, radian)
+        utils.anchor.rotate(model,group,radian)
         // _t.graph.paint()
       },
-      move (event) {
+      move(event) {
         const _t = this
         // 计算旋转度数
         const model = _t.info.node.getModel()
@@ -652,15 +661,15 @@ export default {
           y: event.y
         }
         // 弧度
-        const radian = Math.atan2(p2.y - p1.y, p2.x - p1.x) + Math.PI / 2
+        const radian = Math.atan2(p2.y - p1.y,p2.x - p1.x) + Math.PI/2
         model.radian = radian
         // 角度
-        const angle = radian * (180 / Math.PI)
+        const angle = radian*(180/Math.PI)
         if (_t.config.tooltip.shapeControl) {
-          _t.toolTip.update.call(_t, {
+          _t.toolTip.update.call(_t,{
             left: model.x,
-            top: model.y + model.height / 2
-          }, `${angle.toFixed(2)}°`)
+            top: model.y + model.height/2
+          },`${angle.toFixed(2)}°`)
         }
         // 更新节点
         const keyShape = _t.info.node.getKeyShape()
@@ -669,12 +678,12 @@ export default {
         keyShape.rotate(radian)
         const group = _t.graph.get('group')
         // 更新shapeControl
-        utils.shapeControl.rotate(model, group, radian)
+        utils.shapeControl.rotate(model,group,radian)
         // 更新锚点
-        utils.anchor.rotate(model, group, radian)
+        utils.anchor.rotate(model,group,radian)
         // _t.graph.paint()
       },
-      stop (event) {
+      stop(event) {
         const _t = this
         if (_t.config.tooltip.shapeControl) {
           _t.toolTip.destroy.call(_t)
@@ -691,34 +700,42 @@ export default {
       dottedNodeStyle: {
         ...config.dottedNode.style.default
       },
-      createDottedNode (event) {
+      createDottedNode(event) {
         const _t = this
         if (!_t.dragNode.dottedNode && _t.info.node) {
-          const { width, height } = _t.info.node
+          const {
+            width,
+            height
+          } = _t.info.node
           const group = _t.graph.get('group')
-          _t.dragNode.dottedNode = group.addShape('rect', {
+          _t.dragNode.dottedNode = group.addShape('rect',{
             name: 'dottedNode',
             attrs: {
               ..._t.dragNode.dottedNodeStyle,
               width,
               height,
-              x: event.x - width / 2,
-              y: event.y - height / 2
+              x: event.x - width/2,
+              y: event.y - height/2
             }
           })
           // _t.graph.paint()
           /*if (_t.config.tooltip.dragNode) {
-            _t.toolTip.create.call(_t, {
-              left: event.canvasX,
-              top: event.canvasY + height / 2
-            }, `X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}<br>W: ${width.toFixed(2)} H: ${height.toFixed(2)}`)
-          }*/
+           _t.toolTip.create.call(_t, {
+           left: event.canvasX,
+           top: event.canvasY + height / 2
+           }, `X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}<br>W: ${width.toFixed(2)} H: ${height.toFixed(2)}`)
+           }*/
         }
       },
-      createNode (event) {
+      createNode(event) {
         const _t = this
         if (_t.dragNode.dottedNode && _t.info.node) {
-          const { width, height, label, type } = _t.info.node
+          const {
+            width,
+            height,
+            label,
+            type
+          } = _t.info.node
           const node = {
             ..._t.info.node,
             id: G6Util.uniqueId(),
@@ -726,21 +743,24 @@ export default {
             draggable: true,
             x: event.x,
             y: event.y,
-            size: [width, height],
+            size: [width,height],
             label: label
           }
-          _t.graph.addItem('node', node)
+          _t.graph.addItem('node',node)
         }
       },
-      start (event) {
+      start(event) {
         const _t = this
         // _t.dragNode.createDottedNode.call(_t, event)
         if (_t.config.tooltip.dragNode) {
-          const { width, height } = _t.info.node.getModel()
-          _t.toolTip.create.call(_t, {
+          const {
+            width,
+            height
+          } = _t.info.node.getModel()
+          _t.toolTip.create.call(_t,{
             left: event.canvasX,
-            top: event.canvasY + height / 2
-          }, `X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}<br>W: ${width.toFixed(2)} H: ${height.toFixed(2)}`)
+            top: event.canvasY + height/2
+          },`X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}<br>W: ${width.toFixed(2)} H: ${height.toFixed(2)}`)
         }
         _t.dragNode.status = 'dragNode'
         if (_t.config.alignLine.enable) {
@@ -748,31 +768,39 @@ export default {
           _t.alignLine.start.call(_t)
         }
       },
-      move (event) {
+      move(event) {
         const _t = this
         if (_t.dragNode.status === 'dragNodeToEditor') {
           if (_t.dragNode.dottedNode && _t.info.node) {
-            const { width, height } = _t.info.node
+            const {
+              width,
+              height
+            } = _t.info.node
             _t.dragNode.dottedNode.attr({
-              x: event.x - width / 2,
-              y: event.y - height / 2
+              x: event.x - width/2,
+              y: event.y - height/2
             })
             // _t.graph.paint()
             if (_t.config.tooltip.dragNode) {
-              _t.toolTip.update.call(_t, {
+              _t.toolTip.update.call(_t,{
                 left: event.canvasX,
-                top: event.canvasY + height / 2
-              }, `X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}<br>W: ${width.toFixed(2)} H: ${height.toFixed(2)}`)
+                top: event.canvasY + height/2
+              },`X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}<br>W: ${width.toFixed(2)} H: ${height.toFixed(2)}`)
             }
             if (_t.config.alignLine.enable) {
               // 绘制对齐线
-              _t.alignLine.move.call(_t, _t.dragNode.dottedNode)
+              _t.alignLine.move.call(_t,_t.dragNode.dottedNode)
             }
           }
         } else if (_t.dragNode.status === 'dragNode') {
           if (_t.info.node) {
-            const { id, groupId, x, y } = _t.info.node.getModel()
-            _t.graph.find('node', node => {
+            const {
+              id,
+              groupId,
+              x,
+              y
+            } = _t.info.node.getModel()
+            _t.graph.find('node',node => {
               const model = node.getModel()
               // 更新当节点
               if (model.id === id) {
@@ -782,22 +810,25 @@ export default {
                   y: y + event.originalEvent.movementY
                 }
                 // 更新节点
-                _t.graph.updateItem(_t.info.node, attrs)
+                _t.graph.updateItem(_t.info.node,attrs)
                 if (_t.config.dragNode.updateEdge) {
                   // 更新边
-                  utils.edge.update(_t.info.node, _t.graph)
+                  utils.edge.update(_t.info.node,_t.graph)
                 }
                 if (_t.config.tooltip.dragNode) {
-                  const { width, height } = _t.info.node.getModel()
-                  _t.toolTip.update.call(_t, {
+                  const {
+                    width,
+                    height
+                  } = _t.info.node.getModel()
+                  _t.toolTip.update.call(_t,{
                     left: event.canvasX,
-                    top: event.canvasY + height / 2
-                  }, `X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}<br>W: ${width.toFixed(2)} H: ${height.toFixed(2)}`)
+                    top: event.canvasY + height/2
+                  },`X: ${event.x.toFixed(2)} Y: ${event.y.toFixed(2)}<br>W: ${width.toFixed(2)} H: ${height.toFixed(2)}`)
                 }
               } else {
                 if (groupId && model.groupId && model.groupId === groupId) {
                   // 更新同组节点
-                  _t.graph.updateItem(node, {
+                  _t.graph.updateItem(node,{
                     x: model.x + event.originalEvent.movementX,
                     y: model.y + event.originalEvent.movementY
                   })
@@ -806,15 +837,15 @@ export default {
             })
             if (_t.config.alignLine.enable) {
               // 绘制对齐线
-              _t.alignLine.move.call(_t, _t.info.node)
+              _t.alignLine.move.call(_t,_t.info.node)
             }
           }
         }
       },
-      stop (event) {
+      stop(event) {
         const _t = this
         // 记录操作日志
-        _t.graph.emit('editor:record', 'dragNode stop')
+        _t.graph.emit('editor:record','dragNode stop')
         _t.dragNode.clear.call(_t)
         if (_t.config.tooltip.dragNode) {
           _t.toolTip.destroy.call(_t)
@@ -824,7 +855,7 @@ export default {
         }
         // _t.graph.paint()
       },
-      clear () {
+      clear() {
         const _t = this
         if (_t.dragNode.dottedNode) {
           _t.dragNode.dottedNode.remove()
@@ -839,24 +870,24 @@ export default {
       isMoving: false,
       // 选框节点
       marqueeNode: null,
-      start (event) {
+      start(event) {
         const _t = this
         _t.drawGroup.isMoving = true
         // 清除已有group
         _t.graph.getNodes().forEach(item => {
           // 更新节点
-          _t.graph.updateItem(item, {
+          _t.graph.updateItem(item,{
             groupId: ''
           })
         })
       },
-      move (event) {
+      move(event) {
         const _t = this
         if (_t.info && _t.drawGroup.isMoving) {
           // 计算坐标、宽高
           const { startPosition } = _t.info
-          const x = startPosition.x + (event.x - startPosition.x) / 2
-          const y = startPosition.y + (event.y - startPosition.y) / 2
+          const x = startPosition.x + (event.x - startPosition.x)/2
+          const y = startPosition.y + (event.y - startPosition.y)/2
           const width = Math.abs(event.x - startPosition.x)
           const height = Math.abs(event.y - startPosition.y)
           if (!_t.drawGroup.marqueeNode) {
@@ -866,7 +897,7 @@ export default {
               type: 'rect',
               x: x,
               y: y,
-              size: [width, height],
+              size: [width,height],
               style: {
                 lineWidth: 1,
                 stroke: '#29B6F2',
@@ -880,17 +911,17 @@ export default {
                 cursor: 'default'
               }
             }
-            _t.drawGroup.marqueeNode = _t.graph.addItem('node', node)
+            _t.drawGroup.marqueeNode = _t.graph.addItem('node',node)
           } else {
-            _t.graph.updateItem(_t.drawGroup.marqueeNode, {
+            _t.graph.updateItem(_t.drawGroup.marqueeNode,{
               x: x,
               y: y,
-              size: [width, height]
+              size: [width,height]
             })
           }
         }
       },
-      stop (event) {
+      stop(event) {
         const _t = this
         // console.log('drawGroup stop')
         if (_t.info && _t.drawGroup.isMoving && _t.drawGroup.marqueeNode) {
@@ -907,15 +938,21 @@ export default {
           _t.graph.getNodes().forEach(item => {
             const model = item.getModel()
             const { id } = model
-            const { minX, maxX, minY, maxY } = item.getBBox()
+            const {
+              minX,
+              maxX,
+              minY,
+              maxY
+            } = item.getBBox()
             // 判断节点是否在组区域内
-            if (id !== marqueeNodeId && minX > marqueeNodeMinX && maxX < marqueeNodeMaxX && minY > marqueeNodeMinY && maxY < marqueeNodeMaxY) {
+            if (id !== marqueeNodeId && minX > marqueeNodeMinX && maxX < marqueeNodeMaxX && minY > marqueeNodeMinY &&
+              maxY < marqueeNodeMaxY) {
               // 更新节点
-              _t.graph.updateItem(item, {
+              _t.graph.updateItem(item,{
                 groupId
               })
               // 设置激活
-              _t.graph.setItemState(item, 'active', true)
+              _t.graph.setItemState(item,'active',true)
               currentItemArr.push({
                 type: 'node',
                 id: id,
@@ -924,7 +961,7 @@ export default {
             }
           })
           // 设置当前节点数组
-          _t.graph.emit('editor:getItem', currentItemArr)
+          _t.graph.emit('editor:getItem',currentItemArr)
           // 删除选框节点
           _t.graph.removeItem(_t.drawGroup.marqueeNode)
         }
@@ -935,21 +972,27 @@ export default {
     // 节点Label
     nodeLabel: {
       // 节点文本创建
-      create (event) {
+      create(event) {
         const _t = this
         const canvas = _t.graph.get('canvas')
         const node = event.item
-        const { label, x, y, width, height } = node.getModel()
+        const {
+          label,
+          x,
+          y,
+          width,
+          height
+        } = node.getModel()
         const el = canvas.get('el')
         const html = el.parentNode.querySelector('.inputBox')
         if (html) {
           html.value = label
           // 更新输入框样式
-          G6DomUtil.modifyCSS(html, {
+          G6DomUtil.modifyCSS(html,{
             display: 'inline-block',
             position: 'absolute',
-            left: x - width / 2 + 'px',
-            top: y - height / 2 + 'px',
+            left: x - width/2 + 'px',
+            top: y - height/2 + 'px',
             width: width + 'px',
             height: height + 'px',
             lineHeight: height + 'px',
@@ -960,9 +1003,9 @@ export default {
           if (html.focus) {
             html.focus()
           }
-          const handler = function () {
+          const handler = function() {
             // 更新节点
-            _t.graph.updateItem(node, {
+            _t.graph.updateItem(node,{
               label: html.value,
               labelCfg: {
                 position: 'bottom',
@@ -972,25 +1015,31 @@ export default {
                 }
               }
             })
-            html.removeEventListener('blur', handler)
+            html.removeEventListener('blur',handler)
             // 隐藏输入框dom
-            G6DomUtil.modifyCSS(html, {
+            G6DomUtil.modifyCSS(html,{
               display: 'none'
             })
           }
-          html.addEventListener('blur', handler)
+          html.addEventListener('blur',handler)
         }
       }
     },
     // 边Label
     edgeLabel: {
       // 节点文本创建
-      create (event) {
+      create(event) {
         const _t = this
         const canvas = _t.graph.get('canvas')
         const edge = event.item
         const model = edge.getModel()
-        const { label, source, sourceAnchor, target, targetAnchor } = model
+        const {
+          label,
+          source,
+          sourceAnchor,
+          target,
+          targetAnchor
+        } = model
         // 查找节点
         const sourceNode = _t.graph.findById(source)
         const targetNode = _t.graph.findById(target)
@@ -998,8 +1047,8 @@ export default {
         const sourceAnchors = sourceNode.getAnchorPoints()
         const targetAnchors = targetNode.getAnchorPoints()
         // 查找锚点信息
-        const sourceAnchorPoint = sourceAnchors[sourceAnchor]
-        const targetAnchorPoint = targetAnchors[targetAnchor]
+        const sourceAnchorPoint = sourceAnchors[ sourceAnchor ]
+        const targetAnchorPoint = targetAnchors[ targetAnchor ]
         let left
         let top
         const minWidth = 40
@@ -1015,21 +1064,21 @@ export default {
         }
         // 计算输入框位置
         if (sourceAnchorPoint.x < targetAnchorPoint.x) {
-          left = sourceAnchorPoint.x + distance / 2 - width / 2 + 'px'
+          left = sourceAnchorPoint.x + distance/2 - width/2 + 'px'
         } else {
-          left = targetAnchorPoint.x + distance / 2 - width / 2 + 'px'
+          left = targetAnchorPoint.x + distance/2 - width/2 + 'px'
         }
         if (sourceAnchorPoint.y < targetAnchorPoint.y) {
-          top = sourceAnchorPoint.y + Math.abs(targetAnchorPoint.y - sourceAnchorPoint.y) / 2 - height / 2 + 'px'
+          top = sourceAnchorPoint.y + Math.abs(targetAnchorPoint.y - sourceAnchorPoint.y)/2 - height/2 + 'px'
         } else {
-          top = targetAnchorPoint.y + Math.abs(targetAnchorPoint.y - sourceAnchorPoint.y) / 2 - height / 2 + 'px'
+          top = targetAnchorPoint.y + Math.abs(targetAnchorPoint.y - sourceAnchorPoint.y)/2 - height/2 + 'px'
         }
         const el = canvas.get('el')
         const html = el.parentNode.querySelector('.inputBox')
         if (html) {
           html.value = label
           // 更新输入框样式
-          G6DomUtil.modifyCSS(html, {
+          G6DomUtil.modifyCSS(html,{
             display: 'inline-block',
             position: 'absolute',
             left: left,
@@ -1044,9 +1093,9 @@ export default {
           if (html.focus) {
             html.focus()
           }
-          const handler = function () {
+          const handler = function() {
             // 更新节点
-            _t.graph.updateItem(edge, {
+            _t.graph.updateItem(edge,{
               label: html.value,
               labelCfg: {
                 position: 'center',
@@ -1056,20 +1105,20 @@ export default {
                 }
               }
             })
-            html.removeEventListener('blur', handler)
+            html.removeEventListener('blur',handler)
             // 隐藏输入框dom
-            G6DomUtil.modifyCSS(html, {
+            G6DomUtil.modifyCSS(html,{
               display: 'none'
             })
           }
-          html.addEventListener('blur', handler)
+          html.addEventListener('blur',handler)
         }
       }
     },
     // 提示
     toolTip: {
       currentTip: null,
-      create (position, content) {
+      create(position,content) {
         const _t = this
         if (_t.toolTip.currentTip) {
           // console.warn(' EDITOR WARN:: can\'t creat tootip when currentTip not null!')
@@ -1082,7 +1131,7 @@ export default {
           // 插入输入框dom
           el.parentNode.appendChild(_t.toolTip.currentTip)
           // 更新输入框样式
-          G6DomUtil.modifyCSS(_t.toolTip.currentTip, {
+          G6DomUtil.modifyCSS(_t.toolTip.currentTip,{
             display: 'inline-block',
             position: 'absolute',
             left: position.left + 'px',
@@ -1100,19 +1149,19 @@ export default {
           })
         }
       },
-      update (position, content) {
+      update(position,content) {
         const _t = this
         if (_t.toolTip.currentTip) {
           // 更新文本
           _t.toolTip.currentTip.innerHTML = content
           // 更新输入框样式
-          G6DomUtil.modifyCSS(_t.toolTip.currentTip, {
+          G6DomUtil.modifyCSS(_t.toolTip.currentTip,{
             left: position.left + 'px',
             top: position.top + 'px'
           })
         }
       },
-      destroy () {
+      destroy() {
         const _t = this
         if (_t.toolTip.currentTip) {
           const canvas = _t.graph.get('canvas')
@@ -1131,11 +1180,11 @@ export default {
       lineList: [],
       // 最大距离
       maxDistance: 2,
-      start () {
+      start() {
         const _t = this
         _t.alignLine._clear.call(_t)
       },
-      _clear () {
+      _clear() {
         const _t = this
         _t.alignLine.lineList.forEach(line => {
           line.remove()
@@ -1143,55 +1192,70 @@ export default {
         _t.alignLine.lineList = []
         // _t.graph.paint()
       },
-      move (item) {
+      move(item) {
         const _t = this
         // 先清空已有对齐线
         _t.alignLine._clear.call(_t)
         const bbox = item.getBBox()
         // FIXME bbox 中x、y坐标为图形左上角坐标
         // 中上
-        const ct = { x: bbox.x + bbox.width / 2, y: bbox.y }
+        const ct = {
+          x: bbox.x + bbox.width/2,
+          y: bbox.y
+        }
         // 中心
-        const cc = { x: bbox.x + bbox.width / 2, y: bbox.y + bbox.height / 2 }
+        const cc = {
+          x: bbox.x + bbox.width/2,
+          y: bbox.y + bbox.height/2
+        }
         // 中下
-        const cb = { x: bbox.x + bbox.width / 2, y: bbox.y + bbox.height }
+        const cb = {
+          x: bbox.x + bbox.width/2,
+          y: bbox.y + bbox.height
+        }
         // 左中
-        const lc = { x: bbox.x, y: bbox.y + bbox.height / 2 }
+        const lc = {
+          x: bbox.x,
+          y: bbox.y + bbox.height/2
+        }
         // 右中
-        const rc = { x: bbox.x + bbox.width, y: bbox.y + bbox.height / 2 }
+        const rc = {
+          x: bbox.x + bbox.width,
+          y: bbox.y + bbox.height/2
+        }
         // 计算距离
-        const getDistance = function (line, point) {
+        const getDistance = function(line,point) {
           // 归一向量
-          function normalize (out, a) {
-            const x = a[0]
-            const y = a[1]
-            let len = x * x + y * y
+          function normalize(out,a) {
+            const x = a[ 0 ]
+            const y = a[ 1 ]
+            let len = x*x + y*y
             if (len > 0) {
               // TODO: evaluate use of glm_invsqrt here?
-              len = 1 / Math.sqrt(len)
-              out[0] = a[0] * len
-              out[1] = a[1] * len
+              len = 1/Math.sqrt(len)
+              out[ 0 ] = a[ 0 ]*len
+              out[ 1 ] = a[ 1 ]*len
             }
             return out
           }
 
-          function dot (a, b) {
-            return a[0] * b[0] + a[1] * b[1]
+          function dot(a,b) {
+            return a[ 0 ]*b[ 0 ] + a[ 1 ]*b[ 1 ]
           }
 
-          const pointLineDistance = function (lineX1, lineY1, lineX2, lineY2, pointX, pointY) {
-            const lineLength = [lineX2 - lineX1, lineY2 - lineY1]
-            if (lineLength[0] === 0 && lineLength[1] === 0) {
+          const pointLineDistance = function(lineX1,lineY1,lineX2,lineY2,pointX,pointY) {
+            const lineLength = [lineX2 - lineX1,lineY2 - lineY1]
+            if (lineLength[ 0 ] === 0 && lineLength[ 1 ] === 0) {
               return NaN
             }
-            const s = [-lineLength[1], lineLength[0]]
-            normalize(s, s)
-            return Math.abs(dot([pointX - lineX1, pointY - lineY1], s))
+            const s = [-lineLength[ 1 ],lineLength[ 0 ]]
+            normalize(s,s)
+            return Math.abs(dot([pointX - lineX1,pointY - lineY1],s))
           }
           return {
             line,
             point,
-            dis: pointLineDistance(line[0], line[1], line[2], line[3], point.x, point.y)
+            dis: pointLineDistance(line[ 0 ],line[ 1 ],line[ 2 ],line[ 3 ],point.x,point.y)
           }
         }
         // 遍历节点
@@ -1208,50 +1272,50 @@ export default {
           // 水平线
           const horizontalInfo = [
             // 左上 右上 tltr
-            [bbox1.minX, bbox1.minY, bbox1.maxX, bbox1.minY],
+            [bbox1.minX,bbox1.minY,bbox1.maxX,bbox1.minY],
             // 左中 右中 lcrc
-            [bbox1.minX, bbox1.centerY, bbox1.maxX, bbox1.centerY],
+            [bbox1.minX,bbox1.centerY,bbox1.maxX,bbox1.centerY],
             // 左下 右下 blbr
-            [bbox1.minX, bbox1.maxY, bbox1.maxX, bbox1.maxY]
+            [bbox1.minX,bbox1.maxY,bbox1.maxX,bbox1.maxY]
           ]
           // 垂直线
           const verticalInfo = [
             // 左上 左下 tlbl
-            [bbox1.minX, bbox1.minY, bbox1.minX, bbox1.maxY],
+            [bbox1.minX,bbox1.minY,bbox1.minX,bbox1.maxY],
             // 上中 下中 tcbc
-            [bbox1.centerX, bbox1.minY, bbox1.centerX, bbox1.maxY],
+            [bbox1.centerX,bbox1.minY,bbox1.centerX,bbox1.maxY],
             // 上右 下右 trbr
-            [bbox1.maxX, bbox1.minY, bbox1.maxX, bbox1.maxY]
+            [bbox1.maxX,bbox1.minY,bbox1.maxX,bbox1.maxY]
           ]
           horizontalInfo.forEach(line => {
-            horizontalLines.push(getDistance(line, ct))
-            horizontalLines.push(getDistance(line, cc))
-            horizontalLines.push(getDistance(line, cb))
+            horizontalLines.push(getDistance(line,ct))
+            horizontalLines.push(getDistance(line,cc))
+            horizontalLines.push(getDistance(line,cb))
           })
           verticalInfo.forEach(line => {
-            verticalLines.push(getDistance(line, lc))
-            verticalLines.push(getDistance(line, cc))
-            verticalLines.push(getDistance(line, rc))
+            verticalLines.push(getDistance(line,lc))
+            verticalLines.push(getDistance(line,cc))
+            verticalLines.push(getDistance(line,rc))
           })
-          horizontalLines.sort((a, b) => a.dis - b.dis)
-          verticalLines.sort((a, b) => a.dis - b.dis)
+          horizontalLines.sort((a,b) => a.dis - b.dis)
+          verticalLines.sort((a,b) => a.dis - b.dis)
           // 过滤掉距离为0的线条
           horizontalLines = horizontalLines.filter(lineItem => lineItem.dis !== 0)
-          if (horizontalLines.length && horizontalLines[0].dis < _t.alignLine.maxDistance) {
+          if (horizontalLines.length && horizontalLines[ 0 ].dis < _t.alignLine.maxDistance) {
             // 取前3个距离相等的线条
             for (let i = 0; i < 3; i++) {
-              if (horizontalLines[0].dis === horizontalLines[i].dis) {
-                info.horizontals.push(horizontalLines[i])
+              if (horizontalLines[ 0 ].dis === horizontalLines[ i ].dis) {
+                info.horizontals.push(horizontalLines[ i ])
               }
             }
           }
           // 过滤掉距离为0的线条
           verticalLines = verticalLines.filter(lineItem => lineItem.dis !== 0)
-          if (verticalLines.length && verticalLines[0].dis < _t.alignLine.maxDistance) {
+          if (verticalLines.length && verticalLines[ 0 ].dis < _t.alignLine.maxDistance) {
             // 取前3个距离相等的线条
             for (let i = 0; i < 3; i++) {
-              if (verticalLines[0].dis === verticalLines[i].dis) {
-                info.verticals.push(verticalLines[i])
+              if (verticalLines[ 0 ].dis === verticalLines[ i ].dis) {
+                info.verticals.push(verticalLines[ i ])
               }
             }
           }
@@ -1264,23 +1328,23 @@ export default {
             info.horizontals.forEach(lineObj => {
               const line = lineObj.line
               const point = lineObj.point
-              const lineHalf = (line[0] + line[2]) / 2
+              const lineHalf = (line[ 0 ] + line[ 2 ])/2
               let x1
               let x2
               if (point.x < lineHalf) {
-                x1 = point.x - bbox.width / 2
-                x2 = Math.max(line[0], line[2])
+                x1 = point.x - bbox.width/2
+                x2 = Math.max(line[ 0 ],line[ 2 ])
               } else {
-                x1 = point.x + bbox.width / 2
-                x2 = Math.min(line[0], line[2])
+                x1 = point.x + bbox.width/2
+                x2 = Math.min(line[ 0 ],line[ 2 ])
               }
-              const shape = group.addShape('line', {
+              const shape = group.addShape('line',{
                 name: 'alignLineHorizontal',
                 attrs: {
                   x1,
-                  y1: line[1],
+                  y1: line[ 1 ],
                   x2,
-                  y2: line[1],
+                  y2: line[ 1 ],
                   ...lineStyle
                 },
                 // 是否拾取及触发该元素的交互事件
@@ -1294,22 +1358,22 @@ export default {
             info.verticals.forEach(lineObj => {
               const line = lineObj.line
               const point = lineObj.point
-              const lineHalf = (line[1] + line[3]) / 2
+              const lineHalf = (line[ 1 ] + line[ 3 ])/2
               let y1
               let y2
               if (point.y < lineHalf) {
-                y1 = point.y - bbox.height / 2
-                y2 = Math.max(line[1], line[3])
+                y1 = point.y - bbox.height/2
+                y2 = Math.max(line[ 1 ],line[ 3 ])
               } else {
-                y1 = point.y + bbox.height / 2
-                y2 = Math.min(line[1], line[3])
+                y1 = point.y + bbox.height/2
+                y2 = Math.min(line[ 1 ],line[ 3 ])
               }
-              const shape = group.addShape('line', {
+              const shape = group.addShape('line',{
                 name: 'alignLineVertical',
                 attrs: {
-                  x1: line[0],
+                  x1: line[ 0 ],
                   y1,
-                  x2: line[0],
+                  x2: line[ 0 ],
                   y2,
                   ...lineStyle
                 },
@@ -1320,7 +1384,7 @@ export default {
           }
         })
       },
-      stop () {
+      stop() {
         const _t = this
         _t.alignLine._clear.call(_t)
       }
