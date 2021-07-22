@@ -17,7 +17,7 @@ import './global/utils/directive' // 自定义指令
 import vClickOutside from 'v-click-outside'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-Vue.use(ElementUI, { size: 'small' })
+Vue.use(ElementUI, { size: 'mini' })
 export default function (options) {
   const { el, props } = options
 

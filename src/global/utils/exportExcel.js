@@ -11,7 +11,6 @@ export default {
       const s = sheetData.map((row, rowIndex) => {
         const obj = {}
         // bus
-        debugger
         if (row.busList) {
           const bus = []
           row.busList.map((cell, index) => {
@@ -30,9 +29,11 @@ export default {
         }
 
         // line无originData css
+        debugger
         Object.assign(obj, {
           'uid': rowIndex,
           'idx': row.form.idx,
+          'name': row.form.name,
         })
         if ( row.originData && row.originData.CCS){
           row.originData.CCS.map(cell => {

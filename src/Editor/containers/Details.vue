@@ -13,7 +13,11 @@
   overflow-y: auto;
 
   .el-form-item {
-    margin-bottom: 5px;
+    margin-bottom:5px;
+    .el-form-item__label{
+      line-height: 14px;
+      padding-bottom: 0px;
+    }
   }
 
   .el-tabs__content {
@@ -29,15 +33,16 @@
 <template>
   <div class="nodeDetails">
     <el-tabs v-model='activeName'>
+      <div v-show = false>{{name}}{{idx}}</div>
       <el-tab-pane :label="objKey" :name="objKey" v-for="(list,objKey) in originData" :key='objKey'>
         <el-form :model="form" label-width="100px" label-position="top">
 
-          <el-form-item label="idx" prop="idx" class='el-form-details'>
-            <el-input disabled v-model="idx"></el-input>
+          <el-form-item label="idx" prop="idx">
+            <el-input disabled v-model="form.idx"></el-input>
           </el-form-item>
 
-          <el-form-item label="设备名称（name）" prop="idx" class='el-form-details'>
-            <el-input v-model="name"></el-input>
+          <el-form-item label="设备名称（name）" prop="idx">
+            <el-input v-model="form.name"></el-input>
           </el-form-item>
 
           <el-form-item v-for='(item,key) in list' :key='key' :prop="item.name"
@@ -104,7 +109,6 @@ export default {
         const params = {
           form: {
             ...this.form,
-            name: this.currentShape,
             sheetName: this.sheetName
           },
           originData: this.originData,
@@ -161,7 +165,7 @@ export default {
     name() {
       const idx = this.idx
       const sheetName = this.sheetName
-      this.form.name = `${idx}${sheetName}`
+      this.form.name = `${sheetName}${idx}`
       return `${sheetName}${idx}`
     },
     currentShape() {

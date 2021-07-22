@@ -288,7 +288,6 @@
           modes: {
             edit: [
               'zoom-canvas',
-              'drag-canvas',
               {
                 type: 'node-control',
                 config: {
@@ -1012,14 +1011,7 @@
                 let busList = []
                 if (model.name !== '交流母线') {
                   const edges = node.getEdges()
-                  edges.forEach((edge, edgeIndex) => {
-                    const sourceNode = edge.getSource()
-                    const targetNode = edge.getTarget()
-                    let noMe = null
-                    if (sourceNode.getID() === node.getID()) noMe = targetNode
-                    if (targetNode.getID() === node.getID()) noMe = sourceNode
-                    busList.push(noMe)
-                  })
+                  busList = _.cloneDeep(edges)
                 }
                 if (model.params) {
                   const paramsCopy = JSON.parse(model.params)
@@ -1056,14 +1048,7 @@
                 let busList = []
                 if (model.name !== '交流母线') {
                   const edges = node.getEdges()
-                  edges.forEach((edge, edgeIndex) => {
-                    const sourceNode = edge.getSource()
-                    const targetNode = edge.getTarget()
-                    let noMe = null
-                    if (sourceNode.getID() === node.getID()) noMe = targetNode
-                    if (targetNode.getID() === node.getID()) noMe = sourceNode
-                    busList.push(noMe)
-                  })
+                  busList = _.cloneDeep(edges)
                 }
                 if (model.params) {
                   const paramsCopy = JSON.parse(model.params)
@@ -1091,23 +1076,16 @@
               }
               const excelData = _.groupBy(dataList, 'originId')
               const file = _t.$X.utils.exportExcel.createExcel(excelData, true)
-              setTimeout(() => {
-                const newFile = new window.File([file], 'file', { type: 'xls' })
-                const formData = new window.FormData()
-                formData.append('file', newFile, 'fileName.xls')
-                console.log(file, 'newFile')
-                console.log(formData, 'formData')
-                axios.request({
-                  url: VAR.baseURL + 'pyapi/upload',
-                  method: 'post',
-                  data: formData
-                }).then(res => {
-                  console.log(res)
-                })
-                /* uploadFn(formData).then(res1 => {
-                  console.log(res1)
-                }) */
-              }, 0)
+              const newFile = new window.File([file], 'file', { type: 'xls' })
+              const formData = new window.FormData()
+              formData.append('file', newFile, 'fileName.xls')
+              axios.request({
+                url: VAR.baseURL + 'pyapi/upload',
+                method: 'post',
+                data: formData
+              }).then(res => {
+                console.log(res)
+              })
             }
             break
           }
