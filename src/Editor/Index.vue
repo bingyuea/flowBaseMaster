@@ -1203,6 +1203,34 @@
             _t.$X.utils.storage.set('toolList', toolList, _t.$X.config.storage.prefix)
           }
         }
+        //todo 处理 第一行 选中 TODO
+       /* if (info.name ===  "绘图模式") {
+          // 处理选中，更新toolList
+          const toolList = []
+          debugger
+          const toolListData = _t.$X.utils.storage.get('sysList', _t.$X.config.storage.prefix)
+          if (Array.isArray(toolListData)) {
+            toolListData.forEach(target => {
+              if (target.enableTool) {
+                if (target.name === info.icon) {
+                  target.selected = info.selected
+                  // 更新自定义值
+                  if (target.hasOwnProperty('custom')) {
+                    target.custom = {
+                      ...target.custom,
+                      enable: false,
+                      label: '',
+                      data: ''
+                    }
+                  }
+                }
+                toolList.push(target)
+              }
+            })
+            _t.toolList = toolList
+            _t.$X.utils.storage.set('sysList', toolList, _t.$X.config.storage.prefix)
+          }
+        }*/
       },
       initInfo (data = {}) {
         const _t = this

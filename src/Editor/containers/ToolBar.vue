@@ -126,20 +126,21 @@
             :style="item.toolbar.style"
           >
             <template v-slot:label>
-                <Dropdown trigger="click" @on-click="(val) => handleToolClick(item, val,null,null )">
+<!--                <Dropdown trigger="click" @on-click="(val) => handleToolClick(item, val,null,null )">-->
+                <Dropdown trigger="click" @on-click="(val) => handleDropdownClickToolkit(item, type, index, val)">
                   <div style="margin: 0 3px;">
                     <template v-if="item.lockLabel">
                       <div :iconfont="item.icon" :label="handleLabel(item)" style="vertical-align: middle;margin-left: -2px">{{item.label}}</div>
                     </template>
                   </div>
                   <DropdownMenu slot="list">
+<!--                    :selected="item.selected === childIndex"-->
                     <DropdownItem
                       v-for="(child, childIndex) in item.children"
                       :key="childIndex"
                       :name="childIndex"
                       :disabled="child.disabled"
                       :divided="child.divider"
-                      :selected="item.selected === childIndex"
                       style="font-size: 15px !important;"
                     >
                       {{child.icon}}
@@ -605,6 +606,29 @@
       toggleHandler (val) {
         const _t = this
         _t.isExpand = val !== undefined ? val : !_t.isExpand
+      },
+      handleDropdownClickToolkit (item, type, index, val) {
+        const _t = this
+        if (item.disabled) {
+          return
+        }
+        const child = item.children[val]
+        _t.formData[item.name] = child.name
+        /*const payload = {
+          context: 'ToolBar',
+          type: item.type,
+          name: item.name,
+          icon: item.icon,
+          item: child.child,
+          selected: val,
+        }*/
+        let payload = {
+          context: 'ToolBar',
+          name: item.name,
+          item:child
+        }
+
+        _t.$X.utils.bus.$emit('editor/tool/trigger', payload)
       },
       handleDropdownClick (item, type, index, val) {
         const _t = this
