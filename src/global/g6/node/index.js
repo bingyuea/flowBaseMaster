@@ -37,7 +37,7 @@ export default function (G6, devices) {
               y,
               width,
               height,
-              img: device.imgUrl
+              img: device.imgUrl ? device.imgUrl :' '
             }, cfg.style)
             return style
           }

@@ -8,7 +8,7 @@ import * as G6Util from '@antv/util'
 import base from '../base'
 
 export default {
-  name: 'rounded-rectangle',
+  name: 'rect',
   extendName: 'single-node',
   options: {
     ...base,
@@ -19,26 +19,17 @@ export default {
       const height = size[1]
       const x = 0 - width / 2
       const y = 0 - height / 2
-      const r = 5
       const path = [
         // 左顶点
         [ 'M', -width / 2, 0 ],
         // 左上顶点
-        [ 'L', -width / 2, -height / 2 + r ],
-        // 左上弧
-        [ 'Q', -width / 2, -height / 2, -width / 2 + r, -height / 2 ],
+        [ 'L', -width / 2, -height / 2 ],
         // 右上顶点
-        [ 'L', width / 2 - r, -height / 2 ],
-        // 右上弧
-        [ 'Q', width / 2, -height / 2, width / 2, -height / 2 + r ],
+        [ 'L', width / 2, -height / 2 ],
         // 右下顶点
-        [ 'L', width / 2, height / 2 - r ],
-        // 右下弧
-        [ 'Q', width / 2, height / 2, width / 2 - r, height / 2 ],
+        [ 'L', width / 2, height / 2 ],
         // 左下顶点
-        [ 'L', -width / 2 + r, height / 2 ],
-        // 左下弧
-        [ 'Q', -width / 2, height / 2, -width / 2, height / 2 - r ],
+        [ 'L', -width / 2, height / 2 ],
         [ 'Z' ]
       ]
       const color = cfg.color

@@ -4,10 +4,8 @@
  * 一般节点
  */
 
-import rectangle from './rectangle'
-import roundedRectangle from './rounded-rectangle'
+import rect from './rect'
 
 export default {
-  rectangle,
-  roundedRectangle
+  rect,
 }

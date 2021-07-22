@@ -987,6 +987,7 @@ export default {
           width,
           height
         } = node.getModel()
+        // todo 文本框
         const el = canvas.get('el')
         const html = el.parentNode.querySelector('.inputBox')
         if (html) {

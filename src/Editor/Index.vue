@@ -229,13 +229,17 @@
           functionlist,
           shortcutMap
         } = _t.$X.config.tools
+        debugger
+        console.log(_t.$X.config.materials)
         const materials = this.materials
-        _t.$X.config.materials = this.materials
+        _t.$X.config.materials = _t.$X.config.materials.concat(this.materials)
         _t.toolList = toolList
         _t.sysList = sysList
         _t.functionlist = functionlist
         _t.shortcutMap = shortcutMap
+        // todo svg
         _t.materialList = materials
+        // _t.materialList =  _t.$X.config.materials
         _t.$X.utils.storage.set('toolList', toolList, _t.$X.config.storage.prefix)
         _t.$X.utils.storage.set('functionlist', functionlist, _t.$X.config.storage.prefix)
         _t.$X.utils.storage.set('sysList', sysList, _t.$X.config.storage.prefix)

@@ -40,7 +40,8 @@
     @mousedown="handleMouseDown"
   >
     <div class="content" :title="title">
-      <img :class="['icon',title === '交流母线' ? 'mum' : '' ]" :src="info.img" />
+      <img  v-if = 'info.img' :class="['icon',title === '交流母线' ? 'mum' : '' ]" :src="info.img" />
+      <svg v-else class="icon" v-html="info.icon"></svg>
     </div>
   </div>
 </template>
