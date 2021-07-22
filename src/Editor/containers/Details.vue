@@ -2,7 +2,11 @@
 * Created by OXOYO on 2019/7/1.
 *
 */
-
+<style>
+.el-form--label-top .el-form-item__label{
+  padding-bottom: 0px ;
+}
+</style>
 <style scoped lang="less" rel="stylesheet/less">
 .nodeDetails {
   width: calc(100% - 20px);
@@ -19,6 +23,8 @@
       padding-bottom: 0px;
     }
   }
+
+
 
   .el-tabs__content {
     .el-tab-pane {

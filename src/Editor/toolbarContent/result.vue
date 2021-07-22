@@ -11,8 +11,7 @@
         :data="tableData"
         height="400"
         border
-        fit
-        style="width: 100%">
+        style="width: 750px">
         <el-table-column
           v-for = '(item,key) in tableHead'
           :key="key"
@@ -23,9 +22,9 @@
         </el-table-column>
 
         <el-table-column
-          fixed="right"
           label="操作"
-          width="100">
+          width = '100px'
+        >
           <template slot-scope="scope">
             <el-button @click="handleClick(scope.row)" type="text" size="small">查看电流曲线</el-button>
           </template>
@@ -73,7 +72,12 @@
       async show (val) {
         if (val) {
           const data = await startCalc()
-          this.tableData = data.data || []
+          this.tableData = (data.data || []).map((item,index) => {
+            item[2] = item[2].toFixed(4)
+            item[3] = item[3].toFixed(4)
+            item[4] = item[4].toFixed(4)
+            return item
+          })
         }
       }
     },
@@ -97,7 +101,7 @@
 
       generateData (data) {
         const temp = data.map((item, index) => {
-          return [index, item]
+          return [index, item.toFixed(4)]
         })
         return temp
       },
