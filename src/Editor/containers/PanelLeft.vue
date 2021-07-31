@@ -106,9 +106,6 @@
       materialList: Array,
       toolbarInfo: Object
     },
-    mounted () {
-      console.log(this.toolbarInfo)
-    },
     computed: {
       materials () {
         return this.materialList

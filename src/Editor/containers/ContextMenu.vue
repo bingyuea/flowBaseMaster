@@ -323,8 +323,7 @@
         _t.doHide()
       },
       handleToolClick (item, val) {
-        console.log(item, '-------234234------------')
-        console.log(item, '-------234234------------')
+        // console.log(item, '-------234234------------')
         const _t = this
         if (item.disabled) {
           return

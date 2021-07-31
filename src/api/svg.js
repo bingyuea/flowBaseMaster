@@ -15,7 +15,6 @@ export function getSvgById (id) {
 }
 
 export function uploadFn (file) {
-  console.log(file, '------------')
   /* return get({
     url: `pyapi/upload/${file}`
   }) */

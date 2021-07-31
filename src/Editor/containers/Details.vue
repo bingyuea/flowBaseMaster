@@ -123,7 +123,7 @@
             _t.currentItem[ 0 ].model.params = JSON.stringify(params)
           }
         }
-        console.log(this.form, this.originData, '--------------')
+        console.log(this.form, this.originData, '----onSubmit----------')
         // 广播事件
         _t.$X.utils.bus.$emit('editor/currentItem/update', _t.currentItem)
       }

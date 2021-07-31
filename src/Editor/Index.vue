@@ -229,8 +229,6 @@
           functionlist,
           shortcutMap
         } = _t.$X.config.tools
-        debugger
-        console.log(_t.$X.config.materials)
         const materials = this.materials
         _t.$X.config.materials = _t.$X.config.materials.concat(this.materials)
         _t.toolList = toolList
@@ -591,7 +589,7 @@
         }
       },
       handleToolTrigger (info) {
-        console.log(info, 'handleToolTrigger')
+        // console.log(info, 'handleToolTrigger')
         const _t = this
         // 是否记录日志标识
         let isRecord = false
@@ -942,25 +940,10 @@
                       const fileJson = JSON.parse(fileString)
                       // 清空画布
                       _t.editor.clear()
-                      // 更新currentItem
+                      // TOPR 这里可以提pr解决上传回写问题
                       _t.currentItem = []
-                      // 设置数据
-                      _t.editor.data(fileJson)
-                      // 渲染
-                      _t.editor.render()
-                      debugger
-                      _t.editor.getNodes().forEach(node => {
-                        const model = node.getModel()
-                        const radian = model.radian
-                        const keyShape = node.getKeyShape()
-                        keyShape.resetMatrix()
-                        keyShape.rotate(radian)
-                        const group = _t.editor.get('group')
-                        // 更新shapeControl
-                        utils.shapeControl.rotate(model, group, radian)
-                        // 更新锚点
-                        utils.anchor.rotate(model, group, radian)
-                      })
+                      _t.editor.read(fileJson)
+                      _t.editor.refresh()
                       // 缩放到实际大小
                       _t.doZoom({
                         name: 'actualSize'
@@ -986,14 +969,11 @@
             break
           }
           case 'download': {
-            debugger
-            console.log(info)
             const fileName = _t.$X.utils.filters.formatDate(new Date(), 'YYYYMMDDhhmmss')
             if (info.data === 'image') {
               _t.editor.downloadImage(fileName)
             } else if (info.data === 'json') {
               let content = _t.editor.save()
-              console.log(content, 'json')
               content = JSON.stringify(content)
               const blob = new Blob([content], {
                 type: 'application/json;charset=UTF-8'
@@ -1074,7 +1054,6 @@
                   dataList.push(paramsCopy)
                 }
               })
-              console.log(dataList)
               if (!dataList.length) {
                 this.$message.error('元件数据不存在，请先录入数据在导出！')
                 return
@@ -1106,7 +1085,7 @@
             break
           }
           case 'canvasBackground': {
-            console.log(info)
+            // console.log(info)
             _t.editor.emit('background:set', info.data)
             break
           }
@@ -1287,6 +1266,7 @@
       },
       // 更新log
       doUpdateLog (data) {
+        debugger
         const _t = this
         if (!data.hasOwnProperty('action') || !data.action) {
           return
