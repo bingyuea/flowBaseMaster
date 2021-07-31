@@ -7,5 +7,5 @@
 import rect from './rect'
 
 export default {
-  rect,
+  rect
 }

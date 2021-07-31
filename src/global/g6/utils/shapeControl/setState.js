@@ -8,11 +8,11 @@ import config from '../../config'
 
 export default function (name, value, item) {
   if (name === 'active') {
-    setState(name,value,item)
+    setState(name, value, item)
   }
 }
 
-function setState(name, value, item){
+function setState (name, value, item) {
   const group = item.getContainer()
   const children = group.get('children')
   for (let i = 0, len = children.length; i < len; i++) {

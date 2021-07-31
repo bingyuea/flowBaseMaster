@@ -33,9 +33,9 @@ export default {
         Object.assign(obj, {
           'uid': rowIndex,
           'idx': row.form.idx,
-          'name': row.form.name,
+          'name': row.form.name
         })
-        if ( row.originData && row.originData.CCS){
+        if (row.originData && row.originData.CCS) {
           row.originData.CCS.map(cell => {
             const name = cell.sign
             Object.assign(obj, {

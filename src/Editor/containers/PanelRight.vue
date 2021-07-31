@@ -73,7 +73,6 @@
       <div v-if='toolbarIcon' class="panelRight_content_item">
         <div v-for='(item,key) in toolbarIcon' :key='key'>
 
-
           <div v-if="item.parent === '短路计算' && item.icon === '三相接地短路'">
             <el-dropdown @command='(command) => handleCalc(item,command)'>
               <span class="el-dropdown-link">
@@ -95,7 +94,6 @@
                :src='item.icon ? require(`../../assets/images/toolbar/${item.icon}.png`) : ""'
                alt=""/>
         </div>
-
 
       </div>
     </div>
@@ -132,7 +130,7 @@
         const _t = this
         _t.$X.utils.bus.$emit('editor/panel/toggle', data)
       },
-      handleCalc (item,command) {
+      handleCalc (item, command) {
         /* if (item.icon === '三相接地短路') {
          // 上传
          this.$emit('show', 'uploadShow')
@@ -150,7 +148,7 @@
           })
         }
         // todo 不同的标准
-        console.log(item,command)
+        console.log(item, command)
       }
     }
 

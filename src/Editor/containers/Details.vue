@@ -25,7 +25,6 @@
     }
   }
 
-
   .el-tabs__content {
     .el-tab-pane {
       height: 540px;
@@ -89,7 +88,7 @@
         },
         originData: {},
         firstItem: null,
-        watchFlag: false,
+        watchFlag: false
       }
     },
     name: 'Details',
@@ -155,7 +154,7 @@
         },
         deep: true,
         immediate: true
-      },
+      }
     },
     computed: {
       preview () {
@@ -163,16 +162,18 @@
       },
       idx () {
         const idx = JSON.parse(this.originDataObj.model).idx
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         this.form.idx = idx
         return idx
       },
       name () {
-        if (!this.watchFlag){
+        if (!this.watchFlag) {
           const idx = this.idx
           const sheetName = this.sheetName
-          this.$set(this.form,'name',`${sheetName}${idx}`)
+          this.$set(this.form, 'name', `${sheetName}${idx}`)
           return `${sheetName}${idx}`
         }
+        return ''
       },
       currentShape () {
         const model = JSON.parse(this.originDataObj.model)

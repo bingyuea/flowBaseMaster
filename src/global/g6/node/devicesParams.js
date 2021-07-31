@@ -9,7 +9,6 @@ export const icon = [
     originData: {
       CCS: [
 
-
         {
           defaultValue: '0',
           description: '',
@@ -122,7 +121,6 @@ export const icon = [
         }
       ],
       GJB: [
-
 
         {
           defaultValue: '0',
@@ -252,7 +250,6 @@ export const icon = [
       ],
       GB: [
 
-
         {
           defaultValue: '0',
           description: '',
@@ -376,7 +373,6 @@ export const icon = [
     originData: {
       CCS: [
 
-
         {
           defaultValue: '0',
           description: '',
@@ -434,7 +430,6 @@ export const icon = [
 
       ],
       GJB: [
-
 
         {
           defaultValue: '0',
@@ -501,7 +496,6 @@ export const icon = [
 
         ],
       GB: [
-
 
         {
           defaultValue: '0',
@@ -587,7 +581,6 @@ export const icon = [
     originData: {
       CCS: [
 
-
         {
           defaultValue: '0',
           description: '',
@@ -660,7 +653,6 @@ export const icon = [
         ],
       GJB: [
 
-
         {
           defaultValue: '0',
           description: '',
@@ -708,7 +700,6 @@ export const icon = [
         }
       ],
       GB: [
-
 
         {
           defaultValue: '0',
@@ -824,7 +815,6 @@ export const icon = [
     originData: {
       CCS: [
 
-
         {
           defaultValue: '0',
           description: '',
@@ -850,7 +840,6 @@ export const icon = [
       ],
       GJB: [
 
-
         {
           defaultValue: '0',
           description: '',
@@ -875,7 +864,6 @@ export const icon = [
         }
       ],
       GB: [
-
 
         {
           defaultValue: '0',
@@ -911,8 +899,6 @@ export const icon = [
     typeId: 'icon',
     originData: {
       CCS: [
-
-
 
         {
           defaultValue: '0',
@@ -962,7 +948,6 @@ export const icon = [
         ],
       GJB: [
 
-
         {
           defaultValue: '0',
           description: '',
@@ -977,7 +962,7 @@ export const icon = [
           name: '设备类型(type)',
           sign: 'type',
           unit: ''
-        },  {
+        }, {
           defaultValue: '500',
           description: '',
           name: '断路器额定电压(Ur)',
@@ -1009,7 +994,6 @@ export const icon = [
           unit: ''
         }],
       GB: [
-
 
         {
           defaultValue: '0',
@@ -1095,7 +1079,6 @@ export const icon = [
     originData: {
       CCS: [
 
-
         {
           defaultValue: '0',
           description: '',
@@ -1161,7 +1144,6 @@ export const icon = [
       ],
       GJB: [
 
-
         {
           defaultValue: '0',
           description: '',
@@ -1226,7 +1208,6 @@ export const icon = [
         }
       ],
       GB: [
-
 
         {
           defaultValue: '400',
@@ -1564,7 +1545,7 @@ export const line = [
           name: '空',
           sign: '',
           unit: ''
-        },
+        }
       ],
       GJB: [
         {
@@ -1573,7 +1554,7 @@ export const line = [
           name: '空',
           sign: '',
           unit: ''
-        },
+        }
       ],
       GB: [
         {
@@ -1582,9 +1563,8 @@ export const line = [
           name: '空',
           sign: '',
           unit: ''
-        },
+        }
       ]
     }
   }
 ]
-

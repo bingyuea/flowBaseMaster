@@ -60,7 +60,6 @@
   import ShortcutList from './containers/ShortcutList'
   import Details from './containers/Details'
   import History from './containers/History'
-  import utils from '@/global/g6/utils'
   // 扩展了节点、边的G6
   import G6 from '@/global/g6/index'
   import * as G6Util from '@antv/util'
@@ -81,7 +80,7 @@
   import _ from 'lodash'
   import upload from './toolbarContent/upload'
   import result from './toolbarContent/result'
-  import { uploadFn } from '../api/svg'
+  // import { uploadFn } from '../api/svg'
   import axios from 'axios'
   import VAR from '../global/utils/var'
 
@@ -146,7 +145,7 @@
       },
       editorConfig () {
         return this.editor && this.editor.$C ? this.editor.$C : null
-      },
+      }
     },
     methods: {
       showFn (val) {
@@ -438,7 +437,7 @@
         _t.doClearAllStates()
         const model = event.item.getModel()
         const id = model && model.originId
-        this.currentShape =model.name
+        this.currentShape = model.name
         // 需要存 model数据
         if (id) this.getOriginData(id, JSON.stringify(model))
         _t.editor.setItemState(event.item, 'active', true)
@@ -448,7 +447,7 @@
         _t.doClearAllStates()
         const model = event.item.getModel()
         const id = model && model.type
-        this.currentShape =model.name
+        this.currentShape = model.name
         debugger
         // 需要存 model数据
         if (id) this.getOriginData(id, JSON.stringify(model))
@@ -1020,7 +1019,7 @@
                   dataList.push(paramsCopy)
                 }
               })
-              console.log('得到参数',dataList)
+              console.log('得到参数', dataList)
               if (!dataList.length) {
                 this.$message.error('元件数据不存在，请先录入数据在导出！')
                 return
@@ -1334,7 +1333,7 @@
             }
             break
         }
-        console.log(log,'doUpdateLog')
+        console.log(log, 'doUpdateLog')
         _t.$X.utils.storage.set('log', log, _t.$X.config.storage.prefix)
       }
     },

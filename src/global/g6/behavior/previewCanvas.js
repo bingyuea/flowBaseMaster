@@ -1,4 +1,4 @@
-import utils from "@/global/g6/utils";
+import utils from '@/global/g6/utils'
 
 /**
  * Created by OXOYO on 2019/9/27.
@@ -22,7 +22,7 @@ export default {
         'node:click': 'onNodeClick',
         'node:mousedown': 'onNodeMousedown',
         'edge:mousedown': 'onEdgeMousedown',
-        'edge:dblclick': 'onEdgeDblclick',
+        'edge:dblclick': 'onEdgeDblclick'
       }
     },
     onNodeContextmenu (event) {
@@ -55,9 +55,9 @@ export default {
         canvasY: event.canvasY
       })
     },
-    onNodeClick(event) {
+    onNodeClick (event) {
     },
-    onNodeMousedown(event) {
+    onNodeMousedown (event) {
       // console.log('onNodeMousedown')
       // 非左键忽略
       if (!utils.common.isLeftKey(event)) {
@@ -65,7 +65,7 @@ export default {
       }
       const _t = this
       const model = event.item.getModel()
-      _t.graph.emit('editor:getItem',[
+      _t.graph.emit('editor:getItem', [
         {
           type: 'node',
           id: model.id,
@@ -93,14 +93,14 @@ export default {
         }
       }
       if (_t.info && _t.info.type && _t[ _t.info.type ].start) {
-        _t[ _t.info.type ].start.call(_t,event)
+        _t[ _t.info.type ].start.call(_t, event)
       }
     },
-    onEdgeMousedown(event) {
+    onEdgeMousedown (event) {
       // console.log('onEdgeMousedown')
       const _t = this
       const model = event.item.getModel()
-      _t.graph.emit('editor:getItem',[
+      _t.graph.emit('editor:getItem', [
         {
           type: 'edge',
           id: model.id,
@@ -108,12 +108,12 @@ export default {
         }
       ])
     },
-    onEdgeDblclick(event) {
+    onEdgeDblclick (event) {
       // console.log('onEdgeDblclick')
       const _t = this
       if (_t.config.edgeLabel) {
         // _t.edgeLabel.create.call(_t, event)
       }
-    },
+    }
   }
 }

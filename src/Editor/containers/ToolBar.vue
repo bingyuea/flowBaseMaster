@@ -614,18 +614,18 @@
         }
         const child = item.children[val]
         _t.formData[item.name] = child.name
-        /*const payload = {
+        /* const payload = {
           context: 'ToolBar',
           type: item.type,
           name: item.name,
           icon: item.icon,
           item: child.child,
           selected: val,
-        }*/
-        let payload = {
+        } */
+        const payload = {
           context: 'ToolBar',
           name: item.name,
-          item:child
+          item: child
         }
 
         _t.$X.utils.bus.$emit('editor/tool/trigger', payload)

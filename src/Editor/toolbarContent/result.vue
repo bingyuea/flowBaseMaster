@@ -78,7 +78,7 @@
     watch: {
       async show (val) {
         if (val) {
-          let data = await startCalc()
+          const data = await startCalc()
           this.tableData = (data.data || []).map((item, index) => {
             item[ 2 ] = item[ 2 ].toFixed(4)
             item[ 3 ] = item[ 3 ].toFixed(4)
