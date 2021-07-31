@@ -632,7 +632,7 @@
       },
       handleDropdownClick (item, type, index, val) {
         const _t = this
-        console.log('handleDropdownClick', item, type, index, val)
+        // console.log('handleDropdownClick', item, type, index, val)
         if (item.disabled) {
           return
         }

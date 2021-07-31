@@ -938,7 +938,9 @@
                   // 处理数据
                   reader.onload = function (event) {
                     try {
-                      const fileString = event.target.result
+                      let fileString = event.target.result
+                      // 解密
+                      fileString = decodeURIComponent(atob(fileString))
                       const fileJson = JSON.parse(fileString)
                       // 清空画布
                       _t.editor.clear()
@@ -977,6 +979,9 @@
             } else if (info.data === 'json') {
               let content = _t.editor.save()
               content = JSON.stringify(content)
+              // 加密时 可以先将中文 encodeURIComponent 加密，然后再用 btoa 加密
+              // 解密时可以先将 atob 解密，然后再将 decodeURIComponent 解密
+              content = btoa(encodeURIComponent(content))
               const blob = new Blob([content], {
                 type: 'application/json;charset=UTF-8'
               })
