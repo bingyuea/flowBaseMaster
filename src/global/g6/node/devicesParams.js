@@ -814,7 +814,6 @@ export const icon = [
     typeId: 'icon',
     originData: {
       CCS: [
-
         {
           defaultValue: '0',
           description: '',
@@ -828,6 +827,15 @@ export const icon = [
           description: '',
           name: '节点类型(type)',
           sign: 'type',
+          options: [
+            {
+              label: '汇流母排',
+              value: '0'
+            }, {
+              label: '分支母线',
+              value: '1'
+            }
+          ],
           unit: ''
         },
         {
@@ -853,6 +861,15 @@ export const icon = [
           description: '',
           name: '节点类型(type)',
           sign: 'type',
+          options: [
+            {
+              label: '汇流母排',
+              value: '0'
+            }, {
+              label: '分支母线',
+              value: '1'
+            }
+          ],
           unit: ''
         },
         {
@@ -878,6 +895,15 @@ export const icon = [
           description: '',
           name: '节点类型(type)',
           sign: 'type',
+          options: [
+            {
+              label: '汇流母排',
+              value: '0'
+            }, {
+              label: '分支母线',
+              value: '1'
+            }
+          ],
           unit: ''
         },
         {

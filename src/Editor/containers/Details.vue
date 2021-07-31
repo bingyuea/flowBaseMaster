@@ -20,6 +20,7 @@
     margin-bottom: 5px;
 
     .el-form-item__label {
+      width:100%;
       line-height: 14px;
       padding-bottom: 0px;
     }
@@ -52,21 +53,41 @@
           <el-form-item v-for='(item,key) in list' :key='key' :prop="item.name"
                         class='el-form-details el-form-details-list'>
             <div v-if="item.name !== '空'">
-
-              <div :label="item.name" :prop="item.name" class='el-form-item__label'>
-                {{ item.name }}
-                <el-tooltip slot="label" v-show='item.description' effect="dark" :content="item.description"
-                            placement="top">
-                  <i
-                    class="el-icon-question el-input__icon"
-                  >
-                  </i>
-                </el-tooltip>
+              <div v-if="item.options && item.options.length">
+                <div :label="item.name" :prop="item.name" class='el-form-item__label'>
+                  {{ item.name }}
+                  <el-tooltip slot="label" v-show='item.description' effect="dark" :content="item.description"
+                              placement="top">
+                    <i
+                      class="el-icon-question el-input__icon"
+                    >
+                    </i>
+                  </el-tooltip>
+                </div>
+                <el-select v-model="item.defaultValue" :placehold='item.description' style = 'width: 100%'>
+                  <el-option
+                    v-for="v in item.options"
+                    :key="v.value"
+                    :label="v.label"
+                    :value="v.value">
+                  </el-option>
+                </el-select>
               </div>
-
-              <el-input v-model="item.defaultValue" :placehold='item.description'>
-                <template slot="append">{{ item.unit }}</template>
-              </el-input>
+              <div v-else>
+                <div :label="item.name" :prop="item.name" class='el-form-item__label'>
+                  {{ item.name }}
+                  <el-tooltip slot="label" v-show='item.description' effect="dark" :content="item.description"
+                              placement="top">
+                    <i
+                      class="el-icon-question el-input__icon"
+                    >
+                    </i>
+                  </el-tooltip>
+                </div>
+                <el-input v-model="item.defaultValue" :placehold='item.description'>
+                  <template slot="append">{{ item.unit }}</template>
+                </el-input>
+              </div>
             </div>
 
           </el-form-item>
