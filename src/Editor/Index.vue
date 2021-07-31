@@ -1244,7 +1244,9 @@
         // 设置数据
         _t.editor.read(data)
         _t.editor.refresh()
-        // 加载数据后保存记录
+        _t.doZoom({
+          name: 'actualSize'
+        })
         // 更新操作日志
         _t.doUpdateLog({
           action: 'loadData',

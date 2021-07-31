@@ -138,8 +138,8 @@
             autoPaint: true
           })
         }
-        _t.editor.data(item.content)
-        _t.editor.render()
+        _t.editor.read(item.content)
+        _t.editor.refresh()
         const width = _t.editor.get('width')
         const height = _t.editor.get('height')
         const center = {
