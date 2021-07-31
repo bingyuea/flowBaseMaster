@@ -407,7 +407,7 @@
           _t.$X.utils.bus.$emit('editor/contextmenu/open', data)
         })
         _t.editor.on('editor:record', function (from) {
-          // console.log('editor:record from', from)
+          console.log('editor:record from', from)
           // 更新操作日志
           _t.doUpdateLog({
             action: 'record',
@@ -601,6 +601,7 @@
             _t.doUpdateLog({
               action: info.name
             })
+            debugger
             if (['undo', 'redo'].includes(info.name)) {
               const log = _t.$X.utils.storage.get('log', _t.$X.config.storage.prefix)
               _t.$nextTick(function () {
@@ -615,6 +616,7 @@
                       // 渲染
                       _t.editor.read(data.content)
                       _t.editor.paint()
+                      _t.editor.refresh()
                       // 缩放到实际大小
                       _t.doZoom({
                         name: 'actualSize'
@@ -625,6 +627,7 @@
                     // 渲染
                     _t.editor.read(data.content)
                     _t.editor.paint()
+                    _t.editor.refresh()
                     // 缩放到实际大小
                     _t.doZoom({
                       name: 'actualSize'
@@ -1239,21 +1242,8 @@
         // 更新currentItem
         _t.currentItem = []
         // 设置数据
-        _t.editor.data(data)
-        // 渲染
-        _t.editor.render()
-        _t.editor.getNodes().forEach(node => {
-          const model = node.getModel()
-          const radian = model.radian
-          const keyShape = node.getKeyShape()
-          keyShape.resetMatrix()
-          keyShape.rotate(radian)
-          const group = _t.editor.get('group')
-          // 更新shapeControl
-          utils.shapeControl.rotate(model, group, radian)
-          // 更新锚点
-          utils.anchor.rotate(model, group, radian)
-        })
+        _t.editor.read(data)
+        _t.editor.refresh()
         // 加载数据后保存记录
         // 更新操作日志
         _t.doUpdateLog({
@@ -1342,6 +1332,7 @@
             }
             break
         }
+        console.log(log,'doUpdateLog')
         _t.$X.utils.storage.set('log', log, _t.$X.config.storage.prefix)
       }
     },
