@@ -948,6 +948,7 @@
                       _t.editor.data(fileJson)
                       // 渲染
                       _t.editor.render()
+                      debugger
                       _t.editor.getNodes().forEach(node => {
                         const model = node.getModel()
                         const radian = model.radian
@@ -1203,34 +1204,6 @@
             _t.$X.utils.storage.set('toolList', toolList, _t.$X.config.storage.prefix)
           }
         }
-        //todo 处理 第一行 选中 TODO
-       /* if (info.name ===  "绘图模式") {
-          // 处理选中，更新toolList
-          const toolList = []
-          debugger
-          const toolListData = _t.$X.utils.storage.get('sysList', _t.$X.config.storage.prefix)
-          if (Array.isArray(toolListData)) {
-            toolListData.forEach(target => {
-              if (target.enableTool) {
-                if (target.name === info.icon) {
-                  target.selected = info.selected
-                  // 更新自定义值
-                  if (target.hasOwnProperty('custom')) {
-                    target.custom = {
-                      ...target.custom,
-                      enable: false,
-                      label: '',
-                      data: ''
-                    }
-                  }
-                }
-                toolList.push(target)
-              }
-            })
-            _t.toolList = toolList
-            _t.$X.utils.storage.set('sysList', toolList, _t.$X.config.storage.prefix)
-          }
-        }*/
       },
       initInfo (data = {}) {
         const _t = this
@@ -1314,11 +1287,11 @@
       },
       // 更新log
       doUpdateLog (data) {
-        /* const _t = this
+        const _t = this
         if (!data.hasOwnProperty('action') || !data.action) {
           return
         }
-        const oldLog = _.cloneDeep(_t.$X.utils.storage.get('log', _t.$X.config.storage.prefix))
+        const oldLog = JSON.parse(JSON.stringify(_t.$X.utils.storage.get('log', _t.$X.config.storage.prefix)))
         const log = {
           current: null,
           list: []
@@ -1338,7 +1311,7 @@
               }
               log.list = [
                 ...oldLog.list,
-                _.cloneDeep(data.data)
+                JSON.parse(JSON.stringify(data.data))
               ]
               log.current = log.list.length - 1
             }
@@ -1370,7 +1343,7 @@
             if (data.data) {
               if (oldLog.current === null) {
                 log.list = [
-                  _.cloneDeep(data.data)
+                  JSON.parse(JSON.stringify(data.data))
                 ]
               } else {
                 if (oldLog.list.length - 1 > oldLog.current) {
@@ -1382,14 +1355,14 @@
                 }
                 log.list = [
                   ...oldLog.list,
-                  _.cloneDeep(data.data)
+                  JSON.parse(JSON.stringify(data.data))
                 ]
               }
               log.current = log.list.length - 1
             }
             break
         }
-        _t.$X.utils.storage.set('log', _.cloneDeep(log), _t.$X.config.storage.prefix) */
+        _t.$X.utils.storage.set('log', log, _t.$X.config.storage.prefix)
       }
     },
     created () {
