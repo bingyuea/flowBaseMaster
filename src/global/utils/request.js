@@ -75,7 +75,7 @@ export function get ({ url, params }) {
  */
 export function post ({ url, params }) {
   return new Promise((resolve, reject) => {
-    service.post(url, QS.stringify(params))
+    service.post(url, params)
       .then(res => {
         resolve(res)
       })

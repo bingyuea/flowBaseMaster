@@ -57,6 +57,6 @@ export function deleteJSON (params) {
 export function getjsons (params) {
   return post({
     url: `pyapi/getjsons`,
-    data: params
+    params
   })
 }
