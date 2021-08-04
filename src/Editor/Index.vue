@@ -163,6 +163,7 @@
         const _t = this
         let content = _t.editor.save()
         content = JSON.stringify(content)
+        console.log(content, 'getJsonData')
         // 加密时 可以先将中文 encodeURIComponent 加密，然后再用 btoa 加密
         // 解密时可以先将 atob 解密，然后再将 decodeURIComponent 解密
         content = btoa(encodeURIComponent(content))

@@ -743,6 +743,7 @@ export const icon = [
           defaultValue: '0',
           description: '',
           name: '电动机功率因数(cosφm)',
+          sign: 'cosφm',
           unit: ''
         },
 
