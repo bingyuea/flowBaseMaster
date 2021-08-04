@@ -48,9 +48,9 @@
     <!--"生成结果报告"-->
     <result :show.sync="resultShow"></result>
     <!--保存拓扑-->
-    <saveGui :show.sync="saveGuiShow"></saveGui>
+    <saveGui :show.sync="saveGuiShow" :getJsonData = 'getJsonData' :jsonData = 'jsonData'></saveGui>
     <!--管理拓扑-->
-    <manage-gui :show.sync="manageGuiShow" @loadJSON = '(json) => loadJSON(json)'></manage-gui>
+    <manage-gui :show.sync="manageGuiShow" @loadJson = '(json) => loadJson(json)' @copyFn = 'copyFn'></manage-gui>
   </div>
 </template>
 
@@ -146,7 +146,8 @@
         uploadShow: false,
         resultShow: false,
         saveGuiShow: false,
-        manageGuiShow: false
+        manageGuiShow: false,
+        jsonData: ''
       }
     },
     computed: {
@@ -158,6 +159,15 @@
       }
     },
     methods: {
+      getJsonData () {
+        const _t = this
+        let content = _t.editor.save()
+        content = JSON.stringify(content)
+        // 加密时 可以先将中文 encodeURIComponent 加密，然后再用 btoa 加密
+        // 解密时可以先将 atob 解密，然后再将 decodeURIComponent 解密
+        content = btoa(encodeURIComponent(content))
+        return content
+      },
       showFn (val) {
         this[val] = true
       },
@@ -949,7 +959,7 @@
                   reader.onload = function (event) {
                     try {
                       const fileString = event.target.result
-                      _t.loadJSON(fileString)
+                      _t.loadJson(fileString)
                     } catch (e) {
                       // 提示
                       _t.$Message.error(_t.$t('L10207'))
@@ -966,11 +976,7 @@
             if (info.data === 'image') {
               _t.editor.downloadImage(fileName)
             } else if (info.data === 'json') {
-              let content = _t.editor.save()
-              content = JSON.stringify(content)
-              // 加密时 可以先将中文 encodeURIComponent 加密，然后再用 btoa 加密
-              // 解密时可以先将 atob 解密，然后再将 decodeURIComponent 解密
-              content = btoa(encodeURIComponent(content))
+              const content = _t.getJsonData()
               const blob = new Blob([content], {
                 type: 'application/json;charset=UTF-8'
               })
@@ -1223,7 +1229,12 @@
           }
         }
       },
-      loadJSON (fileString) {
+      // 另存为
+      copyFn (val) {
+        this.saveGUI()
+        this.jsonData = val
+      },
+      loadJson (fileString) {
         const _t = this
         // 解密
         fileString = decodeURIComponent(atob(fileString))

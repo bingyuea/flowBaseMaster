@@ -14,20 +14,20 @@ export function getSvgById (id) {
   })
 }
 
-export function uploadFn (file) {
+export function uploadFn (params) {
   /* return get({
     url: `pyapi/upload/${file}`
   }) */
   return post({
     url: `pyapi/upload`,
-    data: file
+    params
   })
 }
 
-export function uploadjson (json) {
+export function uploadjson (params) {
   return post({
     url: `pyapi/uploadjson`,
-    data: json
+    params
   })
 }
 
@@ -45,8 +45,9 @@ export function getCalcRes (idx) {
 }
 
 export function deleteJSON (params) {
-  return get({
-    url: `pyapi/deletejson/${params}`
+  return post({
+    url: `pyapi/deletejson`,
+    params
   })
 }
 

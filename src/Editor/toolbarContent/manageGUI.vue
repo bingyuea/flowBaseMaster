@@ -45,41 +45,38 @@
 <script>
   import {
     getjsons,
-    uploadjson,
     deleteJSON
   } from '../../../src/api/svg'
 
   export default {
     name: 'manageGUI',
     props: ['show'],
+    watch: {
+      show (val) {
+        if (val) this.query()
+      }
+    },
     methods: {
       loadFn (row) {
-        if (row.jsonData) { this.$emit('loadJSON', row.jsonData) }
+        if (row.jsonData) { this.$emit('loadJson', row.jsonData) }
       },
       deleteFn (row) {
         if (row && row.topologyId) {
-          this.$alert('是否删除？', '提示', {
-            type: 'warning'
-          }).then(() => {
-            deleteJSON(row.topologyId)
+          this.$alert('是否删除', '提示', {
+            confirmButtonText: '确定',
+            type: 'warning',
+            callback: async action => {
+              await deleteJSON({ topologyId: row.topologyId })
+              this.query()
+            }
           })
         }
       },
-      copyFn () {
-        uploadjson({
-          userId: 1,
-          projectId: 0,
-          // 0 新建 1覆盖 2 另存为
-          action: 2,
-          name: '',
-          version: '',
-          jsonData: ''
-        }).then(() => {
-          this.$message.success('另存为副本成功')
-          this.query()
-        }).catch(() => {
-          this.$message.error('另存为副本失败')
-        })
+      async copyFn (row) {
+        const obj = { ...row, userId: 1, projectId: 0, action: 2 }
+        await this.$emit('copyFn', obj)
+        // todo 刷新
+        this.query()
       },
       exportFn (row) {
         const blob = row.jsonData
@@ -90,9 +87,11 @@
         link.download = 'GUI'
         link.click()
       },
-      query () {
-        const data = getjsons({ userId: 1 })
-        this.tableData = data
+      async query () {
+        const { data } = await getjsons({ userId: 1 })
+        if (!data) return
+        console.log(JSON.parse(data))
+        this.tableData = JSON.parse(data)
       },
       close () {
         this.$emit('update:show', false)
@@ -105,31 +104,27 @@
       return {
         tableHead: [
           {
-            prop: '0',
-            label: '设备idx'
-          },
-          {
-            prop: '1',
+            prop: 'projectId',
             label: '项目名'
           },
           {
-            prop: '2',
+            prop: 'topologyId',
             label: '拓扑id'
           },
           {
-            prop: '3',
+            prop: 'name',
             label: '拓扑名'
           },
           {
-            prop: '4',
+            prop: 'version',
             label: '当前版本'
           },
           {
-            prop: '',
+            prop: 'newTime',
             label: '创建时间'
           },
           {
-            prop: '',
+            prop: 'modifiedTime',
             label: '修改时间'
           }
         ],
