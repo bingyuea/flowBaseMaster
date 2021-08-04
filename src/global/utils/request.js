@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
 import VAR from './var'
+import QS from 'qs'
 // create an axios instance
 const service = axios.create({
   baseURL: VAR.baseURL, // url = base url + request url
@@ -11,6 +12,8 @@ const service = axios.create({
 // request interceptor
 service.interceptors.request.use(
   config => {
+    // 设置请求头
+    config.headers['Content-Type'] = 'application/json'
     return config
   },
   error => {
@@ -72,8 +75,7 @@ export function get ({ url, params }) {
  */
 export function post ({ url, params }) {
   return new Promise((resolve, reject) => {
-    console.log(url, params)
-    service.post(url, params)
+    service.post(url, QS.stringify(params))
       .then(res => {
         resolve(res)
       })

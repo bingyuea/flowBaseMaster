@@ -2412,17 +2412,57 @@ export default function (system = {}, disableTools = [], enableTools = [], short
     {
       name: '系统',
       label: '文件',
-      type: 'normal',
+      type: 'dropdown-list',
       enable: true,
       enableMode: ['edit'],
       disabled: false,
       disabledMode: ['edit'],
+      selected: 0,
+      lockLabel: true,
       toolbar: {
         enable: true,
         position: 'left',
         style: {},
         divider: false
-      }
+      },
+      children: [
+        {
+          name: '新建',
+          label: '新建',
+          lang: '新建',
+          type: 'normal',
+          icon: '新建',
+          style: {},
+          data: '新建',
+          enable: true,
+          disabled: false,
+          divider: false
+        },
+        {
+          name: '导出',
+          label: '导出',
+          lang: '导出',
+          type: 'normal',
+          icon: '导出',
+          style: {},
+          data: '导出',
+          enable: true,
+          disabled: false,
+          divider: false
+        },
+        {
+          name: '保存',
+          label: '保存',
+          lang: '保存',
+          type: 'normal',
+          icon: '保存',
+          style: {},
+          data: '保存',
+          enable: true,
+          disabled: false,
+          divider: false
+        }
+      ]
     }, {
       name: '系统',
       label: '操作',
@@ -2483,6 +2523,23 @@ export default function (system = {}, disableTools = [], enableTools = [], short
         divider: false
       },
       children: toolkit
+    },
+    {
+      name: '系统',
+      label: '拓扑管理',
+      type: 'normal',
+      enable: true,
+      enableMode: ['edit'],
+      disabled: false,
+      disabledMode: ['edit'],
+      selected: 0,
+      lockLabel: true,
+      toolbar: {
+        enable: true,
+        position: 'left',
+        style: {},
+        divider: false
+      }
     }
   ]
   const functionlist = [

@@ -608,6 +608,7 @@
         _t.isExpand = val !== undefined ? val : !_t.isExpand
       },
       handleDropdownClickToolkit (item, type, index, val) {
+        debugger
         const _t = this
         if (item.disabled) {
           return
@@ -625,9 +626,9 @@
         const payload = {
           context: 'ToolBar',
           name: item.name,
+          label: item.label,
           item: child
         }
-
         _t.$X.utils.bus.$emit('editor/tool/trigger', payload)
       },
       handleDropdownClick (item, type, index, val) {
@@ -636,7 +637,6 @@
         if (item.disabled) {
           return
         }
-        debugger
         const child = item.children[val]
         _t.formData[item.name] = child.name
         const payload = {
@@ -657,6 +657,7 @@
         let payload = {
           context: 'ToolBar',
           name: item.name,
+          label: item.label,
           item
         }
         switch (item.name) {

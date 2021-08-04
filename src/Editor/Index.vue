@@ -47,6 +47,10 @@
     <upload :show.sync="uploadShow"></upload>
     <!--"生成结果报告"-->
     <result :show.sync="resultShow"></result>
+    <!--保存拓扑-->
+    <saveGui :show.sync="saveGuiShow"></saveGui>
+    <!--管理拓扑-->
+    <manage-gui :show.sync="manageGuiShow" @loadJSON = '(json) => loadJSON(json)'></manage-gui>
   </div>
 </template>
 
@@ -80,6 +84,8 @@
   import _ from 'lodash'
   import upload from './toolbarContent/upload'
   import result from './toolbarContent/result'
+  import saveGui from './toolbarContent/saveGUI'
+  import manageGui from './toolbarContent/manageGUI'
   // import { uploadFn } from '../api/svg'
   import axios from 'axios'
   import VAR from '../global/utils/var'
@@ -97,7 +103,9 @@
       History,
       Details,
       upload,
-      result
+      result,
+      saveGui,
+      manageGui
     },
     props: {
       maxLogSize: {
@@ -136,7 +144,9 @@
         currentItem: [],
         materials: [],
         uploadShow: false,
-        resultShow: false
+        resultShow: false,
+        saveGuiShow: false,
+        manageGuiShow: false
       }
     },
     computed: {
@@ -588,7 +598,7 @@
         }
       },
       handleToolTrigger (info) {
-        // console.log(info, 'handleToolTrigger')
+        console.log(info, 'handleToolTrigger')
         const _t = this
         // 是否记录日志标识
         let isRecord = false
@@ -938,29 +948,8 @@
                   // 处理数据
                   reader.onload = function (event) {
                     try {
-                      let fileString = event.target.result
-                      // 解密
-                      fileString = decodeURIComponent(atob(fileString))
-                      const fileJson = JSON.parse(fileString)
-                      // 清空画布
-                      _t.editor.clear()
-                      // TOPR 这里可以提pr解决上传回写问题
-                      _t.currentItem = []
-                      _t.editor.read(fileJson)
-                      _t.editor.refresh()
-                      // 缩放到实际大小
-                      _t.doZoom({
-                        name: 'actualSize'
-                      })
-                      // 加载数据后保存记录
-                      // 更新操作日志
-                      _t.doUpdateLog({
-                        action: 'loadData',
-                        data: {
-                          time: new Date(),
-                          content: _t.editor.save()
-                        }
-                      })
+                      const fileString = event.target.result
+                      _t.loadJSON(fileString)
                     } catch (e) {
                       // 提示
                       _t.$Message.error(_t.$t('L10207'))
@@ -1159,6 +1148,49 @@
             if (mode !== '绘图模式') this.doSetMode('preview')
             break
           }
+          case '系统': {
+            console.log(info, '系统')
+            if (info.label === '文件') {
+              if (info.item.name === '新建') {
+                // 如果gui有图，则提示是否保存
+                const needClear = _t.editor.getNodes().length
+                if (needClear) {
+                  this.$confirm('你有正在编辑的拓扑，是否保存之后再新增？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                  }).then(() => {
+                    _t.saveGUI()
+                  })
+                }
+              }
+              if (info.item.name === '导出') {
+                let content = _t.editor.save()
+                content = JSON.stringify(content)
+                // 加密时 可以先将中文 encodeURIComponent 加密，然后再用 btoa 加密
+                // 解密时可以先将 atob 解密，然后再将 decodeURIComponent 解密
+                content = btoa(encodeURIComponent(content))
+                const blob = new Blob([content], {
+                  type: 'application/json;charset=UTF-8'
+                })
+                const url = URL.createObjectURL(blob)
+                const link = document.createElement('a')
+                link.textContent = 'download json'
+                link.href = url
+                link.download = 'GUI'
+                link.click()
+                URL.revokeObjectURL(url)
+              }
+              if (info.item.name === '保存') {
+                _t.saveGUI()
+              }
+            }
+
+            if (info.label === '拓扑管理') {
+              this.manageGuiShow = true
+            }
+            break
+          }
         }
         if (isRecord) {
           // 记录操作日志
@@ -1190,6 +1222,34 @@
             _t.$X.utils.storage.set('toolList', toolList, _t.$X.config.storage.prefix)
           }
         }
+      },
+      loadJSON (fileString) {
+        const _t = this
+        // 解密
+        fileString = decodeURIComponent(atob(fileString))
+        const fileJson = JSON.parse(fileString)
+        // 清空画布
+        _t.editor.clear()
+        // TOPR 这里可以提pr解决上传回写问题
+        _t.currentItem = []
+        _t.editor.read(fileJson)
+        _t.editor.refresh()
+        // 缩放到实际大小
+        _t.doZoom({
+          name: 'actualSize'
+        })
+        // 加载数据后保存记录
+        // 更新操作日志
+        _t.doUpdateLog({
+          action: 'loadData',
+          data: {
+            time: new Date(),
+            content: _t.editor.save()
+          }
+        })
+      },
+      saveGUI () {
+        this.saveGuiShow = true
       },
       initInfo (data = {}) {
         const _t = this
@@ -1226,11 +1286,12 @@
         })
       },
       bindUnload () {
-        // window.onbeforeunload = function (event) {
-        //   event.returnValue = false
-        //   return false
-        // }
+        /* window.onbeforeunload = function (event) {
+          event.returnValue = false
+          return false
+        } */
       },
+
       handleEditorClick () {
         const _t = this
         _t.$X.utils.bus.$emit('editor/contextmenu/close')
