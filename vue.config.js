@@ -14,7 +14,7 @@ module.exports = {
   // 静态资源目录
   assetsDir: '',
   productionSourceMap: false,
-  /*devServer: {
+  devServer: {
     // 代理设置
     proxy: {
       '/api': {
@@ -25,7 +25,7 @@ module.exports = {
         }
       }
     }
-  },*/
+  },
   css: {
     loaderOptions: {
       less: {
