@@ -330,7 +330,7 @@ export default {
           return arrowStyle
         }
         _t.drawLine.currentLine = _t.graph.addItem('edge', {
-          id: G6Util.uniqueId(),
+          id: 'G' + _t.graph.$C.idx.idx,
           // 起始节点
           source: startModel.id,
           sourceAnchor: sourceAnchor ? sourceAnchor.anchorIndex : '',
@@ -365,6 +365,7 @@ export default {
           startArrow: handleArrowStyle(_t.graph.$D.startArrow, _t.graph.$D.lineColor),
           endArrow: handleArrowStyle(_t.graph.$D.endArrow, _t.graph.$D.lineColor)
         })
+        _t.graph.$C.idx.setIdx()
         if (_t.config.tooltip.dragEdge) {
           // _t.toolTip.create.call(_t, {
           //   left: event.canvasX,
@@ -739,7 +740,7 @@ export default {
           } = _t.info.node
           const node = {
             ..._t.info.node,
-            id: G6Util.uniqueId(),
+            id: 'G' + _t.graph.$C.idx.idx,
             name: type,
             draggable: true,
             x: event.x,
@@ -748,6 +749,7 @@ export default {
             label: label
           }
           _t.graph.addItem('node', node)
+          _t.graph.$C.idx.setIdx()
         }
       },
       start (event) {
@@ -894,7 +896,7 @@ export default {
           if (!_t.drawGroup.marqueeNode) {
             // 绘制虚线框
             const node = {
-              id: G6Util.uniqueId(),
+              id: 'G' + _t.graph.$C.idx.idx,
               type: 'rect',
               x: x,
               y: y,
@@ -912,6 +914,7 @@ export default {
                 cursor: 'default'
               }
             }
+            _t.graph.$C.idx.setIdx()
             _t.drawGroup.marqueeNode = _t.graph.addItem('node', node)
           } else {
             _t.graph.updateItem(_t.drawGroup.marqueeNode, {
@@ -934,7 +937,8 @@ export default {
           } = _t.drawGroup.marqueeNode.getBBox()
           // 当前节点数组
           const currentItemArr = []
-          const groupId = G6Util.uniqueId()
+          const groupId = 'G' + _t.graph.$C.idx.idx
+          _t.graph.$C.idx.setIdx()
           const marqueeNodeId = _t.drawGroup.marqueeNode.get('id')
           _t.graph.getNodes().forEach(item => {
             const model = item.getModel()

@@ -1,4 +1,4 @@
 export default {
-  baseURL: 'http://testflight.jokco.com/'
-  // baseURL: '/api'
+  // baseURL: 'http://testflight.jokco.com/'
+  baseURL: '/api'
 }

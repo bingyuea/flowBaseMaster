@@ -110,7 +110,7 @@
     props: {
       maxLogSize: {
         type: Number,
-        default: 20
+        default: 10
       }
     },
     data () {
@@ -595,7 +595,7 @@
         const _t = this
         const node = {
           ...info,
-          id: G6Util.uniqueId(),
+          id: 'G' + _t.editor.$C.idx.idx,
           idx: _t.editor.$C.idx.idx,
           draggable: true,
           label: info.defaultLabel,
@@ -717,7 +717,7 @@
                 }
                 const node = {
                   ...model,
-                  id: G6Util.uniqueId(),
+                  id: 'G' + _t.editor.$C.idx.idx,
                   idx: _t.editor.$C.idx.idx,
                   groupId: '',
                   x,
@@ -1105,7 +1105,8 @@
             break
           }
           case 'selectAll': {
-            const groupId = G6Util.uniqueId()
+            const groupId = 'G' + _t.editor.$C.idx.idx
+            _t.editor.$C.idx.setIdx()
             _t.editor.getNodes().forEach(node => {
               // 更新节点
               _t.editor.updateItem(node, {
@@ -1265,6 +1266,13 @@
         this.saveGUI()
         this.jsonData = val
       },
+      getMaxIdx (fileJson) {
+        const edges = fileJson.edges.map(item => item.idx)
+        const nodes = fileJson.nodes.map(item => item.idx)
+        const MAX = Math.max.apply(null, [...edges, ...nodes])
+        console.log(MAX, '--------------fileJson')
+        this.editor.$C.idx.initIdx(MAX)
+      },
       loadJson (fileString) {
         const _t = this
         // 解密
@@ -1275,6 +1283,7 @@
         // TOPR 这里可以提pr解决上传回写问题
         _t.currentItem = []
         _t.editor.read(fileJson)
+        this.getMaxIdx(fileJson)
         _t.editor.refresh()
         // 缩放到实际大小
         _t.doZoom({
