@@ -110,7 +110,7 @@
     props: {
       maxLogSize: {
         type: Number,
-        default: 10
+        default: 5
       }
     },
     data () {
@@ -1267,9 +1267,17 @@
         this.jsonData = val
       },
       getMaxIdx (fileJson) {
-        const edges = fileJson.edges.map(item => item.idx)
-        const nodes = fileJson.nodes.map(item => item.idx)
-        const MAX = Math.max.apply(null, [...edges, ...nodes])
+        const edges = fileJson.edges.map(item => {
+          if (item.idx || item.idx === 0) return item.idx
+        })
+        const nodes = fileJson.nodes.map(item => {
+          if (item.idx || item.idx === 0) return item.idx
+        })
+        const all = [...edges, ...nodes].filter(v => {
+          if (v || v === 0) return v
+        })
+        const MAX = Math.max.apply(null, all)
+        console.log(all, '--------------fileJson')
         console.log(MAX, '--------------fileJson')
         this.editor.$C.idx.initIdx(MAX)
       },
@@ -1337,10 +1345,10 @@
         })
       },
       bindUnload () {
-        /* window.onbeforeunload = function (event) {
+         window.onbeforeunload = function (event) {
           event.returnValue = false
           return false
-        } */
+        }
       },
 
       handleEditorClick () {
@@ -1394,7 +1402,7 @@
                 const removeCount = oldLog.list.length - 1 - oldLog.current
                 oldLog.list.splice(oldLog.current + 1, removeCount)
               }
-              if (_t.maxLogSize !== null && oldLog.list.length > _t.maxLogSize) {
+              if (_t.maxLogSize !== null && oldLog.list.length >= _t.maxLogSize) {
                 oldLog.list.splice(0, 1)
               }
               log.list = [

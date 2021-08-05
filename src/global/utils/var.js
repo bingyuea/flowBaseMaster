@@ -1,4 +1,3 @@
 export default {
-  // baseURL: 'http://testflight.jokco.com/'
-  baseURL: '/api'
+  baseURL: window.location.href.includes('localhost') ? '/api' : 'http://testflight.jokco.com/'
 }
