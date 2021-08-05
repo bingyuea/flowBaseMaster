@@ -48,9 +48,12 @@
     <!--"生成结果报告"-->
     <result :show.sync="resultShow" :currentGui = 'currentGui'></result>
     <!--保存拓扑-->
-    <saveGui :show.sync="saveGuiShow" @getTopologyId = '(topologyId) => currentGui.topologyId = topologyId' :getJsonData = 'getJsonData' :jsonData = 'jsonData'></saveGui>
+    <saveGui :show.sync="saveGuiShow" @getTopologyId = '(topologyId) => {
+      currentGui.topologyId = topologyId
+      $refs.manageGui.query()
+    }' :getJsonData = 'getJsonData' :jsonData = 'jsonData'></saveGui>
     <!--管理拓扑-->
-    <manage-gui :show.sync="manageGuiShow" @loadJson = 'handleLoadJson' @copyFn = 'copyFn'></manage-gui>
+    <manage-gui ref = 'manageGui' :show.sync="manageGuiShow" @loadJson = 'handleLoadJson' @copyFn = 'copyFn'></manage-gui>
   </div>
 </template>
 
@@ -66,7 +69,6 @@
   import History from './containers/History'
   // 扩展了节点、边的G6
   import G6 from '@/global/g6/index'
-  import * as G6Util from '@antv/util'
   // 自定义栅格插件
   // import XGrid from '@/global/g6/plugins/XGrid'
   // 背景图

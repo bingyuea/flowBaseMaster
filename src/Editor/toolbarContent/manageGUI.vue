@@ -9,6 +9,7 @@
   >
     <template>
       <el-table
+        v-loading = 'loading'
         :data="tableData"
         height="400"
         border
@@ -75,8 +76,6 @@
       async copyFn (row) {
         const obj = { ...row, userId: 1, projectId: 0, action: 2 }
         await this.$emit('copyFn', obj)
-        // todo 刷新
-        this.query()
       },
       exportFn (row) {
         const blob = row.jsonData
@@ -88,7 +87,9 @@
         link.click()
       },
       async query () {
+        this.loading = true
         const { data } = await getjsons({ userId: 1 })
+        this.loading = false
         if (!data) return
         console.log(JSON.parse(data))
         this.tableData = JSON.parse(data)
@@ -97,11 +98,9 @@
         this.$emit('update:show', false)
       }
     },
-    mounted () {
-      this.query()
-    },
     data () {
       return {
+        loading: false,
         tableHead: [
           {
             prop: 'projectId',

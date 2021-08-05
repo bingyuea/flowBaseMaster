@@ -57,6 +57,7 @@
           this.$message.success(`${success}`)
           const topologyId = res.topologyId
           this.$emit('getTopologyId', topologyId)
+          this.close()
         }).catch(() => {
           this.$message.error(`${fail}`)
         })
