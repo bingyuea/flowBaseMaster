@@ -53,9 +53,10 @@
           const jsonData = this.getJsonData()
           params = { jsonData, action: 0 }
         }
-        uploadjson({ ...params, ...this.form }).then(() => {
+        uploadjson({ ...params, ...this.form }).then((res) => {
           this.$message.success(`${success}`)
-          this.close()
+          const topologyId = res.topologyId
+          this.$emit('getTopologyId', topologyId)
         }).catch(() => {
           this.$message.error(`${fail}`)
         })

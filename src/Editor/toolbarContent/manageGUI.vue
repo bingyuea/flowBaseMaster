@@ -58,7 +58,7 @@
     },
     methods: {
       loadFn (row) {
-        if (row.jsonData) { this.$emit('loadJson', row.jsonData) }
+        this.$emit('loadJson', row)
       },
       deleteFn (row) {
         if (row && row.topologyId) {

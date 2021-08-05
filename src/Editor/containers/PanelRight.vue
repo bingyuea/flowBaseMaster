@@ -101,6 +101,9 @@
 </template>
 
 <script>
+
+  import { startCalc } from '@/api/svg'
+
   export default {
     name: 'PanelRight',
     props: {
@@ -109,7 +112,8 @@
       currentItem: Array,
       originDataObj: Object,
       toolbarInfo: Object,
-      materialList: Array
+      materialList: Array,
+      currentGui: Object
     },
     computed: {
       toolbarIcon () {
@@ -139,12 +143,20 @@
           this.$emit('show', 'resultShow')
         }
         if (item.parent === '短路计算' && item.icon === '三相接地短路') {
-          this.$emit('triggerTool', {
+          /* this.$emit('triggerTool', {
             context: 'ToolBar',
             data: 'upload',
             name: 'download',
             selected: 2,
             type: 'dropdown-list'
+          }) */
+          const topologyId = this.currentGui.topologyId
+          if (!topologyId) {
+            this.$message.error('topologyId不存在,请先保存！')
+            return
+          }
+          startCalc(topologyId).then(() => {
+            this.$message.success('计算成功')
           })
         }
         // todo 不同的标准

@@ -22,7 +22,7 @@
     <Sketchpad></Sketchpad>
     <PanelRight :editorConfig="editorConfig" :toolList="toolList" :currentItem="currentItem"
                 :originDataObj='originDataObj' :toolbarInfo='toolbarInfo'
-                :materialList="materialList" @show = 'showFn' @triggerTool = 'triggerTool'></PanelRight>
+                :materialList="materialList" @show = 'showFn' @triggerTool = 'triggerTool' :currentGui ='currentGui'></PanelRight>
     <PanelLeft :materialList='materialList' :toolbarInfo='toolbarInfo'></PanelLeft>
     <PreviewModel></PreviewModel>
     <ContextMenu :editorData="editorData" :toolList="toolList"></ContextMenu>
@@ -46,11 +46,11 @@
 
     <upload :show.sync="uploadShow"></upload>
     <!--"生成结果报告"-->
-    <result :show.sync="resultShow"></result>
+    <result :show.sync="resultShow" :currentGui = 'currentGui'></result>
     <!--保存拓扑-->
-    <saveGui :show.sync="saveGuiShow" :getJsonData = 'getJsonData' :jsonData = 'jsonData'></saveGui>
+    <saveGui :show.sync="saveGuiShow" @getTopologyId = '(topologyId) => currentGui.topologyId = topologyId' :getJsonData = 'getJsonData' :jsonData = 'jsonData'></saveGui>
     <!--管理拓扑-->
-    <manage-gui :show.sync="manageGuiShow" @loadJson = '(json) => loadJson(json)' @copyFn = 'copyFn'></manage-gui>
+    <manage-gui :show.sync="manageGuiShow" @loadJson = 'handleLoadJson' @copyFn = 'copyFn'></manage-gui>
   </div>
 </template>
 
@@ -147,7 +147,11 @@
         resultShow: false,
         saveGuiShow: false,
         manageGuiShow: false,
-        jsonData: ''
+        jsonData: '',
+        currentGui: {
+          topologyId: '',
+          groupId: ''
+        }
       }
     },
     computed: {
@@ -159,6 +163,30 @@
       }
     },
     methods: {
+      // 载入
+      handleLoadJson (row) {
+        const _t = this
+        const needClear = _t.editor.getNodes().length
+        if (needClear) {
+          this.$confirm('你有正在编辑的拓扑，是否保存？', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            _t.saveGUI()
+          }).catch(() => {
+            _t.editor.clear()
+            this.loadJson(row.jsonData)
+            const { topologyId, groupId } = row
+            this.currentGui = { topologyId, groupId }
+          })
+        } else {
+          _t.editor.clear()
+          this.loadJson(row.jsonData)
+          const { topologyId, groupId } = row
+          this.currentGui = { topologyId, groupId }
+        }
+      },
       getJsonData () {
         const _t = this
         let content = _t.editor.save()
@@ -1168,6 +1196,8 @@
                     type: 'warning'
                   }).then(() => {
                     _t.saveGUI()
+                  }).catch(() => {
+                    _t.editor.clear()
                   })
                 }
               }

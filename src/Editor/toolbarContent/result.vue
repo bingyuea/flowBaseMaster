@@ -74,11 +74,12 @@
   )
   export default {
     name: 'upload',
-    props: ['show'],
+    props: ['show', 'currentGui'],
     watch: {
       async show (val) {
         if (val) {
-          const data = await startCalc()
+          const topologyId = this.currentGui.topologyId
+          const data = await startCalc(topologyId)
           this.tableData = (data.data || []).map((item, index) => {
             item[ 2 ] = item[ 2 ].toFixed(4)
             item[ 3 ] = item[ 3 ].toFixed(4)
