@@ -1,12 +1,11 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
 import VAR from './var'
-import QS from 'qs'
 // create an axios instance
 const service = axios.create({
   baseURL: VAR.baseURL, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // request timeout
+  timeout: 10000 // request timeout
 })
 
 // request interceptor
