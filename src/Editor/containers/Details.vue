@@ -188,13 +188,10 @@
         return idx
       },
       name () {
-        if (!this.watchFlag) {
-          const idx = this.idx
-          const sheetName = this.sheetName
-          this.$set(this.form, 'name', `${sheetName}${idx}`)
-          return `${sheetName}${idx}`
-        }
-        return ''
+        const idx = this.idx
+        const sheetName = this.sheetName
+        this.$set(this.form, 'name', `${sheetName}${idx}`)
+        return `${sheetName}${idx}`
       },
       currentShape () {
         const model = JSON.parse(this.originDataObj.model)
