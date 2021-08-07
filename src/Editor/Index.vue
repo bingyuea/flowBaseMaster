@@ -50,7 +50,7 @@
     <!--保存拓扑-->
     <saveGui :show.sync="saveGuiShow" @getTopologyId = '(topologyId) => {
       currentGui.topologyId = topologyId
-      $refs.manageGui.query()
+      editor.clear()
     }' :getJsonData = 'getJsonData' :jsonData = 'jsonData'></saveGui>
     <!--管理拓扑-->
     <manage-gui ref = 'manageGui' :show.sync="manageGuiShow" @loadJson = 'handleLoadJson' @copyFn = 'copyFn'></manage-gui>
@@ -1278,7 +1278,8 @@
         const all = [...edges, ...nodes].filter(v => {
           if (v || v === 0) return v
         })
-        const MAX = Math.max.apply(null, all)
+        let MAX = 0
+        if (all.length) MAX = Math.max.apply(null, all)
         console.log(all, '--------------fileJson')
         console.log(MAX, '--------------fileJson')
         this.editor.$C.idx.initIdx(MAX)
@@ -1347,7 +1348,7 @@
         })
       },
       bindUnload () {
-         window.onbeforeunload = function (event) {
+        window.onbeforeunload = function (event) {
           event.returnValue = false
           return false
         }
@@ -1384,7 +1385,6 @@
       },
       // 更新log
       doUpdateLog (data) {
-        debugger
         const _t = this
         if (!data.hasOwnProperty('action') || !data.action) {
           return

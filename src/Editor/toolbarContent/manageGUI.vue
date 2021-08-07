@@ -88,11 +88,15 @@
       },
       async query () {
         this.loading = true
-        const { data } = await getjsons({ userId: 1 })
-        this.loading = false
-        if (!data) return
-        console.log(JSON.parse(data))
-        this.tableData = JSON.parse(data)
+        try {
+          const { data } = await getjsons({ userId: 1 })
+          this.loading = false
+          if (!data) return
+          console.log(JSON.parse(data))
+          this.tableData = JSON.parse(data)
+        } catch (e) {
+          this.loading = false
+        }
       },
       close () {
         this.$emit('update:show', false)
