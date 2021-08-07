@@ -51,6 +51,7 @@
     <saveGui :show.sync="saveGuiShow" @getTopologyId = '(topologyId) => {
       currentGui.topologyId = topologyId
       editor.clear()
+      editor.$C.idx.initIdx(0)
     }' :getJsonData = 'getJsonData' :jsonData = 'jsonData'></saveGui>
     <!--管理拓扑-->
     <manage-gui ref = 'manageGui' :show.sync="manageGuiShow" @loadJson = 'handleLoadJson' @copyFn = 'copyFn'></manage-gui>
@@ -178,12 +179,14 @@
             _t.saveGUI()
           }).catch(() => {
             _t.editor.clear()
+            _t.editor.$C.idx.initIdx(0)
             this.loadJson(row.jsonData)
             const { topologyId, groupId } = row
             this.currentGui = { topologyId, groupId }
           })
         } else {
           _t.editor.clear()
+          _t.editor.$C.idx.initIdx(0)
           this.loadJson(row.jsonData)
           const { topologyId, groupId } = row
           this.currentGui = { topologyId, groupId }
@@ -252,7 +255,6 @@
                   type: item.name,
                   originId: item.id,
                   label: item.name,
-                  data: JSON.stringify(item),
                   defaultLabel: '',
                   enable: true,
                   width: Number(width) / 2,
@@ -1201,6 +1203,7 @@
                     _t.saveGUI()
                   }).catch(() => {
                     _t.editor.clear()
+                    _t.editor.$C.idx.initIdx(0)
                   })
                 }
               }

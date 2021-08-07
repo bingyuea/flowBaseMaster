@@ -4,7 +4,6 @@
  * 综合节点控制交互
  */
 
-import * as G6Util from '@antv/util'
 import * as G6DomUtil from '@antv/dom-util'
 import config from '../config'
 import utils from '../utils'

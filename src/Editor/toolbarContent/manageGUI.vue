@@ -32,7 +32,7 @@
           <template slot-scope="scope">
             <el-button @click="loadFn(scope.row)" type="text" size="small">载入</el-button>
             <el-button @click="exportFn(scope.row)" type="text" size="small">导出</el-button>
-            <el-button @click="deleteFn(scope.row)" type="text" size="small">删除</el-button>
+            <el-button @click="deleteFn(scope.$index,scope.row)" type="text" size="small">删除</el-button>
             <el-button @click="copyFn(scope.row)" type="text" size="small">另存为</el-button>
           </template>
         </el-table-column>
@@ -61,14 +61,14 @@
       loadFn (row) {
         this.$emit('loadJson', row)
       },
-      deleteFn (row) {
+      deleteFn (index, row) {
         if (row && row.topologyId) {
           this.$alert('是否删除', '提示', {
             confirmButtonText: '确定',
             type: 'warning',
             callback: async action => {
               await deleteJSON({ topologyId: row.topologyId })
-              this.query()
+              this.tableData.splice(index, 1)
             }
           })
         }
